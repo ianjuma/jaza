@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Product(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True)
+    id = models.AutoField(primary_key=True, auto_created=True)
     type = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
     quantity = models.IntegerField(default=0)

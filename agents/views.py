@@ -30,7 +30,7 @@ def agent_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = AgentSerializer(agent, many=True)
+        serializer = AgentSerializer(agent)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':

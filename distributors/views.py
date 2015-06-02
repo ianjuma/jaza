@@ -30,7 +30,7 @@ def distributor_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = DistributorSerializer(distributor, many=True)
+        serializer = DistributorSerializer(distributor)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':

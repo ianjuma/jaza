@@ -30,7 +30,7 @@ def product_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = ProductSerializer(product, many=True)
+        serializer = ProductSerializer(product)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':
