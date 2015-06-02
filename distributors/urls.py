@@ -1,15 +1,11 @@
-from django.conf.urls import patterns, url, include
-from rest_framework_nested import routers
-from distributors.views import DistributorViewSet
-
-
-router = routers.SimpleRouter()
-router.register(r'distributors', DistributorViewSet)
+from django.conf.urls import patterns, url
+from views import distributor_detail, distributor_list
 
 
 urlpatterns = patterns(
     '',
-    url(r'^distributors', include(router.urls, namespace='api.distributors'))
+    url(r'^distributors/$', distributor_list, name='distributor_list'),
+    url(r'^distributors/(?P<pk>[0-9]+)$', distributor_detail, name='distributor_detail'),
 )
 
 # index route last - angular overwrite all endpoints - avoid 404?

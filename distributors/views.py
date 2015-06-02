@@ -1,50 +1,13 @@
 from rest_framework.response import Response
-from rest_framework import permissions, viewsets, views, status
+from rest_framework import status
 from rest_framework.decorators import api_view
 
 from distributors.models import Distributor
-from distributors.permissions import IsRealDistributor
 from distributors.serializers import DistributorSerializer
 
 
-class DistributorApi(views.APIView):
-    # authentication_classes = (auth)
-    permission_classes = permissions.IsAuthenticated
-
-    @staticmethod
-    def get(self, request):
-        distributors = [distributor.name for distributor in Distributor.objects.all()]
-        return Response(distributors)
-
-
-class DistributorViewSet(viewsets.ModelViewSet):
-    queryset = Distributor.objects.order_by('-created_at')
-    serializer_class = Distributor
-
-    def get_permissions(self):
-        if self.request.method in permissions.SAFE_METHODS:
-            return permissions.AllowAny()
-        return permissions.IsAuthenticated(), IsRealDistributor()
-
-    def perform_create(self, serializer):
-        instance = serializer.save(author=self.request.user)
-
-        return super(DistributorViewSet, self).perform_create(serializer)
-
-
-class AccountDistributorsViewSet(viewsets.ViewSet):
-    queryset = Distributor.objects.select_related('author').all()
-    serializer_class = DistributorSerializer
-
-    def list(self, request, account_username=None):
-        queryset = self.queryset.filter(author__username=account_username)
-        serializer = self.serializer_class(queryset, many=True)
-
-        return Response(serializer.data)
-
-
 @api_view(['GET', 'POST'])
-def distributors(request):
+def distributor_list(request):
     if request.method == 'GET':
         distributors_ = Distributor.objects.all()
         serializer = DistributorSerializer(distributors_, many=True)
@@ -63,7 +26,7 @@ def distributors(request):
 def distributor_detail(request, pk):
     try:
         distributor = Distributor.objects.get(pk=pk)
-    except distributor.DoesNotExist:
+    except Distributor.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':

@@ -12,6 +12,6 @@ class AgentSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'created_at', 'updated_at')
 
         def get_validation_exlusions(self, *args, **kwargs):
-            exclusions = super(AgentSerializer, self).get_validation_exlusions()
+            exclusions = super(Agent, self).get_validation_exlusions()
 
             return exclusions + ['name']

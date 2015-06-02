@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'compressor',
     'agents',
     'distributors',
-    'products'
+    'products',
+    'rest'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,13 +1,8 @@
-from django.conf.urls import patterns, url, include
-from rest_framework_nested import routers
-from products.views import ProductViewSet
-
-
-router = routers.SimpleRouter()
-router.register(r'products', ProductViewSet)
-
+from django.conf.urls import patterns, url
+from views import product_list, product_detail
 
 urlpatterns = patterns(
     '',
-    url(r'^products', include(router.urls, namespace='api.products'))
+    url(r'^products/$', product_list, name='product_list'),
+    url(r'^products/(?P<pk>[0-9]+)$', product_detail, name='product_detail'),
 )

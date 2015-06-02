@@ -9,5 +9,8 @@ class Agent(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('created_at',)
+
     def __unicode__(self):
         return '{0}'.format(self.content)
