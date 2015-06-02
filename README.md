@@ -1,4 +1,4 @@
-# django-rest
+# morpheus-rest
 
 ## Installation
 
