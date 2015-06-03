@@ -13,12 +13,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Agent',
             fields=[
-                ('id', models.IntegerField(serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
-                ('national_id', models.IntegerField(max_length=25)),
+                ('national_id', models.PositiveIntegerField(unique=True)),
                 ('phone_number', models.CharField(max_length=15)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
+                ('nationality', models.CharField(max_length=20)),
             ],
+            options={
+                'ordering': ('created_at',),
+            },
         ),
     ]
