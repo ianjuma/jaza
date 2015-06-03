@@ -7,7 +7,7 @@ class Product(models.Model):
         ('E', 'Airtime'),
         ('G', 'General')
     )
-    owner = models.ForeignKey(Distributor)
+    # owner = models.ForeignKey(Distributor)
     id = models.AutoField(primary_key=True, auto_created=True)
     type = models.CharField(max_length=50, choices=CATEGORIES)
     name = models.CharField(max_length=50, blank=False)
