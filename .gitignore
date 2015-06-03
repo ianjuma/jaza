@@ -5,7 +5,7 @@
 # Jetbrains Stuff
 *.iml
 .idea
-
+.env
 # SQLite3 database
 *.sqlite3
 
