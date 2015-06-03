@@ -1,3 +1,10 @@
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '../.env')
+load_dotenv(dotenv_path)
+
+
 """
 Django settings for thinkster_django_angular_boilerplate project.
 
@@ -68,7 +75,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jaza',
-        'USER': 'synod',
+        'USER': os.environ.get('USER'),
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432'

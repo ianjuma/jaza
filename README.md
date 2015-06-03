@@ -9,6 +9,7 @@
 
 * `$ pip install -r requirements.txt`
 * `$ npm install -g bower`
+* `$ touch .env`
 * `$ npm install`
 * `$ bower install`
 * `$ python manage.py migrate`
