@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Distributor(models.Model):
-    id = models.AutoField(primary_key=True, auto_created=True)
+    # id = models.AutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=100)
     national_id = models.IntegerField(unique=True)
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(max_length=15, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     nationality = models.CharField(max_length=20)

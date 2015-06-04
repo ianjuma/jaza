@@ -33,4 +33,4 @@ class AccountViewSet(viewsets.ModelViewSet):
                         status=status.HTTP_400_BAD_REQUEST)
 
 
-# login / logout view
+# TODO: login / logout view

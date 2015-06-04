@@ -1,11 +1,15 @@
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 from agents.models import Agent
 from agents.serializers import AgentSerializer
+from agents.permissions import IsRealAgent
 
 
+@authentication_classes((SessionAuthentication, BasicAuthentication))
+@permission_classes((IsRealAgent,))
 @api_view(['GET', 'POST'])
 def agent_list(request):
     if request.method == 'GET':
@@ -22,6 +26,8 @@ def agent_list(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@authentication_classes((SessionAuthentication, BasicAuthentication))
+@permission_classes((IsRealAgent,))
 @api_view(['GET', 'PUT', 'DELETE'])
 def agent_detail(request, pk):
     try:
@@ -44,3 +50,6 @@ def agent_detail(request, pk):
     elif request.method == 'DELETE':
         agent.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# TODO: token authentication
