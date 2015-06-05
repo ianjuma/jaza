@@ -9,7 +9,7 @@ class Product(models.Model):
     )
     # id = models.AutoField(primary_key=True, auto_created=True)
     # owner = models.ForeignKey(Distributor)
-    type = models.CharField(max_length=50, choices=CATEGORIES)
+    type = models.CharField(max_length=1, choices=CATEGORIES)
     name = models.CharField(max_length=50, blank=False)
     quantity = models.PositiveIntegerField(default=0)
     units = models.CharField(max_length=20)
@@ -19,4 +19,4 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return '{0}'.format(self.content)
+        return '{0}'.format(self.name)

@@ -14,4 +14,4 @@ class Distributor(models.Model):
         ordering = ('created_at',)
 
     def __unicode__(self):
-        return '{0}'.format(self.content)
+        return '{0}'.format(self.name)
