@@ -8,11 +8,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('products', '0001_initial'),
+        ('agents', '0001_initial'),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='product',
-            name='owner',
+        migrations.AddField(
+            model_name='agent',
+            name='products',
+            field=models.ManyToManyField(to='products.Product'),
         ),
     ]

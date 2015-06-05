@@ -8,7 +8,7 @@ class Product(models.Model):
         ('G', 'General')
     )
     # id = models.AutoField(primary_key=True, auto_created=True)
-    # owner = models.ForeignKey(Distributor)
+    owner = models.ForeignKey(Distributor)
     type = models.CharField(max_length=1, choices=CATEGORIES)
     name = models.CharField(max_length=50, blank=False)
     quantity = models.PositiveIntegerField(default=0)

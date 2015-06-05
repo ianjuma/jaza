@@ -1,7 +1,8 @@
 from django.db import models
+from authentication.models import Account
 
 
-class Distributor(models.Model):
+class Distributor(models.Model, Account):
     # id = models.AutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=100)
     national_id = models.IntegerField(unique=True)

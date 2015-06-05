@@ -9,7 +9,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
 
         fields = ('id', 'type', 'quantity', 'name', 'created_at', 'updated_at',
-                  'cost_per_unit', 'percent_discount', 'units')
+                  'cost_per_unit', 'percent_discount', 'units', 'owner')
         read_only_fields = ('id', 'created_at', 'updated_at')
 
         def get_validation_exlusions(self, *args, **kwargs):

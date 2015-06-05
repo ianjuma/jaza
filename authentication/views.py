@@ -6,7 +6,6 @@ from rest_framework.response import Response
 # token auth
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import ParseError
-from django.contrib.auth.models import User
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
