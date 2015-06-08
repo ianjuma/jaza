@@ -4,15 +4,15 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
-        if not email:
-            raise ValueError('Users must have a valid email address.')
+    def create_user(self, first_name, password=None, **kwargs):
+        if not first_name:
+            raise ValueError('Users must have a valid name.')
 
-        if not kwargs.get('username'):
-            raise ValueError('Users must have a valid username.')
+        if not kwargs.get('phone_number'):
+            raise ValueError('Users must have a valid phone_number.')
 
         account = self.model(
-            email=self.normalize_email(email), username=kwargs.get('username')
+            first_name=self.first_name, username=kwargs.get('phone_number')
         )
 
         account.set_password(password)
@@ -30,8 +30,8 @@ class AccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=40, unique=True)
+    email = models.EmailField(unique=True, null=True)
+    phone_number = models.CharField(max_length=12, unique=True)
 
     first_name = models.CharField(max_length=40, blank=True)
     last_name = models.CharField(max_length=40, blank=True)
@@ -42,11 +42,11 @@ class Account(AbstractBaseUser):
 
     objects = AccountManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['phone_number']
 
     def __unicode__(self):
-        return self.email
+        return self.phone_number
 
     def get_full_name(self):
         return ' '.join([self.first_name, self.last_name])
