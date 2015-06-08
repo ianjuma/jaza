@@ -4,15 +4,15 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, first_name, password=None, **kwargs):
-        if not first_name:
+    def create_user(self, phone_number, password=None, **kwargs):
+        if not kwargs.get('first_name'):
             raise ValueError('Users must have a valid name.')
 
-        if not kwargs.get('phone_number'):
+        if not phone_number:
             raise ValueError('Users must have a valid phone_number.')
 
         account = self.model(
-            first_name=self.first_name, username=kwargs.get('phone_number')
+            first_name=kwargs.get('first_name'), phone_number=phone_number
         )
 
         account.set_password(password)
@@ -20,8 +20,8 @@ class AccountManager(BaseUserManager):
 
         return account
 
-    def create_superuser(self, email, password, **kwargs):
-        account = self.create_user(email, password, **kwargs)
+    def create_superuser(self, phone_number, password, **kwargs):
+        account = self.create_user(phone_number, password, **kwargs)
 
         account.is_admin = True
         account.save()
@@ -43,7 +43,7 @@ class Account(AbstractBaseUser):
     objects = AccountManager()
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['phone_number']
+    REQUIRED_FIELDS = ['first_name']
 
     def __unicode__(self):
         return self.phone_number

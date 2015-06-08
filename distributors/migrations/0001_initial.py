@@ -16,9 +16,7 @@ class Migration(migrations.Migration):
             name='Distributor',
             fields=[
                 ('account_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
-                ('name', models.CharField(max_length=100)),
                 ('national_id', models.IntegerField(unique=True)),
-                ('phone_number', models.CharField(unique=True, max_length=15)),
                 ('nationality', models.CharField(max_length=20)),
             ],
             options={
