@@ -7,6 +7,11 @@ class Category(models.Model):
         ('E', 'Airtime'),
         ('G', 'General')
     )
+    TRACKING = (
+        ('1', 'Tracked'),
+        ('0', 'NOT TRACKED')
+    )
+    tracking = models.CharField(max_length=1, choices=TRACKING)
     category = models.CharField(max_length=1, choices=CATEGORIES)
     # product_id = models.OneToOneRel(Product, to=Product, field_name='product_id')
 

@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('authentication', '0001_initial'),
-        ('products', '0001_initial'),
     ]
 
     operations = [
@@ -19,7 +18,6 @@ class Migration(migrations.Migration):
                 ('account_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('national_id', models.PositiveIntegerField(unique=True)),
                 ('nationality', models.CharField(max_length=20)),
-                ('products', models.ManyToManyField(to='products.Product')),
             ],
             options={
                 'ordering': ('created_at',),

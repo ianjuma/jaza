@@ -30,11 +30,16 @@ class AccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
+    USER_TYPE = (
+        ('A', 'AGENT'),
+        ('D', 'DISTRIBUTOR')
+    )
     email = models.EmailField(unique=True, null=True)
     phone_number = models.CharField(max_length=12, unique=True)
 
     first_name = models.CharField(max_length=40, blank=True)
     last_name = models.CharField(max_length=40, blank=True)
+    type = models.CharField(max_length=1, blank=False, choices=USER_TYPE)
     is_admin = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)

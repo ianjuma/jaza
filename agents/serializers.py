@@ -9,7 +9,7 @@ class AgentSerializer(serializers.ModelSerializer):
         model = Agent
 
         fields = ('id', 'first_name', 'last_name', 'national_id', 'phone_number', 'created_at',
-                  'updated_at', 'email', 'nationality')
+                  'updated_at', 'email', 'nationality', 'type')
         read_only_fields = ('id', 'created_at', 'updated_at')
 
         def get_validation_exlusions(self, *args, **kwargs):

@@ -8,8 +8,8 @@ class DistributorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Distributor
 
-        fields = ('id', 'last_name', 'national_id', 'phone_number',
-                  'created_at', 'updated_at', 'nationality', 'first_name')
+        fields = ('id', 'last_name', 'national_id', 'phone_number', 'type', 'created_at',
+                  'updated_at', 'nationality', 'first_name')
         read_only_fields = ('id', 'created_at', 'updated_at')
 
         def get_validation_exlusions(self, *args, **kwargs):

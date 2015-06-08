@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('phone_number', models.CharField(unique=True, max_length=12)),
                 ('first_name', models.CharField(max_length=40, blank=True)),
                 ('last_name', models.CharField(max_length=40, blank=True)),
+                ('type', models.CharField(max_length=1, choices=[(b'A', b'AGENT'), (b'D', b'DISTRIBUTOR')])),
                 ('is_admin', models.BooleanField(default=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
