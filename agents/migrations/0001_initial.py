@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('authentication', '0001_initial'),
+        ('products', '0001_initial'),
     ]
 
     operations = [
@@ -23,5 +24,19 @@ class Migration(migrations.Migration):
                 'ordering': ('created_at',),
             },
             bases=('authentication.account',),
+        ),
+        migrations.CreateModel(
+            name='AgentProductRelationship',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('agent_id', models.ForeignKey(to='agents.Agent')),
+                ('distributor_id', models.ForeignKey(to='products.Distributor')),
+                ('product_id', models.ForeignKey(to='products.Product')),
+            ],
+        ),
+        migrations.AddField(
+            model_name='agent',
+            name='products',
+            field=models.ManyToManyField(to='products.Distributor', through='agents.AgentProductRelationship'),
         ),
     ]

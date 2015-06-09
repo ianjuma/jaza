@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-from distributors.models import Distributor
+from products.models import Distributor
 from distributors.serializers import DistributorSerializer
 
 

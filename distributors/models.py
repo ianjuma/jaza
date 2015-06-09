@@ -1,4 +1,4 @@
-from django.db import models
+"""from django.db import models
 from products.models import Product
 from authentication.models import Account
 
@@ -13,3 +13,4 @@ class Distributor(Account):
 
     def __unicode__(self):
         return '{0}'.format(self.name)
+"""
