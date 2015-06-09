@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'agents',
     'distributors',
     'products',
+    'tasks',
     'rest'
 )
 
@@ -138,4 +139,5 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 AUTH_USER_MODEL = 'authentication.Account'
