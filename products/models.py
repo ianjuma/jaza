@@ -31,7 +31,7 @@ class Product(models.Model):
     # id = models.AutoField(primary_key=True, auto_created=True
 
     # owner = models.ForeignKey('Distributor')
-    category = models.ForeignKey('Category')
+    category = models.ForeignKey('Category', null=False)
     name = models.CharField(max_length=50, blank=False)
     quantity = models.PositiveIntegerField(default=0)
     units = models.CharField(max_length=20)
@@ -47,7 +47,7 @@ class Product(models.Model):
 # TODO: fix cyclic dependency problem
 class Distributor(Account):
     national_id = models.IntegerField(unique=True)
-    products = models.ManyToManyField(Product, through='DistributorProductRelationship')
+    products = models.ManyToManyField(Product, through='DistributorProductRelationship', null=False)
     nationality = models.CharField(max_length=20)
 
     class Meta:
@@ -58,7 +58,7 @@ class Distributor(Account):
 
 
 class DistributorProductRelationship(models.Model):
-    product_id = models.ForeignKey(Product)
-    distributor_id = models.ForeignKey(Distributor)
+    product_id = models.ForeignKey(Product, null=False)
+    distributor_id = models.ForeignKey(Distributor, null=False)
 
 # complete -> fetch by agents to dist id's

@@ -19,6 +19,6 @@ class Agent(Account):
 
 
 class AgentProductRelationship(models.Model):
-    distributor_id = models.ForeignKey(Distributor)
-    product_id = models.ForeignKey(Product)
-    agent_id = models.ForeignKey(Agent)
+    distributor_id = models.ForeignKey(Distributor, null=False)
+    product_id = models.ForeignKey(Product, null=False)
+    agent_id = models.ForeignKey(Agent, null=False)
