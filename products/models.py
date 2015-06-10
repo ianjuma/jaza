@@ -47,7 +47,7 @@ class Product(models.Model):
 # TODO: fix cyclic dependency problem
 class Distributor(Account):
     national_id = models.IntegerField(unique=True)
-    products = models.ManyToManyField(Product, through='ProductDistributorRelationship')
+    products = models.ManyToManyField(Product, through='DistributorProductRelationship')
     nationality = models.CharField(max_length=20)
 
     class Meta:
@@ -57,6 +57,6 @@ class Distributor(Account):
         return '{0}'.format(self.name)
 
 
-class ProductDistributorRelationship(models.Model):
+class DistributorProductRelationship(models.Model):
     product_id = models.ForeignKey(Product)
     distributor_id = models.ForeignKey(Distributor)

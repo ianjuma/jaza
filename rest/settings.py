@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'agents',
     'distributors',
     'products',
-    'tasks',
+    'taskrunner',
     'rest'
 )
 
