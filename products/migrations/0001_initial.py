@@ -33,6 +33,13 @@ class Migration(migrations.Migration):
             bases=('authentication.account',),
         ),
         migrations.CreateModel(
+            name='DistributorProductRelationship',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('distributor_id', models.ForeignKey(to='products.Distributor')),
+            ],
+        ),
+        migrations.CreateModel(
             name='Product',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -46,22 +53,14 @@ class Migration(migrations.Migration):
                 ('category', models.ForeignKey(to='products.Category')),
             ],
         ),
-        migrations.CreateModel(
-            name='ProductDistributorRelationship',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('distributor_id', models.ForeignKey(to='products.Distributor')),
-                ('product_id', models.ForeignKey(to='products.Product')),
-            ],
+        migrations.AddField(
+            model_name='distributorproductrelationship',
+            name='product_id',
+            field=models.ForeignKey(to='products.Product'),
         ),
         migrations.AddField(
             model_name='distributor',
             name='products',
-            field=models.ManyToManyField(to='products.Product', through='products.ProductDistributorRelationship'),
-        ),
-        migrations.AddField(
-            model_name='category',
-            name='owner',
-            field=models.ForeignKey(to='products.Distributor'),
+            field=models.ManyToManyField(to='products.Product', through='products.DistributorProductRelationship'),
         ),
     ]

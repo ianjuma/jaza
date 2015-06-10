@@ -39,7 +39,7 @@ class Account(AbstractBaseUser):
         ('A', 'AGENT'),
         ('D', 'DISTRIBUTOR')
     )
-    email = models.EmailField(unique=True, null=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
     phone_number = models.CharField(max_length=12, unique=True)
 
     first_name = models.CharField(max_length=40, blank=True)

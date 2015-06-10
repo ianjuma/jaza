@@ -37,6 +37,7 @@ TEMPLATE_DEBUG = True
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -47,6 +48,7 @@ INSTALLED_APPS = (
     'authentication',
     'agents',
     'distributors',
+    'transactions',
     'products',
     'taskrunner',
     'rest'

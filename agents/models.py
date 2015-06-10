@@ -15,7 +15,7 @@ class Agent(Account):
         ordering = ('created_at',)
 
     def __unicode__(self):
-        return '{0}'.format(self.name)
+        return '{0}'.format(self.phone_number)
 
 
 class AgentProductRelationship(models.Model):
