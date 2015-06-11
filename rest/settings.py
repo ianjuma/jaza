@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'authentication',
     'agents',
     'distributors',
-    'transactions',
     'products',
     'taskrunner',
     'rest'

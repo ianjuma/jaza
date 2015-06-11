@@ -8,6 +8,8 @@ from products.serializers import ProductSerializer
 class AgentSerializer(serializers.ModelSerializer):
     # products = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     # ? -- add serializer directly or use a relation -- and depth
+    # queryset - for primary key related
+    # DialPlan.object.select_related.all()
     products = ProductSerializer(source='products')
 
     class Meta:

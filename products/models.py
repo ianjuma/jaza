@@ -8,11 +8,7 @@ class Category(models.Model):
         ('E', 'Airtime'),
         ('G', 'General')
     )
-    TRACKING = (
-        ('1', 'Tracked'),
-        ('0', 'NOT TRACKED')
-    )
-    tracking = models.CharField(max_length=1, choices=TRACKING)
+
     category = models.CharField(max_length=1, choices=CATEGORIES)
     # owner = models.ForeignKey('Distributor')
     # ?
@@ -33,10 +29,10 @@ class Product(models.Model):
     # owner = models.ForeignKey('Distributor')
     category = models.ForeignKey('Category', null=False)
     name = models.CharField(max_length=50, blank=False)
-    quantity = models.PositiveIntegerField(default=0)
-    units = models.CharField(max_length=20)
-    cost_per_unit = models.PositiveIntegerField(blank=False, default=1)
-    percent_discount = models.PositiveIntegerField(default=4, blank=False)
+    # quantity = models.PositiveIntegerField(default=0)
+    # units = models.CharField(max_length=20)
+    # cost_per_unit = models.PositiveIntegerField(blank=False, default=1)
+    # percent_discount = models.PositiveIntegerField(default=4, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -48,7 +44,7 @@ class Product(models.Model):
 class Distributor(Account):
     national_id = models.IntegerField(unique=True)
     products = models.ManyToManyField(Product, through='DistributorProductRelationship', null=False)
-    nationality = models.CharField(max_length=20)
+    # nationality = models.CharField(max_length=20)
 
     class Meta:
         ordering = ('created_at',)

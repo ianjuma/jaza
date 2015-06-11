@@ -9,7 +9,7 @@ class Agent(Account):
     products = models.ManyToManyField(Distributor, through='AgentProductRelationship')
 
     # products = models.ManyToManyField(Distributor, through=Product)  # agent-distributor-product
-    nationality = models.CharField(max_length=20)
+    # nationality = models.CharField(max_length=20, null=True)
 
     class Meta:
         ordering = ('created_at',)

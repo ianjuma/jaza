@@ -89,6 +89,8 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
+            # user = Account.objects.create_user(AccountSerializer.validated_data)
+            # return Response(user.validated_data, status=status.HTTP_200_OK)
             return permissions.AllowAny()
 
         if self.request.method == 'POST':
