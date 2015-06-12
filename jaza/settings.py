@@ -1,5 +1,7 @@
 from os.path import join, dirname
 from dotenv import load_dotenv
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
 
 dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path)
@@ -36,6 +38,7 @@ TEMPLATE_DEBUG = True
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -52,6 +55,10 @@ INSTALLED_APPS = (
     'products',
     'utils',
     'jaza'
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = (
