@@ -28,6 +28,7 @@ SECRET_KEY = "$6(x*g_2g9l_*g8peb-@anl5^*8q!1w)k&e&2"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
+SITE_ID = 1
 
 TEMPLATE_DEBUG = True
 
@@ -141,4 +142,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
-AUTH_USER_MODEL = 'authentication.Account'
+# AUTH_USER_MODEL = 'authentication.Account'

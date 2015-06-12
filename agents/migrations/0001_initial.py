@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-from django.conf import settings
 
 
 class Migration(migrations.Migration):
@@ -16,14 +15,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Agent',
             fields=[
-                ('account_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
+                ('id', models.OneToOneField(related_name='agent_id', primary_key=True, serialize=False, to='authentication.Account')),
                 ('national_id', models.PositiveIntegerField(unique=True)),
-                ('nationality', models.CharField(max_length=20)),
             ],
             options={
-                'ordering': ('created_at',),
+                'ordering': ('id',),
             },
-            bases=('authentication.account',),
         ),
         migrations.CreateModel(
             name='AgentProductRelationship',

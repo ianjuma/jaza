@@ -9,11 +9,11 @@ class DistributorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Distributor
 
-        fields = ('id', 'last_name', 'national_id', 'phone_number', 'type', 'created_at',
-                  'updated_at', 'nationality', 'first_name', 'products')
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        fields = ('id', 'name', 'national_id', 'phone_number', 'date_joined',
+                  'last_login', 'products', 'email')
+        read_only_fields = ('id', 'last_login', 'date_joined')
 
         def get_validation_exlusions(self, *args, **kwargs):
             exclusions = super(Distributor, self).get_validation_exlusions()
 
-            return exclusions + ['first_name', 'last_name']
+            return exclusions + ['id', 'name']

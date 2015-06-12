@@ -4,15 +4,17 @@ from products.models import Distributor
 from authentication.models import Account
 
 
-class Agent(Account):
+class Agent(models.Model):
+    id = models.OneToOneField(Account, unique=True, related_name='agent_id', primary_key=True)
+
     national_id = models.PositiveIntegerField(unique=True)
     products = models.ManyToManyField(Distributor, through='AgentProductRelationship')
 
     class Meta:
-        ordering = ('created_at',)
+        ordering = ('id',)
 
     def __unicode__(self):
-        return '{0}'.format(self.phone_number)
+        return '{0}'.format(self.national_id)
 
 
 class AgentProductRelationship(models.Model):

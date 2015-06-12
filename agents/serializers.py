@@ -15,9 +15,8 @@ class AgentSerializer(serializers.ModelSerializer):
         model = Agent
         depth = 1
 
-        fields = ('id', 'first_name', 'last_name', 'national_id', 'phone_number', 'created_at',
-                  'updated_at', 'email', 'nationality', 'type', 'products')
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        fields = ('id', 'name', 'national_id', 'phone_number', 'email', 'products')
+        read_only_fields = ('id', 'last_login', 'date_joined')
 
         def get_validation_exlusions(self, *args, **kwargs):
             exclusions = super(Agent, self).get_validation_exlusions()

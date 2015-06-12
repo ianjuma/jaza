@@ -17,16 +17,16 @@ class Product(models.Model):
         return '{0}'.format(self.name)
 
 
-# TODO: fix cyclic dependency problem
-class Distributor(Account):
+class Distributor(models.Model):
+    id = models.OneToOneField(Account, unique=True, related_name='distributor_id', primary_key=True)
     national_id = models.IntegerField(unique=True)
     products = models.ManyToManyField(Product, through='DistributorProductRelationship', null=False)
 
     class Meta:
-        ordering = ('created_at',)
+        ordering = ('id',)
 
     def __unicode__(self):
-        return '{0}'.format(self.phone_number)
+        return '{0}'.format(self.national_id)
 
 
 class DistributorProductRelationship(models.Model):

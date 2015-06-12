@@ -3,14 +3,13 @@ from django.contrib.auth import login, logout, authenticate
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
-# token auth
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import ParseError
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from authentication.models import Account
+from django.contrib.auth.models import User
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import AccountSerializer
 
@@ -65,7 +64,7 @@ class AuthToken(views.APIView):
         # check is pass and username match
         # then store token
         # won't get token
-        user = Account.objects.first()
+        user = User.objects.first()
 
         if not user:
             return Response({'Error': 'No default User'}, status=status.HTTP_404_NOT_FOUND)
@@ -84,31 +83,16 @@ class Logout(views.APIView):
 
 class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
-    queryset = Account.objects.all()
+    queryset = User.objects.all()
     serializer_class = AccountSerializer
 
     def get_permissions(self):
-        if self.request.method in permissions.SAFE_METHODS:
-            # user = Account.objects.create_user(AccountSerializer.validated_data)
-            # return Response(user.validated_data, status=status.HTTP_200_OK)
-            return permissions.AllowAny()
+        return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
-        if self.request.method == 'POST':
-            return permissions.AllowAny()
-
-        return permissions.IsAuthenticated(), IsAccountOwner()
-
-    def create(self, request):
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            Account.objects.create_user(**serializer.validated_data)
-
-            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
-
-        return Response({'status': 'Bad request',
-                         'message': 'Account could not be created with received data.'},
-                        status=status.HTTP_400_BAD_REQUEST)
+    def list(self, request):
+        queryset = self.queryset.filter(pk=request.user.id)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
 
 
 # TODO: login / logout view
