@@ -49,8 +49,8 @@ INSTALLED_APPS = (
     'agents',
     'distributors',
     'products',
-    'taskrunner',
-    'rest'
+    'utils',
+    'jaza'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,9 +63,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'rest.urls'
+ROOT_URLCONF = 'jaza.urls'
 
-WSGI_APPLICATION = 'rest.wsgi.application'
+WSGI_APPLICATION = 'jaza.wsgi.application'
 
 
 # Database

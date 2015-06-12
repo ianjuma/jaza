@@ -12,6 +12,3 @@ urlpatterns = patterns(
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns=urlpatterns)
-
-# index route last - angular overwrite all endpoints - avoid 404?
-# no need for include function
