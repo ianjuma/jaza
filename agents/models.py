@@ -8,7 +8,7 @@ class Agent(models.Model):
     id = models.OneToOneField(Account, unique=True, related_name='agent_id', primary_key=True)
 
     national_id = models.PositiveIntegerField(unique=True)
-    products = models.ManyToManyField(Distributor, through='AgentProductRelationship')
+    products = models.ManyToManyField(Product, through='AgentProductRelationship')
 
     class Meta:
         ordering = ('id',)

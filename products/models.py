@@ -9,6 +9,7 @@ class Product(models.Model):
     )
 
     category = models.CharField(max_length=1, choices=CATEGORIES)
+    owner = models.ForeignKey('Distributor', related_name='dist_product_rel')
     name = models.CharField(max_length=50, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

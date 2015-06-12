@@ -34,6 +34,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='agent',
             name='products',
-            field=models.ManyToManyField(to='products.Distributor', through='agents.AgentProductRelationship'),
+            field=models.ManyToManyField(to='products.Product', through='agents.AgentProductRelationship'),
         ),
     ]
