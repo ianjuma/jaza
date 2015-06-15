@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Agent',
             fields=[
-                ('id', models.OneToOneField(related_name='agent_id', primary_key=True, serialize=False, to='authentication.Account')),
+                ('id', models.OneToOneField(primary_key=True, serialize=False, to='authentication.Account')),
                 ('national_id', models.PositiveIntegerField(unique=True)),
             ],
             options={
@@ -23,17 +23,16 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='AgentProductRelationship',
+            name='ProductChannels',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('agent_id', models.ForeignKey(to='agents.Agent')),
-                ('distributor_id', models.ForeignKey(to='products.Distributor')),
                 ('product_id', models.ForeignKey(to='products.Product')),
             ],
         ),
         migrations.AddField(
             model_name='agent',
             name='products',
-            field=models.ManyToManyField(to='products.Product', through='agents.AgentProductRelationship'),
+            field=models.ManyToManyField(to='products.Product', through='agents.ProductChannels'),
         ),
     ]
