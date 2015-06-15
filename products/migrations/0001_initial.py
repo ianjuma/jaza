@@ -33,16 +33,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='DistributorProduct',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('distributor_id', models.ForeignKey(related_name='dist_id', to='products.Distributor')),
-            ],
-            options={
-                'ordering': ('id',),
-            },
-        ),
-        migrations.CreateModel(
             name='Product',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -50,19 +40,26 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('category_id', models.ForeignKey(related_name='product_category', to='products.Category')),
+                ('owner', models.ForeignKey(related_name='product_owner', to='products.Distributor')),
+            ],
+            options={
+                'ordering': ('id',),
+            },
+        ),
+        migrations.CreateModel(
+            name='ProductChannels',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('distributor_id', models.ForeignKey(related_name='dist_id', to='products.Distributor')),
+                ('product_id', models.ForeignKey(related_name='owner_id', to='products.Product')),
             ],
             options={
                 'ordering': ('id',),
             },
         ),
         migrations.AddField(
-            model_name='distributorproduct',
-            name='product_id',
-            field=models.ForeignKey(related_name='owner_id', to='products.Product'),
-        ),
-        migrations.AddField(
             model_name='distributor',
             name='products',
-            field=models.ManyToManyField(to='products.Product', through='products.DistributorProduct'),
+            field=models.ManyToManyField(to='products.Product', through='products.ProductChannels'),
         ),
     ]

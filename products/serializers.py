@@ -4,12 +4,13 @@ from products.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    owner = serializers.PrimaryKeyRelatedField(many=True, read_only=True, source='product_owner')
+    category = serializers.PrimaryKeyRelatedField(many=True, read_only=True, source='product_category')
 
     class Meta:
         model = Product
 
-        fields = ('id', 'quantity', 'name', 'created_at', 'updated_at',
-                  'cost_per_unit', 'percent_discount', 'units')
+        fields = ('id', 'name', 'created_at', 'updated_at', 'owner', 'category')
 
         read_only_fields = ('id', 'created_at', 'updated_at')
 
