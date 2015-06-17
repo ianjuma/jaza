@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    # owner = models.ForeignKey(User, related_name='product_owner')
+    owner = models.ForeignKey(User, related_name='product_owner')
     category_id = models.ForeignKey('Category', related_name='product_category')
     name = models.CharField(max_length=50, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,21 +34,10 @@ class Product(models.Model):
 class Distributor(models.Model):
     user = models.ForeignKey(User, related_name='distributor_id')
 
-    products = models.ManyToManyField(Product, through='ProductChannels', null=False)
+    products = models.ManyToManyField(Product, null=False)
 
     class Meta:
         ordering = ('id',)
 
     def __unicode__(self):
         return '{0}'.format(self.id)
-
-
-class ProductChannels(models.Model):
-    product_id = models.ForeignKey(Product, related_name='owner_id', null=False)
-    distributor_id = models.ForeignKey(Distributor, related_name='dist_id', null=False)
-
-    class Meta:
-        ordering = ('distributor_id',)
-
-    def __unicode__(self):
-        return '{0}'.format(self.distributor_id)

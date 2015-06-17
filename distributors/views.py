@@ -5,9 +5,6 @@ from rest_framework.decorators import api_view
 from products.models import Distributor
 from distributors.serializers import DistributorSerializer
 
-from django.contrib.auth.models import User
-from authentication.serializers import UserSerializer
-
 
 @api_view(['GET', 'POST'])
 def distributor_list(request):
