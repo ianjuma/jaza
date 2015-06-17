@@ -9,8 +9,8 @@ class AgentSerializer(serializers.ModelSerializer):
     # queryset = Agent.objects.select_related()
     # user = serializers.PrimaryKeyRelatedField(queryset=queryset)
 
+    products = ProductSerializer(read_only=False, required=False, many=True)
     user = UserSerializer(read_only=True, required=False)
-    products = ProductSerializer(read_only=True, required=False, many=True)
 
     class Meta:
         model = Agent

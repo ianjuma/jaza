@@ -5,11 +5,12 @@ from products.serializers import ProductSerializer
 from authentication.serializers import UserSerializer
 
 
+# TODO: fetch distributor products - set many=True
 class DistributorSerializer(serializers.ModelSerializer):
-    queryset = Distributor.objects.select_related()
+    # queryset = Product.objects.all()
+    # products = serializers.ManyRelatedField(child_relation=user, read_only=True)
 
-    products = ProductSerializer(read_only=False, required=False)
-    # user = serializers.PrimaryKeyRelatedField(queryset=queryset)
+    products = ProductSerializer(read_only=False, required=False, many=True)
     user = UserSerializer(read_only=False, required=False)
 
     class Meta:
