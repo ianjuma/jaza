@@ -19,27 +19,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('phone_number', models.CharField(unique=True, max_length=12)),
                 ('national_id', models.PositiveIntegerField(unique=True)),
+                ('products', models.ManyToManyField(to='products.Product')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('national_id',),
             },
-        ),
-        migrations.CreateModel(
-            name='AgentProductRelationship',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('agent_id', models.ForeignKey(to='agents.Agent')),
-                ('product_id', models.ForeignKey(to='products.Product')),
-            ],
-        ),
-        migrations.AddField(
-            model_name='agent',
-            name='products',
-            field=models.ManyToManyField(to='products.Product', through='agents.AgentProductRelationship'),
-        ),
-        migrations.AddField(
-            model_name='agent',
-            name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
     ]
