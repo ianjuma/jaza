@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth.models import User
 from authentication.permissions import IsAccountOwner
-from authentication.serializers import AccountSerializer
+from authentication.serializers import UserSerializer
 
 
 class Login(views.APIView):
@@ -24,7 +24,7 @@ class Login(views.APIView):
         if user is not None:
             if user.is_active():
                 login(request, user)
-                serialized = AccountSerializer(user)
+                serialized = UserSerializer(user)
                 return Response(serialized.data)
             else:
                 return Response({'status': 'Unauthorised',
@@ -81,13 +81,13 @@ class Logout(views.APIView):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
-class AccountViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
     queryset = User.objects.all()
-    serializer_class = AccountSerializer
+    serializer_class = UserSerializer
 
     def get_permissions(self):
-        return (permissions.IsAuthenticated(), IsAccountOwner(),)
+        return permissions.IsAuthenticated(), IsAccountOwner()
 
     def list(self, request):
         queryset = self.queryset.filter(pk=request.user.id)

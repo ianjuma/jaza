@@ -2,23 +2,24 @@ from rest_framework import serializers
 
 from agents.models import Agent
 from products.serializers import ProductSerializer
+from authentication.serializers import UserSerializer
 
 
 class AgentSerializer(serializers.ModelSerializer):
-    # products = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    # ? -- add serializer directly or use a relation -- and depth
-    # queryset - for primary key related
-    # DialPlan.object.select_related.all()
-    products = ProductSerializer(source='products')
+    # queryset = Agent.objects.select_related()
+    # user = serializers.PrimaryKeyRelatedField(queryset=queryset)
+
+    user = UserSerializer(read_only=True, required=False)
+    products = ProductSerializer(read_only=True, required=False, many=True)
 
     class Meta:
         model = Agent
         depth = 1
 
-        fields = ('id', 'name', 'national_id', 'phone_number', 'email', 'products')
-        read_only_fields = ('id', 'last_login', 'date_joined')
+        fields = ('id', 'user', 'products', 'phone_number', 'national_id',)
+        read_only_fields = ('id',)
 
         def get_validation_exlusions(self, *args, **kwargs):
-            exclusions = super(Agent, self).get_validation_exlusions()
+            exclusions = super(AgentSerializer, self).get_validation_exlusions()
 
-            return exclusions + ['name']
+            return exclusions + ['id']

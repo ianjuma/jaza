@@ -1,16 +1,23 @@
 from rest_framework import serializers
 
-from products.models import Product
+from products.models import Product, Category
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+
+        fields = ('category', 'id')
+        read_only_fields = ('id',)
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    owner = serializers.PrimaryKeyRelatedField(many=True, read_only=True, source='product_owner')
-    category = serializers.PrimaryKeyRelatedField(many=True, read_only=True, source='product_category')
+    category = CategorySerializer(required=False, read_only=True)
 
     class Meta:
         model = Product
 
-        fields = ('id', 'name', 'created_at', 'updated_at', 'owner', 'category')
+        fields = ('id', 'name', 'created_at', 'updated_at', 'category')
 
         read_only_fields = ('id', 'created_at', 'updated_at')
 

@@ -149,4 +149,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
-# AUTH_USER_MODEL = 'authentication.Account'
+# AUTH_USER_MODEL = 'authentication.User'

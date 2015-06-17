@@ -2,12 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authentication', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -25,8 +26,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Distributor',
             fields=[
-                ('id', models.OneToOneField(related_name='distributor_id', primary_key=True, serialize=False, to='authentication.Account')),
-                ('national_id', models.IntegerField(unique=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
             ],
             options={
                 'ordering': ('id',),
@@ -40,10 +40,9 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('category_id', models.ForeignKey(related_name='product_category', to='products.Category')),
-                ('owner', models.ForeignKey(related_name='product_owner', to='products.Distributor')),
             ],
             options={
-                'ordering': ('id',),
+                'ordering': ('created_at',),
             },
         ),
         migrations.CreateModel(
@@ -54,12 +53,17 @@ class Migration(migrations.Migration):
                 ('product_id', models.ForeignKey(related_name='owner_id', to='products.Product')),
             ],
             options={
-                'ordering': ('id',),
+                'ordering': ('distributor_id',),
             },
         ),
         migrations.AddField(
             model_name='distributor',
             name='products',
             field=models.ManyToManyField(to='products.Product', through='products.ProductChannels'),
+        ),
+        migrations.AddField(
+            model_name='distributor',
+            name='user',
+            field=models.ForeignKey(related_name='distributor_id', to=settings.AUTH_USER_MODEL),
         ),
     ]

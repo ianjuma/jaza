@@ -1,19 +1,24 @@
 from rest_framework import serializers
 
 from products.models import Distributor
+from products.serializers import ProductSerializer
+from authentication.serializers import UserSerializer
 
 
 class DistributorSerializer(serializers.ModelSerializer):
-    products = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    queryset = Distributor.objects.select_related()
+
+    products = ProductSerializer(read_only=False, required=False)
+    # user = serializers.PrimaryKeyRelatedField(queryset=queryset)
+    user = UserSerializer(read_only=False, required=False)
 
     class Meta:
         model = Distributor
 
-        fields = ('id', 'name', 'national_id', 'phone_number', 'date_joined',
-                  'last_login', 'products', 'email')
-        read_only_fields = ('id', 'last_login', 'date_joined')
+        fields = ('id', 'user', 'products')
+        read_only_fields = ('id',)
 
         def get_validation_exlusions(self, *args, **kwargs):
             exclusions = super(Distributor, self).get_validation_exlusions()
 
-            return exclusions + ['id', 'name']
+            return exclusions + ['id']

@@ -27,12 +27,12 @@ def agent_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def agent_detail(request, pk):
     try:
-        agent = Agent.objects.get(pk=pk)
+        agent = Agent.objects.get(phone_number=pk)
     except Agent.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = AgentSerializer(agent)
+        serializer = AgentSerializer(agent, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':

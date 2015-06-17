@@ -1,3 +1,4 @@
+"""
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import BaseUserManager
@@ -5,8 +6,8 @@ from django.contrib.auth.models import BaseUserManager
 
 class AccountManager(BaseUserManager):
     def create_user(self, phone_number, password=None, **kwargs):
-        if not kwargs.get('name'):
-            raise ValueError('Users must have a valid name.')
+        if not kwargs.get('first_name'):
+            raise ValueError('Users must have a valid first name.')
 
         if not phone_number:
             raise ValueError('Users must have a valid phone_number.')
@@ -32,17 +33,20 @@ class AccountManager(BaseUserManager):
 
 class Account(User):
     phone_number = models.CharField(max_length=12, unique=True)
-    name = models.CharField(max_length=40, blank=True)
     objects = AccountManager()
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['name', 'phone_number']
+    REQUIRED_FIELDS = ['first_name', 'phone_number', 'last_name']
+
+    class Meta:
+        ordering = ('phone_number',)
 
     def __unicode__(self):
         return self.phone_number
 
     def get_full_name(self):
-        return ':'.join([self.name, self.phone_number])
+        return ':'.join([self.first_name, self.last_name])
 
     def get_short_name(self):
-        return self.name
+        return self.last_name
+"""
