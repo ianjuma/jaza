@@ -20,6 +20,6 @@ class DistributorSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
         def get_validation_exlusions(self, *args, **kwargs):
-            exclusions = super(Distributor, self).get_validation_exlusions()
+            exclusions = super(DistributorSerializer, self).get_validation_exlusions()
 
             return exclusions + ['id']

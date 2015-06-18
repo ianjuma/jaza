@@ -24,6 +24,6 @@ class ProductSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'created_at', 'updated_at')
 
         def get_validation_exlusions(self, *args, **kwargs):
-            exclusions = super(Product, self).get_validation_exlusions()
+            exclusions = super(ProductSerializer, self).get_validation_exlusions()
 
             return exclusions + ['name']
