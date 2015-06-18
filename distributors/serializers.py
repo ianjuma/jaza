@@ -22,4 +22,4 @@ class DistributorSerializer(serializers.ModelSerializer):
         def get_validation_exlusions(self, *args, **kwargs):
             exclusions = super(DistributorSerializer, self).get_validation_exlusions()
 
-            return exclusions + ['id']
+            return exclusions + ['id', 'user']

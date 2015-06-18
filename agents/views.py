@@ -8,6 +8,7 @@ from agents.serializers import AgentSerializer
 # from agents.permissions import IsRealAgent
 
 
+# TODO: permission classes, and auth
 @api_view(['GET', 'POST'])
 def agent_list(request):
     if request.method == 'GET':

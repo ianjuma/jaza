@@ -26,4 +26,4 @@ class ProductSerializer(serializers.ModelSerializer):
         def get_validation_exlusions(self, *args, **kwargs):
             exclusions = super(ProductSerializer, self).get_validation_exlusions()
 
-            return exclusions + ['name']
+            return exclusions + ['name', 'owner']
