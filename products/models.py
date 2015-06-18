@@ -28,7 +28,7 @@ class Product(models.Model):
         ordering = ('created_at',)
 
     def __unicode__(self):
-        return '{0}'.format(self.id)
+        return '{0}'.format(self.name)
 
 
 class Distributor(models.Model):
@@ -40,4 +40,4 @@ class Distributor(models.Model):
         ordering = ('id',)
 
     def __unicode__(self):
-        return '{0}'.format(self.id)
+        return '{0}'.format(self.user.username)

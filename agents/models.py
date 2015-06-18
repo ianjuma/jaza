@@ -14,4 +14,4 @@ class Agent(models.Model):
         ordering = ('national_id',)
 
     def __unicode__(self):
-        return '{0}'.format(self.national_id)
+        return '{0}'.format(self.user.username)
