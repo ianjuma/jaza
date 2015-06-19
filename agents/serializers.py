@@ -2,21 +2,16 @@ from rest_framework import serializers
 
 from agents.models import Agent
 from products.serializers import ProductSerializer
-from authentication.serializers import UserSerializer
 
 
 class AgentSerializer(serializers.ModelSerializer):
-    # queryset = Agent.objects.select_related()
-    # user = serializers.PrimaryKeyRelatedField(queryset=queryset)
 
     products = ProductSerializer(read_only=False, required=False, many=True)
-    user = UserSerializer(read_only=True, required=False)
 
     class Meta:
         model = Agent
-        depth = 1
 
-        fields = ('id', 'user', 'products', 'phone_number', 'national_id',)
+        fields = ('id', 'products', 'phone_number', 'name', 'pin')
         read_only_fields = ('id',)
 
         def get_validation_exlusions(self, *args, **kwargs):

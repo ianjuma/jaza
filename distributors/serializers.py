@@ -1,22 +1,19 @@
 from rest_framework import serializers
 
-from products.models import Distributor
+from products.models import Account
 from products.serializers import ProductSerializer
-from authentication.serializers import UserSerializer
 
 
 # TODO: fetch distributor products - set many=True
 class DistributorSerializer(serializers.ModelSerializer):
-    # queryset = Product.objects.all()
-    # products = serializers.ManyRelatedField(child_relation=user, read_only=True)
 
     products = ProductSerializer(read_only=False, required=False, many=True)
-    user = UserSerializer(read_only=False, required=False)
 
     class Meta:
-        model = Distributor
+        model = Account
 
-        fields = ('id', 'user', 'products')
+        fields = ('id', 'email', 'products', 'username', 'last_name', 'first_name',
+                  'created_at', 'updated_at')
         read_only_fields = ('id',)
 
         def get_validation_exlusions(self, *args, **kwargs):

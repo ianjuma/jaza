@@ -8,7 +8,6 @@ from agents.serializers import AgentSerializer
 # from agents.permissions import IsRealAgent
 
 
-# TODO: permission classes, and auth
 @api_view(['GET', 'POST'])
 def agent_list(request):
     if request.method == 'GET':
@@ -47,3 +46,5 @@ def agent_detail(request, pk):
     elif request.method == 'DELETE':
         agent.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# TODO: permission classes, and auth

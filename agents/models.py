@@ -1,17 +1,16 @@
 from django.db import models
 from products.models import Product
-from django.contrib.auth.models import User
 
 
 class Agent(models.Model):
-    user = models.ForeignKey(User)
+    name = models.CharField(max_length=255)
 
-    phone_number = models.CharField(max_length=12, unique=True)
-    national_id = models.PositiveIntegerField(unique=True)
+    phone_number = models.CharField(max_length=32, unique=True)
+    pin = models.CharField(max_length=64, blank=False)
     products = models.ManyToManyField(Product)
 
     class Meta:
-        ordering = ('national_id',)
+        ordering = ('id',)
 
     def __unicode__(self):
-        return '{0}'.format(self.user.username)
+        return '{0}'.format(self.name)
