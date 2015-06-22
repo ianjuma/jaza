@@ -21,7 +21,7 @@ class Category(models.Model):
 # distributors are users
 class Product(models.Model):
     owner = models.ForeignKey('Account', related_name='product_owner')
-    category_id = models.ForeignKey('Category', related_name='product_category')
+    category = models.ForeignKey('Category', related_name='product_category')
     name = models.CharField(max_length=50, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
