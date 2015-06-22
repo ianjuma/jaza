@@ -25,7 +25,7 @@ def agent_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def agent_detail(request, pk):
     try:
-        agent = Agent.objects.get(phone_number=pk)
+        agent = Agent.objects.get(pk=pk)
     except Agent.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
