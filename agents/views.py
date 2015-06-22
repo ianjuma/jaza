@@ -1,11 +1,9 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-# from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 from agents.models import Agent
 from agents.serializers import AgentSerializer
-# from agents.permissions import IsRealAgent
 
 
 @api_view(['GET', 'POST'])

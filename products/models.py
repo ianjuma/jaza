@@ -18,7 +18,7 @@ class Category(models.Model):
         return '{0}'.format(self.category)
 
 
-# assume that - distributors are users
+# distributors are users
 class Product(models.Model):
     owner = models.ForeignKey('Account', related_name='product_owner')
     category_id = models.ForeignKey('Category', related_name='product_category')
@@ -55,7 +55,10 @@ class Account(AbstractBaseUser):
         verbose_name_plural = "distributors"
 
     def __unicode__(self):
-        return self.email
+        return self.username
+
+    def get_username(self):
+        super(Account, self).get_username()
 
     def get_full_name(self):
         return ' '.join([self.first_name, self.last_name])

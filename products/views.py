@@ -10,7 +10,6 @@ from products.serializers import ProductSerializer
 def product_list(request):
     if request.method == 'GET':
         distributors_ = Product.objects.all()
-        # distributors_ = DistributorProductRelationship.objects.all()
         serializer = ProductSerializer(distributors_, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
