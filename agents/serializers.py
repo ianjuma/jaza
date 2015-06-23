@@ -21,7 +21,6 @@ class AgentSerializer(serializers.ModelSerializer):
             return exclusions + ['id']
 
     def create(self, validated_data):
-        # pop out products if exists
         products = validated_data.pop('products', None)
 
         agent = Agent.objects.create(**validated_data)
