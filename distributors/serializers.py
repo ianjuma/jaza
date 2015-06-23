@@ -79,7 +79,6 @@ class DistributorSerializer(serializers.ModelSerializer):
                 prod = Product()
 
                 prod.name = product.get('name')
-                print prod.name
                 prod.category = product.get('category')
                 prod.owner = product.get('owner')
 
