@@ -22,55 +22,69 @@ class DistributorSerializer(serializers.ModelSerializer):
             return exclusions + ['id', 'user']
 
     def create(self, validated_data):
+        # pop out products if exists
         products = validated_data.pop('products', None)
 
         distributor = Account.objects.create(**validated_data)
-        for product in products:
-            prod = Product.objects.create()
+        # add products on post - since owner doesn't exist yet
+        """
+        owner_id = int(distributor.id)
+        distributor.save()
 
-            prod.name = product.get('name')
-            prod.category = product.get('category')
-            prod.owner = product.get('owner')
-            print prod.name
+        if products is not None:
+            for product in products:
+                prod = Product()
 
-            prod.save()
-            distributor.products.add(prod)
+                prod.name = product.get('name')
+                prod.category = product.get('category')
+                prod.owner = owner_id
+
+                prod.save()
+                distributor.products.add(prod)
+        """
 
         distributor.save()
         return distributor
 
     def update(self, instance, validated_data):
+        # get all products
         products = validated_data.pop('products', None)
 
+        # update user info
         instance.username = validated_data.get('username', None)
         instance.email = validated_data.get('email', None)
         instance.last_name = validated_data.get('last_name', None)
         instance.first_name = validated_data.get('first_name', None)
-        instance.save()
 
+        """
         # delete products not included in the update
-        product_ids = [product['id'] for product in validated_data['products']]
-        for product in products:
-            if product.id not in product_ids:
-                product.delete()
+        if products is not None:
+            product_ids = [product['id'] for product in products]
+            for product in products:
+                if product.id not in product_ids:
+                    product.delete()
+        """
 
-        distributor = Account.objects.create(**validated_data)
+        # distributor = Account.objects.create(**validated_data)
 
+        """
         # create or update page instances
         for product in validated_data['products']:
             product = Product(id=product['id'], name=product['name'],
                               category=product['category'], owner=product['owner'], product=instance)
             product.save()
+        """
+        if products is not None:
+            for product in products:
+                prod = Product()
 
-        for product in products:
-            prod = Product.objects.create()
+                prod.name = product.get('name')
+                print prod.name
+                prod.category = product.get('category')
+                prod.owner = product.get('owner')
 
-            prod.name = product.get('name')
-            prod.category = product.get('category')
-            prod.owner = product.get('owner')
+                prod.save()
+                instance.products.add(prod)
 
-            prod.save()
-            distributor.products.add(prod)
-
-        distributor.save()
-        return distributor
+        instance.save()
+        return instance
