@@ -23,6 +23,7 @@ class DistributorSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # pop out products if exists
+        # can not add products while doing a post, distributor ID unknown
         products = validated_data.pop('products', None)
 
         distributor = Account.objects.create(**validated_data)
@@ -47,31 +48,26 @@ class DistributorSerializer(serializers.ModelSerializer):
         return distributor
 
     def update(self, instance, validated_data):
-        # get all products
         products = validated_data.pop('products', None)
 
-        # update user info
         instance.username = validated_data.get('username', None)
         instance.email = validated_data.get('email', None)
         instance.last_name = validated_data.get('last_name', None)
         instance.first_name = validated_data.get('first_name', None)
 
-        """
         # delete products not included in the update
+        """
         if products is not None:
+            print products[0]['name']
             product_ids = [product['id'] for product in products]
-            for product in products:
+            for product in instance.products:
                 if product.id not in product_ids:
                     product.delete()
-        """
 
-        # distributor = Account.objects.create(**validated_data)
-
-        """
         # create or update page instances
         for product in validated_data['products']:
             product = Product(id=product['id'], name=product['name'],
-                              category=product['category'], owner=product['owner'], product=instance)
+                              category=product['category'], owner=instance)
             product.save()
         """
         if products is not None:
