@@ -1,26 +1,40 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#not-google-plus-nav">
-        <span class="sr-only">Toggle Navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Jaza &middot; Airtime</a>
-    </div> <!-- ./navbar-header -->
+<div class="sidebar">
+    <div class="logopanel">
+        <h1>
+            <a href="/"></a>
+        </h1>
+    </div>
+    <div class="sidebar-inner">
+        <div class="sidebar-top">
 
-    <div class="collapse navbar-collapse" id="not-google-plus-nav">
-      <ul class="nav navbar-nav pull-right">
-        {% if user.is_authenticated %}
-          <li><a href="/+{{ user.username }}">+{{ user.username }}</a></li>
-          <li><a href="/+{{ user.username }}/settings">Settings</a></li>
-          <li><a href="javascript:void(0)">Logout</a></li>
-        {% else %}
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-        {% endif %}
-      </ul>
-    </div> <!-- /.collapse.navbar-collapse -->
-  </div> <!-- /.container-fluid -->
-</nav>
+        </div>
+        <ul class="nav nav-sidebar">
+            <li class=" nav-active active"><a href="index.php"><i class="icon-home"></i><span data-translate="dashboard">Dashboard</span></a></li>
+            <li class="nav-parent">
+                <a href=""><i class="icon-layers"></i><span data-translate="layouts">Products</span><span class="fa arrow"></span></a>
+                <ul class="children collapse">
+                    <li><a href="airtime.php" data-translate=""> Airtime</a></li>
+                    <li><a href="#" data-translate="">Others</a></li>
+                    <li><a href="update.php-" data-translate="">Update Products</a></li>
+                </ul>
+            </li>
+            <li class="nav-parent">
+                <a href=""><i class="icon-note"></i><span data-translate="forms">Agents</span><span class="fa arrow"></span></a>
+                <ul class="children collapse">
+                    <li><a href="#">Agent List</a></li>
+
+                </ul>
+            </li>
+
+            <li class="nav-parent">
+                <a href=""><i class="icon-bar-chart"></i><span data-translate="charts">Analytics </span><span class="fa arrow"></span></a>
+                <ul class="children collapse">
+                    <li><a href="#" data-translate="image croping"> Charts</a></li>
+
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</div>

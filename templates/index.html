@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html ng-app="Jaza">
+
 <head>
-  <title>Jaza | Airtime</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="admin-Jaza">
+    <meta name="author" content="Jaza">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    <title>Jaza</title>
+    {% include 'stylesheets.html' %}
+</head>
 
   <base href="/" />
 
-  {% include 'stylesheets.html' %}
-</head>
-
-<body>
+<body class="fixed-topbar fixed-sidebar theme-sdtl color-default">
   {% include 'navbar.html' %}
+  {% include 'sidebar.html' %}
 
   <div class="container-fluid">
     <div class="row">
