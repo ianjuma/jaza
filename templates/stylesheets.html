@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% compress css %}
-
+<link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
 <link href="{% static 'plugins/step-form-wizard/css/step-form-wizard.min.css' %}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap-material-design/dist/css/material.css' %}" />
@@ -10,10 +10,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'bower_components/ngDialog/css/ngDialog.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'bower_components/ngDialog/css/ngDialog-theme-default.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'lib/snackbarjs/snackbar.min.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/styles.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}" />
 
-<link href="{% static 'stylesheets/style.css' %}" rel="stylesheet">
 <link href="{% static 'stylesheets/theme.css' %}" rel="stylesheet">
-<link href="{% static 'stylesheets/ui.css.css' %}" rel="stylesheet">
+<link href="{% static 'stylesheets/ui.css' %}" rel="stylesheet">
 
 {% endcompress %}

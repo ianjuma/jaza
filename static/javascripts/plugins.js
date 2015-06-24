@@ -829,7 +829,7 @@ function animateNumber(){
         delay    = $(this).data("delay") ? $(this).data("delay") : 1000;
         decimals = $(this).data("decimals") ? $(this).data("decimals") : 0;
         var options = {
-          useEasing : true, 
+          useEasing : true,
           useGrouping : true, 
           separator : ',', 
           prefix : $(this).data("prefix") ? $(this).data("  prefix") : '',
