@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'jaza.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-import dj_database_url
+# use databse urls - Kenneth Reitz - Project
+# import dj_database_url
 
 DATABASES = {
-
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jaza',
@@ -122,7 +122,16 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+# COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter'
+]
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),

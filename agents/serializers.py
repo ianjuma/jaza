@@ -6,7 +6,6 @@ from products.models import Product
 
 
 class AgentSerializer(serializers.ModelSerializer):
-
     products = ProductSerializer(read_only=False, required=False, many=True)
 
     class Meta:
@@ -43,30 +42,17 @@ class AgentSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         products = validated_data.pop('products', None)
 
-        # update user info
         instance.phone_number = validated_data.get('phone_number', None)
         instance.pin = validated_data.get('pin', None)
         instance.name = validated_data.get('name', None)
 
-        """
-        # delete products not included in the update
-        if products is not None:
-            product_ids = [product['id'] for product in products]
-            for product in products:
-                if product.id not in product_ids:
-                    product.delete()
-        """
-
-        """
-        # create or update page instances
-        for product in validated_data['products']:
-            product = Product(id=product['id'], name=product['name'],
-                              category=product['category'], owner=product['owner'], product=instance)
-            product.save()
-        """
+        # check available products and update, delete missing products
         if products is not None:
             for product in products:
-                prod = Product()
+                try:
+                    prod = Product.objects.get(pk=product['id'])
+                except Product.DoesNotExist:
+                    pass
 
                 prod.name = product.get('name')
                 prod.category = product.get('category')
