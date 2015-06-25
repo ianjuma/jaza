@@ -1,5 +1,5 @@
-angular.module('errandRunner')
-  .controller('PaymentController', function($scope, Payment) {
+angular.module('Jaza')
+  .controller('ProfileController', function($scope, Payment) {
     //.$promise
     $scope.addPayment = function() {
       Payment.addPayment({ cardHolder: $scope.cardHolder,

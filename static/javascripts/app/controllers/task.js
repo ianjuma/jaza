@@ -1,5 +1,5 @@
-angular.module('errandRunner')
-  .controller('TaskController', function($scope, Task) {
+angular.module('Jaza')
+  .controller('GetProductsController', function($scope, Task) {
     //.$promise
 
     $scope.addTask = function() {

@@ -1,4 +1,4 @@
-angular.module('errandRunner')
+angular.module('Jaza')
   .factory('User', function($http) {
     return {
       // TODO: clean getUser - dirty - on routers as well :(

@@ -1,5 +1,5 @@
-angular.module('errandRunner')
-  .controller('GetTasksController', function($scope, Task) {
+angular.module('Jaza')
+  .controller('GetAgentsController', function($scope, Task) {
 
     //.$promise
     // TODO: scope this as well: as done above

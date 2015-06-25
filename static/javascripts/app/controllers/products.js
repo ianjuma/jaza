@@ -1,5 +1,5 @@
-angular.module('errandRunner')
-  .controller('SupportController', function($scope, Support) {
+angular.module('Jaza')
+  .controller('UpdateProductsController', function($scope, Support) {
     //.$promise
     $scope.addTicket = function() {
       Support.addTicket({ title: $scope.title, ticket: $scope.ticket, support_urgency: $scope.support_urgency })
