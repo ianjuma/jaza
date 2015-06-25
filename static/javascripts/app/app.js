@@ -1,27 +1,23 @@
-angular.module('errandRunner', ['ngResource', 'ngMessages', 'ngRoute', 'ngAnimate', 'mgcrea.ngStrap'])
+angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'ngAnimate', 'mgcrea.ngStrap'])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {
-        templateUrl: 'static/views/mytasks.html',
+        templateUrl: 'static/views/dashboard.html',
         controller: 'GetTasksController'
       })
-      .when('/new', {
-        templateUrl: 'static/views/newtask.html',
+      .when('/profile', {
+        templateUrl: 'static/views/profile.html',
         controller: 'TaskController'
       })
-      .when('/payment', {
-        templateUrl: 'static/views/payment.html',
+      .when('/products', {
+        templateUrl: 'static/views/products.html',
         controller: 'PaymentController'
       })
-      .when('/profile', {
-        templateUrl: 'static/views/myaccount.html',
+      .when('/update', {
+        templateUrl: 'static/views/updateProduct.html',
         controller: 'UserController'
-      })
-      .when('/support', {
-        templateUrl: 'static/views/support.html',
-        controller: 'SupportController'
       })
       .otherwise({
         redirectTo: '/'

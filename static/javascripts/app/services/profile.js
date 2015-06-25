@@ -1,5 +1,5 @@
-angular.module('errandRunner')
-  .factory('Payment', function($http) {
+angular.module('Jaza')
+  .factory('Profile', function($http) {
     return {
       addPayment: function(Pay) {
         return $http.post('/api/payment', { cardHolder: Pay.cardHolder, amount: Pay.amount,

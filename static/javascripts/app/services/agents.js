@@ -1,4 +1,4 @@
-angular.module('errandRunner')
+angular.module('Jaza')
   .factory('Task', function($http) {
     return {
       addTask: function(Task) {

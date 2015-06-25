@@ -1,4 +1,4 @@
-angular.module('errandRunner')
+angular.module('Jaza')
   .factory('Support', function($http) {
     return {
       addTicket: function(Ticket) {
