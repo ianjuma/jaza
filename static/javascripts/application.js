@@ -35,50 +35,6 @@ $(window).load(function() {
 if ($('body').hasClass('rtl')) {
     is_RTL = true;
 }
-/**** Automatic Language Translation ****/
-function switchLanguage() {
-
-    if($('body').hasClass('builder-admin') || $('body').hasClass('builder-page')) return;
-    // $.removeCookie('app-language');
-    // $.removeCookie('app-language', { path: '/'});
-    var userLang = navigator.language || navigator.userLanguage;
-    var language = 'en';
-    if(userLang == 'fr') language = 'fr';
-    if(userLang == 'es') language = 'es';
-    $('#language-header').on('click', 'ul a', function(e) {
-        e.preventDefault();
-        language = $(this).data('lang');
-        if($('body').hasClass('builder-admin') || $('.page-content').hasClass('page-builder') || $('.page-content').hasClass('email-builder') || $('.page-content').hasClass('frontend-builder')) {
-            $("[data-translate]").jqTranslate('../../admin/assets/plugins/translate/application', {
-                forceLang: language
-            });
-        }
-        else{
-            $("[data-translate]").jqTranslate('assets/plugins/translate/application', {
-                forceLang: language
-            });
-        }
-        
-        $.cookie('app-language', language);
-        $.cookie('app-language', language, { path: '/' });
-    });
-    /* If user has selected a language, we apply it */
-    if ($.cookie('app-language')) {
-        var language = $.cookie('app-language');
-        
-    }
-    if($('body').hasClass('builder-admin') || $('.page-content').hasClass('page-builder') || $('.page-content').hasClass('email-builder')  || $('.page-content').hasClass('frontend-builder')) {
-        $("[data-translate]").jqTranslate('../../admin/assets/plugins/translate/application', {
-            forceLang: language
-        });
-    }
-    else{
-        $("[data-translate]").jqTranslate('assets/plugins/translate/application', {
-            forceLang: language
-        });
-    }
-    
-}
 
 /* ==========================================================*/
 /* LAYOUTS API                                                */
@@ -1158,7 +1114,6 @@ function detectIE() {
 
 /****  Initiation of Main Functions  ****/
 $(document).ready(function() {
-    switchLanguage();
     createSideScroll();
     toggleSidebarMenu();
     customScroll();
