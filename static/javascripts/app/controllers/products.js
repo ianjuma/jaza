@@ -1,19 +1,25 @@
 angular.module('Jaza')
-  .controller('UpdateProductsController', function($scope, Support) {
+  .controller('GetProductsController', function($scope, Product) {
     //.$promise
-    $scope.addTicket = function() {
-      Support.addTicket({ title: $scope.title, ticket: $scope.ticket, support_urgency: $scope.support_urgency })
-        .then(function(result) {
+
+    $scope.addProduct = function() {
+      Product.addProduct({
+        name: $scope.name,
+        category: $scope.category,
+        owner: $scope.owner
+      })
+        .then(function (result) {
           console.log(result);
-          $scope.title = result.title;
-          $scope.ticket = result.ticket;
-          $scope.support_urgency = result.support_urgency;
+          $scope.name = result.name;
+          $scope.category = result.category;
+          $scope.owner = result.owner;
         })
-        .catch(function(response) {
+        .catch(function (response) {
           console.log(response);
-          $scope.title = '';
-          $scope.ticket = '';
-          $scope.support_urgency = '';
+          $scope.name = '';
+          $scope.category = '';
+          $scope.owner = '';
         });
     };
+
   });

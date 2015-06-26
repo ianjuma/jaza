@@ -1,18 +1,17 @@
 angular.module('Jaza')
-  .controller('GetAgentsController', function($scope, Task) {
+  .controller('AgentsController', function($scope, Agent) {
 
     //.$promise
     // TODO: scope this as well: as done above
-      Task.getTasks()
+      Agent.getAgents()
         .then(function (result) {
           console.log(result);
-          $scope.Task = result.data;
+          $scope.Agent = result.data;
         })
         .catch(function (response) {
           console.log(response);
-          $scope.taskTitle = '';
-          $scope.taskDescription = '';
-          $scope.taskUrgency = '';
+          $scope.name = '';
+          $scope.product = '';
         });
 
   });

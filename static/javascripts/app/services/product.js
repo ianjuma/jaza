@@ -1,18 +1,18 @@
 angular.module('Jaza')
-  .factory('Support', function($http) {
+  .factory('Product', function($http) {
     return {
-      addTicket: function(Ticket) {
+      addProduct: function(Ticket) {
         return $http.post('/api/support', { title: Ticket.title, ticket: Ticket.ticket,
           support_urgency: Ticket.support_urgency });
       },
-      getTicket: function(_id) {
-        return $http.get('/api/support', _id);
+      getProducts: function(_id) {
+        return $http.get('/api/v1/product', _id);
       },
-      updateTicket: function(_id) {
-        return $http.put('/api/support', _id);
+      updateProduct: function(_id) {
+        return $http.put('/api/v1/product', _id);
       },
-      deleteTicket: function(_id) {
-        return $http.delete('/api/support', _id);
+      deleteProduct: function(_id) {
+        return $http.delete('/api/v1/product', _id);
       }
     };
   });

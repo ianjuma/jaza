@@ -3,13 +3,13 @@ angular.module('Jaza')
     return {
       // TODO: clean getUser - dirty - on routers as well :(
       getUser: function() {
-        return $http.get('/api/user');
+        return $http.get('/api/v1/user');
       },
       updateUser: function(_id) {
-        return $http.put('/api/user', _id);
+        return $http.put('/api/v1/user', _id);
       },
       deleteUser: function(_id) {
-        return $http.delete('/api/user', _id);
+        return $http.delete('/api/v1/user', _id);
       }
     };
   });

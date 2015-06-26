@@ -1,7 +1,7 @@
 from django.contrib.auth.models import BaseUserManager
 
 
-class AccountManager(BaseUserManager):
+class DistributorManager(BaseUserManager):
     def create_user(self, email, password=None, **kwargs):
         if not email:
             raise ValueError('Users must have a valid email address.')

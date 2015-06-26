@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from authentication.models import AccountManager
+from authentication.models import DistributorManager
 
 
 class Category(models.Model):
@@ -20,7 +20,7 @@ class Category(models.Model):
 
 # distributors are users
 class Product(models.Model):
-    owner = models.ForeignKey('Account', related_name='product_owner')
+    owner = models.ForeignKey('Distributor', related_name='product_owner')
     category = models.ForeignKey('Category', related_name='product_category')
     name = models.CharField(max_length=50, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -33,7 +33,7 @@ class Product(models.Model):
         return '{0}'.format(self.name)
 
 
-class Account(AbstractBaseUser):
+class Distributor(AbstractBaseUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
 
@@ -46,7 +46,7 @@ class Account(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    objects = AccountManager()
+    objects = DistributorManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['username']
@@ -58,7 +58,7 @@ class Account(AbstractBaseUser):
         return self.username
 
     def get_username(self):
-        super(Account, self).get_username()
+        super(Distributor, self).get_username()
 
     def get_full_name(self):
         return ' '.join([self.first_name, self.last_name])

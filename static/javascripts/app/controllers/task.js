@@ -1,24 +1,19 @@
 angular.module('Jaza')
-  .controller('GetProductsController', function($scope, Task) {
+  .controller('UpdateProductsController', function($scope, Support) {
     //.$promise
-
-    $scope.addTask = function() {
-      Task.addTask({
-        taskTitle: $scope.taskTitle, taskDescription: $scope.taskDescription,
-        taskUrgency: $scope.taskUrgency
-      })
-        .then(function (result) {
+    $scope.addTicket = function() {
+      Support.addTicket({ title: $scope.title, ticket: $scope.ticket, support_urgency: $scope.support_urgency })
+        .then(function(result) {
           console.log(result);
-          $scope.taskTitle = result.taskTitle;
-          $scope.taskDescription = result.taskDescription;
-          $scope.taskUrgency = result.taskUrgency;
+          $scope.title = result.title;
+          $scope.ticket = result.ticket;
+          $scope.support_urgency = result.support_urgency;
         })
-        .catch(function (response) {
+        .catch(function(response) {
           console.log(response);
-          $scope.taskTitle = '';
-          $scope.taskDescription = '';
-          $scope.taskUrgency = '';
+          $scope.title = '';
+          $scope.ticket = '';
+          $scope.support_urgency = '';
         });
     };
-
   });
