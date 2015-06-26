@@ -1,40 +1,94 @@
-<div class="sidebar">
-    <div class="logopanel">
-        <h1>
-            <a href="/"></a>
-        </h1>
-    </div>
-    <div class="sidebar-inner">
-        <div class="sidebar-top">
+<div class="topbar">
+<div class="header-left">
+<div class="topnav">
+    <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
+</div>
+</div>
+<div class="header-right">
+<ul class="header-menu nav navbar-nav">
 
-        </div>
-        <ul class="nav nav-sidebar">
-            <li class=" nav-active active"><a href="index.php"><i class="icon-home"></i><span data-translate="dashboard">Dashboard</span></a></li>
-            <li class="nav-parent">
-                <a href=""><i class="icon-layers"></i><span data-translate="layouts">Products</span><span class="fa arrow"></span></a>
-                <ul class="children collapse">
-                    <li><a href="airtime.php" data-translate=""> Airtime</a></li>
-                    <li><a href="#" data-translate="">Others</a></li>
-                    <li><a href="update.php-" data-translate="">Update Products</a></li>
+    <li class="dropdown" id="notifications-header">
+        <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <i class="icon-bell"></i>
+            <span class="badge badge-danger badge-header">Products</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header clearfix">
+                <p class="pull-left">2 Products</p>
+            </li>
+            <li>
+                <ul class="dropdown-menu-list withScroll" data-height="220">
+                    <li>
+                        <a href="#">
+                            Steve Otieno
+                            <span class="dropdown-time">Airtime</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            John Makusi
+                            <span class="dropdown-time">Maize</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li class="nav-parent">
-                <a href=""><i class="icon-note"></i><span data-translate="forms">Agents</span><span class="fa arrow"></span></a>
-                <ul class="children collapse">
-                    <li><a href="#">Agent List</a></li>
-
-                </ul>
-            </li>
-
-            <li class="nav-parent">
-                <a href=""><i class="icon-bar-chart"></i><span data-translate="charts">Analytics </span><span class="fa arrow"></span></a>
-                <ul class="children collapse">
-                    <li><a href="#" data-translate="image croping"> Charts</a></li>
-
-                </ul>
+            <li class="dropdown-footer clearfix">
+                <a href="/#products" class="pull-left">See all Products</a>
             </li>
         </ul>
+    </li>
 
-    </div>
+    <li class="dropdown" id="messages-header">
+        <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <i class="icon-paper-plane"></i>
+        <span class="badge badge-primary badge-header">
+        Agents
+        </span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header clearfix">
+                <p class="pull-left">
+                    You have 2 Agents
+                </p>
+            </li>
+            <li class="dropdown-body">
+                <ul class="dropdown-menu-list withScroll" data-height="220">
+                    <li class="clearfix">
+
+                        <div class="clearfix">
+                            <div>
+                                <strong>Alexa Johnson</strong>
+                                <small class="pull-right text-muted">
+                                </small>
+                            </div>
+                            <p></p>
+                        </div>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="dropdown-footer clearfix">
+                <a href="/#agents" class="pull-left">Agents</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="dropdown" id="user-header">
+        <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+            <span class="username">Hi, Juma</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/#profile"><i class="icon-user"></i><span>My Profile</span></a>
+            </li>
+            <li>
+                <a href="/logout"><i class="icon-logout"></i><span>Logout</span></a>
+            </li>
+        </ul>
+    </li>
+
+</ul>
 </div>
 </div>

@@ -20,6 +20,7 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
+handler404 = 'views.handle_page_not_found_404'
 
 # index route last - angular overwrite all endpoints - avoid 404?
 # TODO: fix app route url(r'^.*$', IndexView.as_view(), name='index')

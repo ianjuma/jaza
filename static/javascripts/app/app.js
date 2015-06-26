@@ -15,6 +15,10 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap']
         templateUrl: 'static/views/product.html',
         controller: 'UpdateProductsController'
       })
+      .when('/agents', {
+        templateUrl: 'static/views/agents.html',
+        controller: 'UpdateProductsController'
+      })
       .when('/update', {
         templateUrl: 'static/views/updateProduct.html',
         controller: 'UpdateProductsController'
