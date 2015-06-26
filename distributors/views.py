@@ -2,14 +2,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-from products.models import Account
+from products.models import Distributor
 from distributors.serializers import DistributorSerializer
 
 
 @api_view(['GET', 'POST'])
 def distributor_list(request):
     if request.method == 'GET':
-        distributors_ = Account.objects.all()
+        distributors_ = Distributor.objects.all()
         serializer = DistributorSerializer(distributors_, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -26,8 +26,8 @@ def distributor_list(request):
 def distributor_detail(request, pk):
     try:
         # user = User.objects.get(pk=pk)
-        distributor = Account.objects.get(pk=pk)
-    except Account.DoesNotExist:
+        distributor = Distributor.objects.get(pk=pk)
+    except Distributor.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':

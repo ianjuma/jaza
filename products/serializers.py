@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from products.models import Product, Category, Account
+from products.models import Product, Category, Distributor
 # from authentication.serializers import UserSerializer
 
 
@@ -15,7 +15,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     # category = CategorySerializer(required=False, read_only=True)
     # owner = UserSerializer(read_only=True)
-    owner_queryset = Account.objects.all()
+    owner_queryset = Distributor.objects.all()
     category_queryset = Category.objects.all()
 
     owner = serializers.PrimaryKeyRelatedField(queryset=owner_queryset)

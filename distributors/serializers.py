@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from products.models import Account, Product
+from products.models import Distributor, Product
 from products.serializers import ProductSerializer
 
 
@@ -10,7 +10,7 @@ class DistributorSerializer(serializers.ModelSerializer):
     products = ProductSerializer(read_only=False, required=False, many=True)
 
     class Meta:
-        model = Account
+        model = Distributor
 
         # 'created_at', 'updated_at'
         fields = ('id', 'email', 'products', 'username', 'last_name', 'first_name',)
@@ -26,7 +26,7 @@ class DistributorSerializer(serializers.ModelSerializer):
         # can not add products while doing a post, distributor ID unknown
         products = validated_data.pop('products', None)
 
-        distributor = Account.objects.create(**validated_data)
+        distributor = Distributor.objects.create(**validated_data)
         # add products on post - since owner doesn't exist yet
         """
         owner_id = int(distributor.id)
