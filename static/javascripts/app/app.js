@@ -19,10 +19,6 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap']
         templateUrl: 'static/views/agents.html',
         controller: 'UpdateProductsController'
       })
-      .when('/update', {
-        templateUrl: 'static/views/updateProduct.html',
-        controller: 'UpdateProductsController'
-      })
       .otherwise({
         redirectTo: '/'
       });
