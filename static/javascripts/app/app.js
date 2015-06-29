@@ -5,7 +5,7 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap']
     $routeProvider
       .when('/', {
         templateUrl: 'static/views/dashboard.html',
-        controller: 'GetProductsController'
+        controller: 'ProductController'
       })
       .when('/profile', {
         templateUrl: 'static/views/profile.html',
@@ -13,15 +13,11 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap']
       })
       .when('/products', {
         templateUrl: 'static/views/product.html',
-        controller: 'UpdateProductsController'
+        controller: 'ProductController'
       })
       .when('/agents', {
         templateUrl: 'static/views/agents.html',
-        controller: 'UpdateProductsController'
-      })
-      .when('/update', {
-        templateUrl: 'static/views/updateProduct.html',
-        controller: 'UpdateProductsController'
+        controller: 'AgentController'
       })
       .otherwise({
         redirectTo: '/'
