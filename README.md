@@ -13,5 +13,5 @@
 * `$ npm install`
 * `$ bower install`
 * `$ python manage.py migrate`
+* `$ python initialize.py`
 * `$ python manage.py runserver`
-
