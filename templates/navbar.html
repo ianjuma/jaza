@@ -75,9 +75,9 @@
     </li>
 
     <li class="dropdown" id="user-header">
+    {% if user.is_authenticated %}
         <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-
-            <span class="username">Hi, Juma</span>
+                <span class="username">Hi, {{ user.username }}</span>
         </a>
         <ul class="dropdown-menu">
             <li>
@@ -87,6 +87,8 @@
                 <a href="/logout"><i class="icon-logout"></i><span>Logout</span></a>
             </li>
         </ul>
+    {% endif %}
+
     </li>
 
 </ul>

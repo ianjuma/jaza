@@ -53,15 +53,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Airtime</td>
-                                        <td>General</td>
-                                        <td>01.06.2015</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maize</td>
-                                        <td>General</td>
-                                        <td>01.06.2015</td>
+
+                                    <tr ng-repeat="product in Product">
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td><sta></sta>
+                                        <td>{{ product.owner }}</td>
                                     </tr>
 
                                     </tbody>
