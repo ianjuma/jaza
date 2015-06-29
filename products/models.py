@@ -23,7 +23,7 @@ class Product(models.Model):
     owner = models.ForeignKey('Distributor', related_name='product_owner')
     category = models.ForeignKey('Category', related_name='product_category')
     name = models.CharField(max_length=50, blank=False)
-    ussd_channel = models.CharField(max_length=10, blank=False)
+    ussd_channel = models.CharField(max_length=10, blank=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
