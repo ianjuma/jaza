@@ -7,11 +7,11 @@ COUNTRY_INFO_FILE = SITE_ROOT + 'data/countrylist.test.csv'
 
 DATABASES = {
     'default': {
-        'ENGINE'  : 'django.db.backends.mysql', 
-        'NAME'    : 'morpheus',
-        'USER'    : 'root',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'morpheus',
+        'USER': 'root',
         'PASSWORD': 'admin',
-        'HOST'    : '',
-        'PORT'    : '',
+        'HOST': '',
+        'PORT': '',
     }
 }

@@ -19,7 +19,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR  = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -155,14 +155,14 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 # AUTH_USER_MODEL = 'authentication.User'
 
-PWD       = os.path.dirname(os.path.realpath(__file__ )) 
-SITE_ROOT = os.path.join(PWD, "../") 
+PWD = os.path.dirname(os.path.realpath(__file__))
+SITE_ROOT = os.path.join(PWD, "../")
 COUNTRY_INFO_FILE = SITE_ROOT + 'data/countrylist.csv'
 
 try:
-  from jaza.settings_dev import *
+    from jaza.settings_dev import *
 except ImportError:
-  pass
+    pass
