@@ -9,7 +9,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'morpheus',
-        'USER': 'root',
+        'USER': 'morpheus',
         'PASSWORD': 'admin',
         'HOST': '',
         'PORT': '',

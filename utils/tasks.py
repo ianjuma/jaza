@@ -3,7 +3,8 @@ from __future__ import absolute_import
 from celery import shared_task
 from taskrunner.AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
 
-api = AfricasTalkingGateway(username_='settings.username', apiKey_='settings.api_key')
+api = AfricasTalkingGateway(
+    username_='settings.username', apiKey_='settings.api_key')
 
 
 @shared_task
