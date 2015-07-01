@@ -1,6 +1,6 @@
 angular.module('Jaza')
   .controller('ProfileController', function($scope, User) {
-    //.$promise
+
     $scope.getUser = function() {
       User.getUser()
         .then(function(result) {

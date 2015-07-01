@@ -16,7 +16,7 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap']
         controller: 'ProductController'
       })
       .when('/agents', {
-        templateUrl: 'static/views/agents.html',
+        templateUrl: 'static/views/agent.html',
         controller: 'AgentController'
       })
       .otherwise({

@@ -20,7 +20,7 @@
             <div class="panel">
                 <div class="panel-content">
                     <ul class="nav nav-tabs nav-primary">
-                        <li class="active"><a href="#tab2_2" data-toggle="tab"><i class="icon-user"></i> Products</a></li>
+                        <li class="active"><a href="#tab2_2" data-toggle="tab"><i class="icon-user"></i> Agents</a></li>
                         <li><a href="#tab2_3" data-toggle="tab"><i class="icon-cloud-download"></i>Sales</a></li>
                     </ul>
         <div class="tab-content">
@@ -45,20 +45,16 @@
                                     <thead>
                                     <tr>
                                         <th>Agent name</th>
-                                        <th>Date</th>
+                                        <th>Agent ID</th>
                                         <th>Product</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Mark Juma</td>
-                                        <td>01.06.2015</td>
-                                        <td>Airtime</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tawo Juma</td>
-                                        <td>01.06.2015</td>
-                                        <td>Airtime</td>
+
+                                    <tr ng-repeat="agent in Agent">
+                                        <td>{{ agent.name }}</td>
+                                        <td>{{ agent.id }}</td>
+                                        <td>{{ agent.products[0].name }}</td>
                                     </tr>
 
                                     </tbody>
