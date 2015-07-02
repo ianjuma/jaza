@@ -25,7 +25,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
 
         # created_at, updated_at
-        fields = ('id', 'name', 'category', 'owner', 'created_at')
+        fields = ('id', 'name', 'category', 'owner', 'created_at', 'ussd_channel')
 
         read_only_fields = ('id', 'created_at', 'updated_at')
 
