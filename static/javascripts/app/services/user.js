@@ -1,11 +1,11 @@
 angular.module('Jaza')
   .factory('User', function($http) {
     return {
-      getUser: function() {
-        return $http.get('/api/v1/accounts/');
+      getUser: function(_username) {
+        return $http.get('/api/v1/accounts/', _username);
       },
-      updateUser: function(_id) {
-        return $http.put('/api/v1/accounts/', _id);
+      updateUser: function(_username) {
+        return $http.put('/api/v1/accounts/', _username);
       }
     };
   });

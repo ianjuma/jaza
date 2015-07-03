@@ -8,19 +8,28 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth.models import User
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import UserSerializer
+from ast import literal_eval
 
 
 @permission_classes((AllowAny,))
 class Login(views.APIView):
-    def post(self, request):
-        data = json.loads(request.body)
-        username = data.get('username', None)
-        password = data.get('password', None)
+
+    def post(self, request, format=None):
+        # print type(request.data)
+        # data = json.loads(request.data)
+        # data = literal_eval(request.data)
+        print data
+        password = data.get('password')
+        username = data.get('username')
+        print type(password)
+
+        # data = literal_eval(data)
         user = authenticate(username=username, password=password)
 
         if user is not None:
             if user.is_active():
                 login(request, user)
+
                 serialized = UserSerializer(user)
                 return Response(serialized.data)
             else:

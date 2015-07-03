@@ -16,6 +16,10 @@
   {% include 'navbar.html' %}
   {% include 'sidebar.html' %}
 
+  <script>
+      var username = {{ user.username }};
+  </script>
+
   <!-- app views -->
   <div class="ng-view"></div>
 
@@ -25,5 +29,6 @@
   <script>
       var theContent = $('.table table-hover table-dynamic');
   </script>
+
 </body>
 </html>

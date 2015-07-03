@@ -6,6 +6,9 @@ class DistributorManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have a valid email address.')
 
+        if not password:
+            raise ValueError('Users must have a valid password.')
+
         if not kwargs.get('username'):
             raise ValueError('Users must have a valid username.')
 
