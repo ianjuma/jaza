@@ -1,6 +1,5 @@
 angular.module('Jaza')
   .controller('ProductController', function($scope, Product) {
-    //.$promise
 
     // $scope.getProducts = function() {
       Product.getProducts({
