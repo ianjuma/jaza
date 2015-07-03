@@ -2,12 +2,15 @@ import json
 from django.contrib.auth import login, logout, authenticate
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from django.contrib.auth.models import User
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import UserSerializer
 
 
+@permission_classes((AllowAny,))
 class Login(views.APIView):
     def post(self, request):
         data = json.loads(request.body)
@@ -30,6 +33,7 @@ class Login(views.APIView):
                             status=status.HTTP_401_UNAUTHORIZED)
 
 
+@permission_classes((IsAuthenticated, IsAccountOwner))
 class Logout(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -38,6 +42,7 @@ class Logout(views.APIView):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
+@permission_classes((IsAuthenticated,))
 class UserViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
     queryset = User.objects.all()
@@ -46,7 +51,7 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         return permissions.IsAuthenticated(), IsAccountOwner()
 
-    def list(self, request):
+    def list(self, request, *args, **kwargs):
         queryset = self.queryset.filter(pk=request.user.id)
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)

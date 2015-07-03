@@ -1,11 +1,13 @@
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from products.models import Distributor
 from distributors.serializers import DistributorSerializer
 
 
+@permission_classes((IsAuthenticated,))
 @api_view(['GET', 'POST'])
 def distributor_list(request):
     if request.method == 'GET':
@@ -22,6 +24,7 @@ def distributor_list(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@permission_classes((IsAuthenticated,))
 @api_view(['GET', 'PUT', 'DELETE'])
 def distributor_detail(request, pk):
     try:

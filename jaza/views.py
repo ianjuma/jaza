@@ -17,3 +17,11 @@ class IndexView(TemplateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(IndexView, self).dispatch(*args, **kwargs)
+
+
+class LoginView(TemplateView):
+    template_name = 'login.html'
+
+    @method_decorator(ensure_csrf_cookie)
+    def dispatch(self, *args, **kwargs):
+        return super(LoginView, self).dispatch(*args, **kwargs)

@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url, include
 from rest_framework_nested import routers
-from jaza.views import IndexView
+from jaza.views import IndexView, LoginView
 
 from authentication.views import UserViewSet
 from django.contrib import admin
@@ -12,6 +12,7 @@ router.register(r'accounts', UserViewSet)
 urlpatterns = patterns(
     '',
     url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^accounts/login', LoginView.as_view(), name='login'),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include('agents.urls')),
     url(r'^api/v1/', include('distributors.urls')),
