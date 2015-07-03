@@ -80,7 +80,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/v1/login/',
-            data: angular.toJson(dataObject),
+            data: dataObject,
             success: checkStatus,
             dataType: 'application/json'
         });
