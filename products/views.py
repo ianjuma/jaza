@@ -25,6 +25,15 @@ def product_list(request):
 
 
 @permission_classes((IsAuthenticated,))
+@api_view(['GET'])
+def distributor_products(request):
+    if request.method == 'GET':
+        product = Product.objects.filter(owner=request.user.id)
+        serializer = ProductSerializer(product, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@permission_classes((IsAuthenticated,))
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, pk):
     try:

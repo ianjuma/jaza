@@ -5,7 +5,8 @@ angular.module('Jaza')
       Product.getProducts({
         name: $scope.name,
         category: $scope.category,
-        created_at: $scope.created_at
+        created_at: $scope.created_at,
+        ussd_channel: $scope.ussd_channel
       })
         .then(function (result) {
           console.log(result);
@@ -16,6 +17,7 @@ angular.module('Jaza')
           $scope.name = '';
           $scope.category = '';
           $scope.created_at = '';
+          $scope.ussd_channel = '';
         });
     // };
 
