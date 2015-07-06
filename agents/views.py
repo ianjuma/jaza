@@ -6,6 +6,16 @@ from rest_framework.permissions import IsAuthenticated
 from agents.models import Agent
 from agents.serializers import AgentSerializer
 
+from django.db import connection
+
+
+def dict_fetch_all(cursor):
+    """Returns all rows from a cursor as a dict"""
+    desc = cursor.description
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in cursor.fetchall()
+    ]
 
 @permission_classes((IsAuthenticated,))
 @api_view(['GET', 'POST'])
@@ -22,6 +32,19 @@ def agent_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@permission_classes((IsAuthenticated,))
+@api_view(['GET'])
+def distributor_agent_list(request, prod_id):
+    if request.method == 'GET':
+        cursor = connection.cursor()
+        cursor.execute('select * from agents_agent_products where product_id = %s', [prod_id])
+
+        agents_ = dict_fetch_all(cursor=cursor)
+
+        serializer = AgentSerializer(agents_, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @permission_classes((IsAuthenticated,))
