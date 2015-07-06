@@ -59,15 +59,9 @@
 {% include 'javascripts.html' %}
 
 <script>
-    var checkStatus = function(data, textStatus, jqXHR) {
-        console.log(textStatus);
 
-        if (textStatus != '200') {
-            window.location.replace('/');
-        }
-    };
-
-    $("#submit").click(function() {
+    $("#submit").click(function( event ) {
+        event.preventDefault();
         var username = $("#username").val();
         var password = $("#password").val();
         var dataObject = {
@@ -81,7 +75,13 @@
             type: 'POST',
             url: '/api/v1/login/',
             data: dataObject,
-            success: checkStatus,
+            done: function (data, textStatus, jqXHR) {
+                console.log(textStatus);
+
+                if (textStatus != '200') {
+                    window.location.replace('/');
+                }
+            },
             dataType: 'application/json'
         });
 
