@@ -60,8 +60,10 @@
 
 <script>
 
-    $("#submit").click(function( event ) {
-        event.preventDefault();
+    $("#submit").click(function( evnt ) {
+        evnt.preventDefault();
+        console.log("event fired");
+
         var username = $("#username").val();
         var password = $("#password").val();
         var dataObject = {
@@ -74,15 +76,21 @@
         $.ajax({
             type: 'POST',
             url: '/api/v1/login/',
+            contentType: 'application/json; charset=UTF-8',
+            dataType: 'json',
             data: dataObject,
-            done: function (data, textStatus, jqXHR) {
-                console.log(textStatus);
 
-                if (textStatus != '200') {
-                    window.location.replace('/');
-                }
+            success: function(result) {
+              console.log(result);
+              window.location.href = '/';
             },
-            dataType: 'application/json'
+            always: function(result) {
+              console.log(result);
+              window.location.href = '/';
+            },
+            fail: function(result) {
+              console.log(result);
+            }
         });
 
     });
