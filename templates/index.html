@@ -29,6 +29,29 @@
 
   <script>
       var theContent = $('.table table-hover table-dynamic');
+
+      $("#logout").click(function( evnt ) {
+          evnt.preventDefault();
+          var dataObject = {};
+          dataObject = JSON.stringify(dataObject);
+
+          $.ajax({
+              type: 'POST',
+              url: '/api/v1/logout/',
+              contentType: 'application/json; charset=UTF-8',
+              dataType: 'json',
+              data: dataObject,
+              success: function(result) {
+                  console.log(result);
+                  window.location.href = '/';
+              },
+              always: function(result) {
+                  console.log(result);
+                  window.location.href = '/';
+              }
+          });
+      });
+
   </script>
 
 </body>

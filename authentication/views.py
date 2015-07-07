@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth.models import User
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import UserSerializer
+from rest_framework.pagination import PageNumberPagination
 
 
 @permission_classes((AllowAny,))
@@ -37,11 +38,10 @@ class Login(views.APIView):
                             status=status.HTTP_401_UNAUTHORIZED)
 
 
-@permission_classes((IsAuthenticated, IsAccountOwner))
 class Logout(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request):
+    def post(self, request, format=None):
         logout(request)
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
@@ -50,6 +50,7 @@ class Logout(views.APIView):
 class UserViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
     queryset = User.objects.all()
+    pagination_class = PageNumberPagination
     serializer_class = UserSerializer
 
     def get_permissions(self):
