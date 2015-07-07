@@ -15,3 +15,11 @@
 * `$ python manage.py migrate`
 * `$ python initialize.py`
 * `$ python manage.py runserver`
+
+
+### TODO:
+
+- agents queryset pagination
+- analytics
+- sales, agents/ products
+- transactions

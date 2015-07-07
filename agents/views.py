@@ -39,8 +39,8 @@ def agent_list(request):
 @permission_classes((IsAuthenticated,))
 @api_view(['GET'])
 def distributor_agent_list(request, pk):
-    """ get agent's per product
-    agents , distributor association
+    """ get agents per product
+        through agents, distributor association
     """
     if request.method == 'GET':
         cursor = connection.cursor()
