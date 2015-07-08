@@ -39,19 +39,19 @@ class Login(views.APIView):
 
 
 class Logout(views.APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, format=None):
         logout(request)
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
-@permission_classes((IsAuthenticated,))
 class UserViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
     queryset = User.objects.all()
     pagination_class = PageNumberPagination
     serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
 
     def get_permissions(self):
         return permissions.IsAuthenticated(), IsAccountOwner()
