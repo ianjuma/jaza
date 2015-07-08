@@ -19,7 +19,12 @@
   <!-- get current user with API -->
   <script>
       var username = "{{ user.username }}";
-      var prod_ids = "{{ product_ids }}";
+      var product_ids = [];
+
+      {% for product_id in view.product_ids %}
+          product_ids.push({{ product_id }});
+      {% endfor %}
+
   </script>
 
   <!-- app views -->
