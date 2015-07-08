@@ -1,3 +1,5 @@
 from django.contrib import admin
+from utils.models import Country, Currency
 
-# Register your models here.
+admin.register(Country, admin.ModelAdmin)
+admin.register(Currency, admin.ModelAdmin)
