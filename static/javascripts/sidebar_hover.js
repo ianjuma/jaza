@@ -6,12 +6,8 @@ var $sidebar       = $('.sidebar');
 var $sidebarFooter = $('.sidebar .sidebar-footer');
 var $sidebarWidth  = $(".sidebar").width();
 
-/* ==========================================================*/
-/* HOVER SCRIPTS                                             */
-/* ========================================================= */
 
-/* Sidebar Hover */
-function sidebarHover(){
+function sidebarHover() {
 
     if($('.logopanel2').length == 0){
         $('.topnav').prepend('<div class="logopanel2"><h1><a href="dashboard.html"></a></h1></div>');
@@ -61,4 +57,4 @@ function sidebarHover(){
         });
     }
 
-};
+}

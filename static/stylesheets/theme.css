@@ -1,24 +1,3 @@
-/**** SIDEBAR  ****/
-/**** TOPBAR ****/
-/**** QUICKVIEW SIDEBAR ****/
-/**** BOXED LAYOUT ****/
-/**** MAIN CONTENT ****/
-/**** WIDGETS ****/
-/**** PAGES ****/
-/**** SEARCH ****/
-/**** BUILDER ****/
-/******** UI **********/
-/* Main Color */
-/* Alert & Notification */
-/* Popover */
-/* Form */
-/* Select Input */
-/* Tabs */
-/* Table */
-/* Summernote */
-/******* THEMES *******/
-/**** SIDEBAR DARK / TOPBAR WHITE ****/
-/* SD/TW : theme default */
 .theme-sdtl.color-default:not(.sidebar-top) .logopanel {
   background: #181a1d;
 }

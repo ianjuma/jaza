@@ -28,7 +28,6 @@ $(window).load(function() {
     }, 500);
 });
 
-
 /* ==========================================================*/
 /* APPLICATION SCRIPTS                                       */
 /* ========================================================= */
@@ -143,55 +142,6 @@ function toggleSidebar() {
     else handleSidebarFixed();
 }
 
-/* Create Sidebar on Top */
-function createSidebarTop() {
-    $('#switch-sidebar-top').prop('checked', true);
-    removeSidebarHover();
-    $('body').removeClass('sidebar-collapsed');
-    $.removeCookie('sidebar-collapsed');
-    $('body').removeClass('sidebar-top').addClass('sidebar-top');
-    $('.main-content').css('margin-left', '').css('margin-right', '');
-    $('.topbar').css('left', '').css('right', '');
-    if ($('body').hasClass('fixed-sidebar') && !$('body').hasClass('fixed-topbar')) {
-        $('body').removeClass('fixed-topbar').addClass('fixed-topbar');
-        $.removeCookie('fluid-topbar');
-        $.removeCookie('fluid-topbar'), {
-            path: '/'
-        };
-        $('#switch-topbar').prop('checked', true);
-    }
-    $('.sidebar').height('');
-    destroySideScroll();
-    $('#switch-sidebar-hover').prop('checked', false);
-    handleboxedLayout();
-    $.cookie('sidebar-top', 1);
-    $.cookie('sidebar-top', 1, {
-        path: '/'
-    });
-    $.removeCookie('sidebar-hover');
-    $.removeCookie('sidebar-hover', {
-        path: '/'
-    });
-}
-
-/* Remove Sidebar on Top */
-function removeSidebarTop() {
-    $('#switch-sidebar-top').prop('checked', false);
-    $('body').removeClass('sidebar-top');
-    createSideScroll();
-    $('#switch-sidebar-top').prop('checked', false);
-    $.removeCookie('sidebar-top');
-    $.removeCookie('sidebar-top', {
-        path: '/'
-    });
-    handleboxedLayout();
-}
-
-/* Toggle Sidebar on Top */
-function toggleSidebarTop() {
-    if ($('body').hasClass('sidebar-top')) removeSidebarTop();
-    else createSidebarTop();
-}
 
 /* Create Sidebar only visible on Hover */
 function createSidebarHover() {
@@ -506,62 +456,6 @@ function resetStyle() {
     });
 }
 
-
-/******************** END LAYOUT API  ************************/
-/* ========================================================= */
-/****  Full Screen Toggle  ****/
-function toggleFullScreen() {
-    if (!doc.fullscreenElement && !doc.msFullscreenElement && !doc.webkitIsFullScreen && !doc.mozFullScreenElement) {
-        if (docEl.requestFullscreen) {
-            docEl.requestFullscreen();
-        } else if (docEl.webkitRequestFullScreen) {
-            docEl.webkitRequestFullscreen();
-        } else if (docEl.webkitRequestFullScreen) {
-            docEl.webkitRequestFullScreen();
-        } else if (docEl.msRequestFullscreen) {
-            docEl.msRequestFullscreen();
-        } else if (docEl.mozRequestFullScreen) {
-            docEl.mozRequestFullScreen();
-        }
-    } else {
-        if (doc.exitFullscreen) {
-            doc.exitFullscreen();
-        } else if (doc.webkitExitFullscreen) {
-            doc.webkitExitFullscreen();
-        } else if (doc.webkitCancelFullScreen) {
-            doc.webkitCancelFullScreen();
-        } else if (doc.msExitFullscreen) {
-            doc.msExitFullscreen();
-        } else if (doc.mozCancelFullScreen) {
-            doc.mozCancelFullScreen();
-        }
-    }
-}
-$('.toggle_fullscreen').click(function() {
-    toggleFullScreen();
-});
-
-/* Simulate Ajax call on Panel with reload effect */
-function blockUI(item) {
-    $(item).block({
-        message: '<svg class="circular"><circle class="path" cx="40" cy="40" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>',
-        css: {
-            border: 'none',
-            width: '14px',
-            backgroundColor: 'none'
-        },
-        overlayCSS: {
-            backgroundColor: '#fff',
-            opacity: 0.6,
-            cursor: 'wait'
-        }
-    });
-}
-
-function unblockUI(item) {
-    $(item).unblock();
-}
-
 /**** PANEL ACTIONS ****/
 function handlePanelAction() {
     /* Create Portlets Controls automatically: reload, fullscreen, toggle, remove, popout */
@@ -648,36 +542,6 @@ function handlePanelAction() {
         $("body").trigger("resize");
         return false;
     });
-}
-
-/****  Custom Scrollbar  ****/
-/* Create Custom Scroll for elements like Portlets or Dropdown menu */
-function customScroll() {
-    if ($.fn.mCustomScrollbar) {
-        $('.withScroll').each(function() {
-            $(this).mCustomScrollbar("destroy");
-            var scroll_height = $(this).data('height') ? $(this).data('height') : 'auto';
-            var data_padding = $(this).data('padding') ? $(this).data('padding') : 0;
-            if ($(this).data('height') == 'window') {
-                thisHeight = $(this).height();
-                windowHeight = $(window).height() - data_padding - 50;
-                if (thisHeight < windowHeight) scroll_height = thisHeight;
-                else scroll_height = windowHeight;
-            }
-            $(this).mCustomScrollbar({
-                scrollButtons: {
-                    enable: false
-                },
-                autoHideScrollbar: $(this).hasClass('show-scroll') ? false : true,
-                scrollInertia: 150,
-                theme: "light",
-                set_height: scroll_height,
-                advanced: {
-                    updateOnContentResize: true
-                }
-            });
-        });
-    }
 }
 
 /* ==========================================================*/
@@ -781,24 +645,6 @@ function handleSidebarHide() {
     });
 }
 
-/* Change statut of user in sidebar: available, busy, away, invisible */
-function changeUserStatut() {
-    $('.sidebar').on('click', '.user-login li a', function(e) {
-        e.preventDefault();
-        var statut = $(this).find('span').text();
-        currentStatut = $('.user-login button span').text();
-        $('.user-login button span').text(statut);
-        if (statut == 'Busy') {
-            $('.user-login button i:not(.fa)').removeClass().addClass('busy');
-        }
-        if (statut == 'Invisible') {
-            $('.user-login button i:not(.fa)').removeClass().addClass('turquoise');
-        }
-        if (statut == 'Away') {
-            $('.user-login button i:not(.fa)').removeClass().addClass('away');
-        }
-    });
-}
 
 /* Create custom scroll for sidebar used for fixed sidebar */
 function createSideScroll() {
@@ -862,120 +708,6 @@ function toggleSidebarMenu() {
                     sub.children().removeClass('is-hidden').removeClass('is-shown');
                 }, 500);
             });
-        }
-    });
-}
-
-/**** Handle Sidebar Widgets ****/
-function sidebarWidgets() {
-    /* Folders Widget */
-    if ($('.sidebar-widgets .folders').length) {
-        $('.new-folder').on('click', function() {
-            $('.sidebar-widgets .add-folder').show();
-            return false;
-        });
-        $(".add-folder input").keypress(function(e) {
-            if (e.which == 13) {
-                $('.sidebar-widgets .add-folder').hide();
-                $('<li><a href="#"><i class="icon-docs c-blue"></i>' + $(this).val() + '</a> </li>').insertBefore(".add-folder");
-                $(this).val('');
-            }
-        });
-        content.addEventListener('click', function(ev) {
-            addFolder = document.getElementById('add-folder');
-            var target = ev.target;
-            if (target !== addFolder) {
-                $('.sidebar-widgets .add-folder').hide();
-            }
-        });
-    }
-    /* Labels Widget */
-    if ($('.sidebar-widgets .folders').length) {
-        $('.new-label').on('click', function() {
-            $('.sidebar-widgets .add-label').show();
-            return false;
-        });
-        $(".add-label input").keypress(function(e) {
-            if (e.which == 13) {
-                $('.sidebar-widgets .add-label').hide();
-                $('<li><a href="#"><i class="fa fa-circle-o c-blue"></i>' + $(this).val() + '</a> </li>').insertBefore(".add-label");
-                $(this).val('');
-            }
-        });
-        content.addEventListener('click', function(ev) {
-            addFolder = document.getElementById('add-label');
-            var target = ev.target;
-            if (target !== addFolder) {
-                $('.sidebar-widgets .add-label').hide();
-            }
-        });
-    }
-    /* Sparkline  Widget */
-    if ($.fn.sparkline && $('.dynamicbar1').length) {
-        var myvalues1 = [13, 14, 16, 15, 11, 14, 20, 14, 12, 16, 11, 17, 19, 16];
-        var myvalues2 = [14, 17, 16, 12, 18, 16, 22, 15, 14, 17, 11, 18, 11, 12];
-        var myvalues3 = [18, 14, 15, 14, 15, 12, 21, 16, 18, 14, 12, 15, 17, 19];
-        var sparkline1 = $('.dynamicbar1').sparkline(myvalues1, {
-            type: 'bar',
-            barColor: '#319DB5',
-            barWidth: 4,
-            barSpacing: 1,
-            height: '28px'
-        });
-        var sparkline2 = $('.dynamicbar2').sparkline(myvalues2, {
-            type: 'bar',
-            barColor: '#C75757',
-            barWidth: 4,
-            barSpacing: 1,
-            height: '28px'
-        });
-        var sparkline3 = $('.dynamicbar3').sparkline(myvalues3, {
-            type: 'bar',
-            barColor: '#18A689',
-            barWidth: 4,
-            barSpacing: 1,
-            height: '28px'
-        });
-    };
-    /* Progress Bar  Widget */
-    if ($('.sidebar-widgets .progress-chart').length) {
-        $(window).load(function() {
-            setTimeout(function() {
-                $('.sidebar-widgets .progress-chart .stat1').progressbar();
-            }, 900);
-            setTimeout(function() {
-                $('.sidebar-widgets .progress-chart .stat2').progressbar();
-            }, 1200);
-            setTimeout(function() {
-                $('.sidebar-widgets .progress-chart .stat3').progressbar();
-            }, 1500);
-        });
-    };
-    $('.sidebar').on('click', '.hide-widget', function(e) {
-        e.preventDefault();
-        if (start == 0) {
-            start = new Date().getTime();
-            $(this).toggleClass('widget-hidden');
-            var this_widget = $(this).parent().parent().next();
-            this_widget.slideToggle(200, function() {
-                createSideScroll();
-            });
-            end = new Date().getTime();
-            delta = end - start;
-        }
-        else {
-            end = new Date().getTime();
-            delta = end - start;
-            if (delta > 200) {
-                start = new Date().getTime();
-                $(this).toggleClass('widget-hidden');
-                var this_widget = $(this).parent().parent().next();
-                this_widget.slideToggle(200, function() {
-                    createSideScroll();
-                });
-                end = new Date().getTime();
-                delta = end - start;
-            }
         }
     });
 }
@@ -1116,13 +848,10 @@ function detectIE() {
 $(document).ready(function() {
     createSideScroll();
     toggleSidebarMenu();
-    customScroll();
     handleSidebarSortable();
-    sidebarWidgets();
     reposition_topnav();
     handleSidebarRemove();
     handleSidebarHide();
-    changeUserStatut();
     handlePanelAction();
     scrollTop();
     sidebarBehaviour();
@@ -1135,10 +864,8 @@ $(document).ready(function() {
 });
 
 /****  Resize Event Functions  ****/
-
 $(window).resize(function() {
     setTimeout(function() {
-        customScroll();
         reposition_topnav();
         if (!$('body').hasClass('fixed-sidebar') && !$('body').hasClass('builder-admin')) sidebarBehaviour();
         handleboxedLayout();
