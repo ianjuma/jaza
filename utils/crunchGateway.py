@@ -37,7 +37,7 @@ class CrunchGateway:
                                 category,
                                 urllib.urlencode(values))
             print 'Sending request to ' + url
-            request = urllib2.Request(url, headers=headers)
+            request = urllib2.Request(url=url, headers=headers)
             response = urllib2.urlopen(request)
             the_page = response.read()
 

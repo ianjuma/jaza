@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from utils import views
+from utils.views import CrunchView
 
 urlpatterns = [
-    url('^crunch/$', views.CrunchView.as_view(), name='crunch'),
+    url('^crunch/$', CrunchView.as_view()),
 ]
