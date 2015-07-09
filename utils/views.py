@@ -1,15 +1,11 @@
 from rest_framework import views, permissions
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 
 from utils.crunchGateway import CrunchGateway, CrunchGatewayException
 
 
 class CrunchView(views.APIView):
-    permission_classes = (IsAuthenticated,)
-
-    def get_permissions(self):
-        return permissions.IsAuthenticated()
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, format=None):
         data = request.query_params
@@ -24,9 +20,9 @@ class CrunchView(views.APIView):
 
             gateway = CrunchGateway()
             response_data = gateway.get_airtime_stats(
+                category=category,
                 product_id=product_id,
                 agent_id=agent_id,
-                category=category,
                 start_date=start_date,
                 end_date=end_date,
                 granularity=granularity,

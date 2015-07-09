@@ -47,12 +47,12 @@
               contentType: 'application/json; charset=UTF-8',
               dataType: 'json',
               data: dataObject,
-              success: function(result) {
-                  console.log(result);
+              success: function(statusCode) {
+                  console.log(statusCode);
                   window.location.href = '/';
               },
-              always: function(result) {
-                  console.log(result);
+              always: function(statusCode) {
+                  console.log(statusCode);
                   window.location.href = '/';
               }
           });

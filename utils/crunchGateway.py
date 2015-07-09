@@ -14,9 +14,9 @@ class CrunchGateway:
     def __init__(self):
         self.CrunchInterface = settings.CRUNCH_INTERFACE
 
-    def get_airtime_stats(self, metric, granularity,
-                          start_date, end_date,
-                          agent_id, product_id, category):
+    def get_airtime_stats(self, metric, start_date, end_date,
+                          agent_id, product_id, category='sent',
+                          granularity='day'):
 
         values = {
             'agentId': agent_id,
