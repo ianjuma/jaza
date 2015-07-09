@@ -73,13 +73,12 @@ ROOT_URLCONF = 'jaza.urls'
 
 WSGI_APPLICATION = 'jaza.wsgi.application'
 
+CRUNCH_INTERFACE = 'http://10.181.70.46:8081/airtime'
+
+API_KEY = '3147102a5544a8a8a499ad042adf2b627b82819a55e7259c08b89c805e2aef0b'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-# use databse urls - Kenneth Reitz - Project
-# import dj_database_url
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -158,7 +157,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 # AUTH_USER_MODEL = 'authentication.User'
 
 PWD = os.path.dirname(os.path.realpath(__file__))

@@ -14,22 +14,23 @@ class CrunchGateway:
     def __init__(self):
         self.CrunchInterface = settings.CRUNCH_INTERFACE
 
-    def getStats(self,
-                 username,
-                 category,
-                 startDate,
-                 endDate,
-                 metric):
+    def get_airtime_stats(self, metric, granularity,
+                          start_date, end_date,
+                          agent_id, product_id, category):
 
         values = {
-            'username': username,
+            'agentId': agent_id,
+            'productId': product_id,
             'metric': metric,
-            'granularity': 'day',
-            'startDate': startDate,
-            'endDate': endDate
+            'granularity': granularity,
+            'startDate': start_date,
+            'endDate': end_date,
         }
 
-        headers = {'Accept': 'application/json'}
+        headers = {
+            'Accept': 'application/json',
+            'api-key': settings.API_KEY
+        }
 
         try:
             url = '%s/%s?%s' % (self.CrunchInterface,
