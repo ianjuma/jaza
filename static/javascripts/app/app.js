@@ -1,4 +1,4 @@
-angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap'])
+angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'highcharts-ng'])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
@@ -21,7 +21,7 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap']
       })
       .when('/sales', {
         templateUrl: 'static/views/sales.html',
-        controller: 'ProductController'
+        controller: 'SalesController'
       })
       .otherwise({
         redirectTo: '/'
