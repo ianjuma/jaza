@@ -61,13 +61,12 @@ class SleuthGateway:
             the_page = e.read()
             raise SleuthGatewayException(the_page)
 
-        else:
-            decoded = json.loads(the_page)
+        decoded = json.loads(the_page)
 
-            if decoded['status']:
-                return {
-                    'currencyCode': decoded['currencyCode'],
-                    'amount': decoded['amount']
-                }
-            else:
-                raise SleuthGatewayException('Error while fetching balance')
+        if decoded['status']:
+            return {
+                'currencyCode': decoded['currencyCode'],
+                'amount': decoded['amount']
+            }
+        else:
+            raise SleuthGatewayException('Error while fetching balance')
