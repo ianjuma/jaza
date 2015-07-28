@@ -74,6 +74,7 @@ ROOT_URLCONF = 'jaza.urls'
 WSGI_APPLICATION = 'jaza.wsgi.application'
 
 CRUNCH_INTERFACE = 'http://10.181.70.46:8081/airtime'
+SLEUTH_INTERFACE = 'http://10.181.70.46:8080/'
 
 API_KEY = '3147102a5544a8a8a499ad042adf2b627b82819a55e7259c08b89c805e2aef0b'
 

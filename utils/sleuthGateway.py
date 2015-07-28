@@ -25,7 +25,7 @@ class SleuthGateway:
         headers = {'Accept': 'application/json'}
 
         try:
-            url = '%s/user-data/billing' % self.SleuthInterface
+            url = '{}/user-data/billing'.format(self.SleuthInterface)
             data = urllib.urlencode(values)
             request = urllib2.Request(url, data, headers=headers)
             response = urllib2.urlopen(request)
