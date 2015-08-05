@@ -1,11 +1,11 @@
 {% load compress %}
 {% load staticfiles %}
 
-<script src="http://code.highcharts.com/stock/highstock.src.js"></script>
 
 {% compress js %}
 
 <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+<script src="http://code.highcharts.com/stock/highstock.src.js"></script>
 <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
 
 <script src="{% static 'javascripts/application.js' %}"></script>
@@ -24,6 +24,10 @@
 <script src="{% static 'javascripts/app/controllers/product.js' %}"></script>
 <script src="{% static 'javascripts/app/controllers/user.js' %}"></script>
 <script src="{% static 'javascripts/app/controllers/sales.js' %}"></script>
+
+<script src="{% static 'javascripts/app/controllers/topup.js' %}"></script>
+<script src="{% static 'javascripts/app/services/topup.js' %}"></script>
+
 <script src="{% static 'javascripts/app/services/agent.js' %}"></script>
 <script src="{% static 'javascripts/app/services/product.js' %}"></script>
 <script src="{% static 'javascripts/app/services/user.js' %}"></script>
