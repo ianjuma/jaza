@@ -1,0 +1,56 @@
+<div class="main-content">
+<div class="page-content page-wizard">
+<div class="header">
+<h2>Agent&middot;Topup</h2>
+<div class="breadcrumb-wrapper">
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a>
+        </li>
+        <li class="active">Agent-TopUp</li>
+    </ol>
+</div>
+</div>
+
+<div class="row col-lg-12 tabs tabs-linetriangle">
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="style">
+
+        <div class="wizard-div current wizard-sea">
+            <form class="wizard" method="POST" ng-submit="topUpAgent()" data-style="sea" role="form">
+                <fieldset>
+                    <legend>Enter payment details to top an agent</legend>
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="agentID">Agent ID</label>
+                                <input ng-model="agentID" type="text"
+                                class="form-control" placeholder="345543">
+                            </div>
+                            <div class="form-group">
+                                <label for="amountTopup">Amount topup</label>
+                                <input ng-model="amountTopup" type="number"
+                                class="form-control" placeholder="1000 KES">
+                            </div>
+                            <div class="form-group">
+                                <label for="tranCode">Tran code</label>
+                                <input ng-model="tranCode" type="text"
+                                class="form-control"
+                                placeholder="ATK43542se">
+                            </div>
+                        </div>
+
+                    </div>
+                    <button id="submit" type="submit" class="btn
+                        btn-primary">TopUp</button>
+                </fieldset>
+
+            </form>
+        </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+</div>
