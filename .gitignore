@@ -15,6 +15,9 @@ node_modules/
 # Bower components
 static/bower_components/
 
+# ignore migrations
+migrations
+
 # Uglified JavaScript
 dist/
 
