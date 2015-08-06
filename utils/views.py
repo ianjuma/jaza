@@ -47,6 +47,7 @@ class SleuthAgentTopUpView(views.APIView):
     def get(self, request, format=None):
         data = request.query_params
         try:
+            category = data['']
             agent_id = data['agentId']
             product_id = data['productId']
             user_id = data['userId']
@@ -57,8 +58,10 @@ class SleuthAgentTopUpView(views.APIView):
                 agent_id=agent_id,
                 product_id=product_id,
                 user_id=user_id,
-                amount=amount
+                amount=amount,
             )
+            print response_data
+
         except SleuthGatewayException, e:
             print "Caught exception when calling AT Gateway: " + str(e)
             response_data = {}
@@ -67,7 +70,7 @@ class SleuthAgentTopUpView(views.APIView):
             print "Caught exception when calling AT Gateway: " + str(e)
             response_data = {}
 
-        return response_data
+        return Response(response_data)
 
 
 class SleuthGetAgentBalanceView(views.APIView):

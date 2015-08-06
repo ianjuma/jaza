@@ -17,6 +17,7 @@ urlpatterns = patterns(
     # url(r'^api/v1/', CrunchView.as_view(), name='crunch'),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include('agents.urls')),
+    url(r'^api/v1/', include('utils.urls')),
     url(r'^api/v1/', include('distributors.urls')),
     url(r'^api/v1/', include('authentication.urls')),
     url(r'^api/v1/', include('products.urls')),
