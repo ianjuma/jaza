@@ -9,7 +9,7 @@ class Agent(models.Model):
     )
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=16, unique=True)
-    pin = models.CharField(max_length=64, blank=True)
+    pin = models.CharField(max_length=64, default=None)
     verification_code = models.IntegerField(blank=False)
     verification_status = models.CharField(choices=STATUS, default='N', max_length=1)
 
