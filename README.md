@@ -23,3 +23,6 @@
 - analytics
 - sales, agents/ products
 - transactions
+- crunch/ sleuth instance
+- ip - highcharts real plt - dummy data
+- addresses - > sleuth/ crunch
