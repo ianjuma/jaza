@@ -8,7 +8,6 @@ class Product(models.Model):
     CATEGORIES = (
         ('E', 'Airtime Voucher'),
         ('P', 'Pinless Airtime'),
-        ('G', 'General'),
     )
     owner = models.ForeignKey('Distributor', related_name='product_owner')
     category = models.CharField(max_length=1, choices=CATEGORIES)

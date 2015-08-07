@@ -17,6 +17,8 @@ static/bower_components/
 
 # ignore migrations
 migrations
+agents/migrations
+utils/migrations
 
 # Uglified JavaScript
 dist/
