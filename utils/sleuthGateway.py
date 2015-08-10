@@ -14,8 +14,7 @@ class SleuthGateway:
     def __init__(self):
         self.SleuthInterface = settings.SLEUTH_INTERFACE
 
-    def top_up_user(self, user_id, amount, source, ref_id, user_category='Agent',
-                     currency_code='KES'):
+    def top_up_user(self, user_id, amount, source, ref_id, user_category='Agent', currency_code='KES'):
         values = {
             'userId': user_id,
             'userCategory': user_category,

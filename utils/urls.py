@@ -5,6 +5,6 @@ from utils.views import (CrunchView, SleuthUserTopUpView,
 
 urlpatterns = [
     url('^crunch/$', CrunchView.as_view()),
-    url('^sleuth/topup$', SleuthUserTopUpView.as_view()),
+    url('^sleuth/billing$', SleuthUserTopUpView.as_view()),
     url('^sleuth/balance$', SleuthGetUserBalanceView.as_view())
 ]
