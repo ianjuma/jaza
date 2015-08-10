@@ -13,7 +13,7 @@ class CrunchView(views.APIView):
         try:
             category = data['category']
             product_id = data['productId']
-            agent_id = data['agentId']
+            user_id = data['userId']
             start_date = data['startDate']
             end_date = data['endDate']
             granularity = data['granularity']
@@ -23,7 +23,7 @@ class CrunchView(views.APIView):
             response_data = gateway.get_airtime_stats(
                 category=category,
                 product_id=product_id,
-                agent_id=agent_id,
+                user_id=user_id,
                 start_date=start_date,
                 end_date=end_date,
                 granularity=granularity,
@@ -41,24 +41,27 @@ class CrunchView(views.APIView):
         return Response(response_data)
 
 
-class SleuthAgentTopUpView(views.APIView):
+class SleuthUserTopUpView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, format=None):
         data = request.query_params
         try:
-            category = data['']
-            agent_id = data['agentId']
-            product_id = data['productId']
+            category = data['userCategory']
+            currency_code = data['currencyCode']
             user_id = data['userId']
+            source = data['source']
             amount = data['amount']
+            ref_id = data['refId']
 
             gateway = SleuthGateway()
-            response_data = gateway.top_up_agent(
-                agent_id=agent_id,
-                product_id=product_id,
+            response_data = gateway.top_up_user(
+                category=category,
                 user_id=user_id,
+                source=source,
                 amount=amount,
+                ref_id=ref_id,
+                currency_code=currency_code
             )
             print response_data
 
@@ -73,19 +76,19 @@ class SleuthAgentTopUpView(views.APIView):
         return Response(response_data)
 
 
-class SleuthGetAgentBalanceView(views.APIView):
+class SleuthGetUserBalanceView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, format=None):
         data = request.query_params
         try:
-            product_id = data['productId']
-            agent_id = data['agentId']
+            user_category = data['userCategory']
+            user_id = data['userId']
 
             gateway = SleuthGateway()
-            response_data = gateway.get_agent_balance(
-                product_id=product_id,
-                agent_id=agent_id,
+            response_data = gateway.get_user_balance(
+                user_category=user_category,
+                user_id=user_id,
             )
 
         except SleuthGatewayException, e:

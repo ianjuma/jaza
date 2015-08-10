@@ -1,10 +1,10 @@
 from django.conf.urls import url
 
-from utils.views import (CrunchView, SleuthAgentTopUpView,
-                         SleuthGetAgentBalanceView)
+from utils.views import (CrunchView, SleuthUserTopUpView,
+                         SleuthGetUserBalanceView)
 
 urlpatterns = [
     url('^crunch/$', CrunchView.as_view()),
-    url('^sleuth/topup$', SleuthAgentTopUpView.as_view()),
-    url('^sleuth/balance$', SleuthGetAgentBalanceView.as_view())
+    url('^sleuth/topup$', SleuthUserTopUpView.as_view()),
+    url('^sleuth/balance$', SleuthGetUserBalanceView.as_view())
 ]

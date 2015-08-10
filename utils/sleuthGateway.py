@@ -14,18 +14,21 @@ class SleuthGateway:
     def __init__(self):
         self.SleuthInterface = settings.SLEUTH_INTERFACE
 
-    def top_up_agent(self, user_id, agent_id, product_id, amount):
+    def top_up_user(self, user_id, amount, source, ref_id, user_category='Agent',
+                     currency_code='KES'):
         values = {
             'userId': user_id,
-            'agentId': agent_id,
-            'productId': product_id,
+            'userCategory': user_category,
+            'currencyCode': currency_code,
+            'source': source,
+            'refId': ref_id,
             'amount': amount
         }
 
         headers = {'Accept': 'application/json'}
 
         try:
-            url = '{}/user-data/billing'.format(self.SleuthInterface)
+            url = '{}/billing/add-transaction'.format(self.SleuthInterface)
             data = urllib.urlencode(values)
             request = urllib2.Request(url, data, headers=headers)
             response = urllib2.urlopen(request)
@@ -42,10 +45,10 @@ class SleuthGateway:
             else:
                 raise SleuthGatewayException(decoded['errorMessage'])
 
-    def get_agent_balance(self, agent_id, product_id):
+    def get_user_balance(self, user_id, user_category='Agent'):
         values = {
-            'agentId': agent_id,
-            'productId': product_id,
+            'userId': user_id,
+            'userCategory': user_category
         }
 
         headers = {'Accept': 'application/json'}
