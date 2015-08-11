@@ -1,7 +1,7 @@
 <div class="main-content">
 <div class="page-content page-wizard">
 <div class="header">
-<h2>Agent&middot;Topup</h2>
+<h2>Agent Top-up</h2>
 <div class="breadcrumb-wrapper">
     <ol class="breadcrumb">
         <li><a href="/">Home</a>
@@ -29,8 +29,12 @@
                                 class="form-control" placeholder="345543">
                             </div>
                             <div class="form-group">
-                                <label for="usercategory">User Category</label>
-                                <input ng-model="usercategory" type="text" class="form-control" placeholder="agent">
+                                <label for="userCategory">User Category</label>
+                                <select ng-model="userCategory" class="form-control"
+                                        id="userCategory">
+                                    <option>Distributor</option>
+                                    <option>Agent</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="amountTopup">Amount</label>
