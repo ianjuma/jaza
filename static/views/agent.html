@@ -44,7 +44,8 @@
                                         <td>{{ agent.id }}</td>
                                         <td>{{ agent.products[0].name }}</td>
                                         <td>
-                                            <button id="{{ agent.id }}" class="btn btn-primary btn-xs">Sales Stats</button>
+                                            <a href="/#agent_stats/{{ agent.id }}"> <button class="btn btn-primary btn-xs">Sales Stats</button>
+                                            </a>
                                         </td>
                                     </tr>
 

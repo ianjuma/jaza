@@ -49,7 +49,8 @@
                                         <td>{{ product.created_at }}</td>
                                         <td>{{ product.ussd_channel }}</td>
                                         <td>
-                                            <button id="{{ product.id }}" class="btn btn-primary btn-xs">Sales Stats</button>
+                                            <a href="/#prod_stats/{{ product.id }}"> <button class="btn btn-primary btn-xs">Sales Stats</button>
+                                            </a>
                                         </td>
                                     </tr>
 
