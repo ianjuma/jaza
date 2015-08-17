@@ -39,7 +39,7 @@ class Login(views.APIView):
 
 
 class Logout(views.APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     def post(self, request, format=None):
         logout(request)

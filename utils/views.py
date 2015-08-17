@@ -5,7 +5,7 @@ from utils.crunchGateway import CrunchGateway, CrunchGatewayException
 from utils.sleuthGateway import SleuthGateway, SleuthGatewayException
 
 
-class CrunchView(views.APIView):
+class CrunchAgentStatsView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, format=None):
@@ -13,17 +13,51 @@ class CrunchView(views.APIView):
         try:
             category = data['category']
             product_id = data['productId']
-            user_id = data['userId']
+            agent_id = data['agentId']
             start_date = data['startDate']
             end_date = data['endDate']
             granularity = data['granularity']
             metric = data['metric']
 
             gateway = CrunchGateway()
-            response_data = gateway.get_airtime_stats(
+            response_data = gateway.get_agent_stats(
+                category=category,
+                agent_id=agent_id,
+                product_id=product_id,
+                start_date=start_date,
+                end_date=end_date,
+                granularity=granularity,
+                metric=metric
+            )
+
+        except CrunchGatewayException, e:
+            print "Caught exception when calling AT Gateway: " + str(e)
+            response_data = {}
+
+        except Exception, e:
+            print "Caught exception when calling AT Gateway: " + str(e)
+            response_data = {}
+
+        return Response(response_data)
+
+
+class CrunchProductStatsView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, format=None):
+        data = request.query_params
+        try:
+            category = data['category']
+            product_id = data['productId']
+            start_date = data['startDate']
+            end_date = data['endDate']
+            granularity = data['granularity']
+            metric = data['metric']
+
+            gateway = CrunchGateway()
+            response_data = gateway.get_product_stats(
                 category=category,
                 product_id=product_id,
-                user_id=user_id,
                 start_date=start_date,
                 end_date=end_date,
                 granularity=granularity,
@@ -56,7 +90,7 @@ class SleuthUserTopUpView(views.APIView):
 
             gateway = SleuthGateway()
             response_data = gateway.top_up_user(
-                category=category,
+                user_category=category,
                 user_id=user_id,
                 source=source,
                 amount=amount,
