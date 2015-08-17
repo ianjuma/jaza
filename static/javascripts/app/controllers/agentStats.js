@@ -1,10 +1,10 @@
 angular.module('Jaza')
-  .controller('ProductStatsController', function($scope, $routeParams, Stats) {
+  .controller('AgentStatsController', function($scope, $routeParams, Stats) {
 
     (function() {
-      var productId = $routeParams.param1;
+      var agentId = $routeParams.param1;
 
-      Stats.getProductStats(productId)
+      Stats.getAgentStats(agentId)
         .then(function (result) {
           console.log(result);
           $scope.Stats = result.data;
@@ -25,8 +25,16 @@ angular.module('Jaza')
     $scope.chartConfig = {
       options: {
         chart: {
-          type: 'bar'
+          type: 'line'
         }
+      },
+      title: {
+        text: 'Agent Sales',
+        x: -20
+      },
+      subtitle: {
+        text: 'Agent sales per Product',
+        x: -20
       },
       series: [{
         data: [10, 15, 12, 8, 7]
@@ -36,15 +44,23 @@ angular.module('Jaza')
       },
       yAxis: {
         title: {
-          text: 'Airtime Sold'
-        }
+          text: 'Units Sold'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
       },
       size: {
         width: 600,
         height: 450
-      },
-      title: {
-        text: 'Product Sales'
       },
 
       loading: false
