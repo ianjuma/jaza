@@ -49,7 +49,6 @@ INSTALLED_APPS = (
     'compressor',
     'authentication',
     'agents',
-    'snippets',
     'distributors',
     'products',
     'utils',
