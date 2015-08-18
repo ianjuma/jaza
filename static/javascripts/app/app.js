@@ -27,13 +27,13 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
         templateUrl: 'static/views/sales.html',
         controller: 'SalesController'
       })
-      .when('/prod_stats/:product_id/', {
+      .when('/prod_stats/:productId/', {
         templateUrl: 'static/views/product_stats.html',
-        controller: 'AgentStatsController'
-      })
-      .when('/agent_stats/:agent_id/', {
-        templateUrl: 'static/views/agent_stats.html',
         controller: 'ProductStatsController'
+      })
+      .when('/agent_stats/:agentId/', {
+        templateUrl: 'static/views/agent_stats.html',
+        controller: 'AgentStatsController'
       })
       .otherwise({
         redirectTo: '/'

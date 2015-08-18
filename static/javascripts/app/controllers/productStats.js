@@ -1,10 +1,11 @@
 angular.module('Jaza')
-  .controller('ProductStatsController', function($scope, $routeParams, Stats) {
+  .controller('ProductStatsController', function($scope, $routeParams, ProductService) {
 
     (function() {
-      var productId = $routeParams.param1;
+      var productId = $routeParams.productId;
+      console.log($routeParams);
 
-      Stats.getProductStats(productId)
+      ProductService.getProductStats(productId)
         .then(function (result) {
           console.log(result);
           $scope.Stats = result.data;

@@ -1,10 +1,11 @@
 angular.module('Jaza')
-  .controller('AgentStatsController', function($scope, $routeParams, Stats) {
+  .controller('AgentStatsController', function($scope, $routeParams, AgentService) {
 
     (function() {
-      var agentId = $routeParams.param1;
+      var agentId = $routeParams.agentId;
+      console.log($routeParams);
 
-      Stats.getAgentStats(agentId)
+      AgentService.getAgentStats(agentId)
         .then(function (result) {
           console.log(result);
           $scope.Stats = result.data;

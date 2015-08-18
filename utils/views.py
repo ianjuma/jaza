@@ -78,7 +78,7 @@ class CrunchProductStatsView(views.APIView):
 class SleuthUserTopUpView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         data = request.query_params
         try:
             category = data['userCategory']
