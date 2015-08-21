@@ -14,14 +14,15 @@ class CrunchGateway:
     def __init__(self):
         self.CrunchInterface = settings.CRUNCH_INTERFACE
 
-    def get_product_stats(self, category, metric, start_date,
-                          end_date, product_id, granularity):
+    def get_product_stats(self, product_id, start_date, end_date,
+                          granularity='day', metric='count', category='sent'):
+
         values = {
             'productId': product_id,
             'metric': metric,
             'granularity': granularity,
             'startDate': start_date,
-            'endDate': end_date,
+            'endDate': end_date
         }
 
         headers = {
@@ -30,9 +31,10 @@ class CrunchGateway:
         }
 
         try:
-            url = '%s/%s?%s' % (self.CrunchInterface,
-                                category,
-                                urllib.urlencode(values))
+            url = '%s/%s/%s?%s' % (self.CrunchInterface,
+                                   'pinless-airtime',
+                                   category,
+                                   urllib.urlencode(values))
             print 'Sending request to ' + url
             request = urllib2.Request(url=url, headers=headers)
             response = urllib2.urlopen(request)
@@ -46,15 +48,16 @@ class CrunchGateway:
             decoded = json.loads(the_page)
             return decoded['responses']
 
-    def get_agent_stats(self, category, metric, start_date,
-                        end_date, product_id, agent_id, granularity):
+    def get_agent_stats(self, category, product_id, agent_id,
+                        start_date, end_date, granularity='day', metric='count'):
+
         values = {
             'agentId': agent_id,
             'productId': product_id,
             'metric': metric,
             'granularity': granularity,
             'startDate': start_date,
-            'endDate': end_date,
+            'endDate': end_date
         }
 
         headers = {
@@ -63,9 +66,10 @@ class CrunchGateway:
         }
 
         try:
-            url = '%s/%s?%s' % (self.CrunchInterface,
-                                category,
-                                urllib.urlencode(values))
+            url = '%s/%s/%s?%s' % (self.CrunchInterface,
+                                   'pinless-airtime',
+                                   category,
+                                   urllib.urlencode(values))
             print 'Sending request to ' + url
             request = urllib2.Request(url=url, headers=headers)
             response = urllib2.urlopen(request)

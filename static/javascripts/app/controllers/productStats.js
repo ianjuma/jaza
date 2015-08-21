@@ -30,14 +30,14 @@ angular.module('Jaza')
         }
       },
       series: [{
-        data: [10, 15, 12, 8, 7]
+        data: [10, 15, 12, 8]
       }],
       xAxis: {
-        categories: ['Fast Airtime', 'DMG', 'Sonic Airtime', 'Mikes Fast Point', 'Jaza Airtime']
+        categories: ['Sent', 'Delivered', 'Commission', 'Failed']
       },
       yAxis: {
         title: {
-          text: 'Airtime Sold'
+          text: 'Airtime Status'
         }
       },
       size: {

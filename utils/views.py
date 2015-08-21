@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from utils.crunchGateway import CrunchGateway, CrunchGatewayException
 from utils.sleuthGateway import SleuthGateway, SleuthGatewayException
+from datetime import datetime
 
 
 class CrunchAgentStatsView(views.APIView):
@@ -11,23 +12,26 @@ class CrunchAgentStatsView(views.APIView):
     def get(self, request, format=None):
         data = request.query_params
         try:
-            category = data['category']
             product_id = data['productId']
             agent_id = data['agentId']
+            """
+            category = data['category']
             start_date = data['startDate']
             end_date = data['endDate']
             granularity = data['granularity']
             metric = data['metric']
+            """
+            now = datetime.now()
 
             gateway = CrunchGateway()
             response_data = gateway.get_agent_stats(
-                category=category,
+                category='sent',
                 agent_id=agent_id,
                 product_id=product_id,
-                start_date=start_date,
-                end_date=end_date,
-                granularity=granularity,
-                metric=metric
+                start_date=now.strftime("%Y-%m-%d"),
+                end_date=now.strftime("%Y-%m-%d"),
+                granularity='day',
+                metric='count'
             )
 
         except CrunchGatewayException, e:
@@ -46,22 +50,26 @@ class CrunchProductStatsView(views.APIView):
 
     def get(self, request, format=None):
         data = request.query_params
+        print(data)
         try:
-            category = data['category']
             product_id = data['productId']
+            now = datetime.now()
+            """
+            category = data['category']
             start_date = data['startDate']
             end_date = data['endDate']
             granularity = data['granularity']
             metric = data['metric']
+            """
 
             gateway = CrunchGateway()
             response_data = gateway.get_product_stats(
-                category=category,
+                category='sent',
                 product_id=product_id,
-                start_date=start_date,
-                end_date=end_date,
-                granularity=granularity,
-                metric=metric
+                start_date=now.strftime("%Y-%m-%d"),
+                end_date=now.strftime("%Y-%m-%d"),
+                granularity='day',
+                metric='count'
             )
 
         except CrunchGatewayException, e:
