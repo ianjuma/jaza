@@ -16,7 +16,7 @@ class SleuthGateway:
 
     def top_up_user(self, user_id, amount, source, ref_id, user_category='Agent', currency_code='KES'):
         values = {
-            'userId': user_id,
+            'agentId': user_id,
             'userCategory': user_category,
             'currencyCode': currency_code,
             'source': source,
@@ -24,10 +24,11 @@ class SleuthGateway:
             'amount': amount
         }
 
-        headers = {'Accept': 'application/json'}
+        headers = {'Accept': 'application/json', 'apikey': settings.SLEUTH_API_KEY}
 
         try:
-            url = '{}/billing/add-transaction'.format(self.SleuthInterface)
+            url = '{}billing/add-transaction'.format(self.SleuthInterface)
+            print url
             data = urllib.urlencode(values)
             request = urllib2.Request(url, data, headers=headers)
             response = urllib2.urlopen(request)
@@ -40,7 +41,7 @@ class SleuthGateway:
         else:
             decoded = json.loads(the_page)
             if decoded['status']:
-                return decoded['responses']
+                return decoded['status']
             else:
                 raise SleuthGatewayException(decoded['errorMessage'])
 

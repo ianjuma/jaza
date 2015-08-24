@@ -26,18 +26,8 @@
                             <div class="form-group">
                                 <label for="agentID">Agent ID</label>
                                 <input ng-model="agentID" type="text"
-                                class="form-control" placeholder="345543">
+                                class="form-control" placeholder="34">
                             </div>
-                            <!--
-                            <div class="form-group">
-                                <label for="userCategory">User Category</label>
-                                <select ng-model="userCategory" class="form-control"
-                                        id="userCategory">
-                                    <option>Distributor</option>
-                                    <option>Agent</option>
-                                </select>
-                            </div>
-                            -->
                             <div class="form-group">
                                 <label for="amount">Amount</label>
                                 <input ng-model="amount" type="number"
@@ -45,9 +35,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="source">Source</label>
-                                <input ng-model="source" type="text"
-                                       class="form-control"
-                                       placeholder="eg. MPESA, Bank">
+                                <select ng-model="source" class="form-control"
+                                        id="source">
+                                    <option selected>MpesaPayment</option>
+                                    <option>Bank</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="refID">Reference ID</label>

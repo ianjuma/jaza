@@ -77,6 +77,7 @@ SLEUTH_INTERFACE = 'http://41.242.2.250:8080/'
 CRUNCH_INTERFACE = 'http://41.242.2.250:8081/'
 
 API_KEY = '3147102a5544a8a8a499ad042adf2b627b82819a55e7259c08b89c805e2aef0b'
+SLEUTH_API_KEY = 'f7f4f428-fe82-4d7e-b9e3-15dbffa073a2'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
