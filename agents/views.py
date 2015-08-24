@@ -38,7 +38,7 @@ def agent_list(request):
 
 @permission_classes((IsAuthenticated,))
 @api_view(['GET'])
-def distributor_agent_list(request, pk):
+def distributor_agent_list(request):
     """ get agents per product
         through agents, distributor association
     """
@@ -48,6 +48,7 @@ def distributor_agent_list(request, pk):
         # my agents per product - get products by owner
         # get agents for products
         prod_agents = []
+        pk = request.user.id  # user id - primary key
 
         try:
             cursor.execute("SELECT agent_id FROM agents_agent_products WHERE product_id = %s", [pk])
