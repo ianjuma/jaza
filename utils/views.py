@@ -84,19 +84,18 @@ class CrunchProductStatsView(views.APIView):
 
 
 class SleuthUserTopUpView(views.APIView):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, format=None):
-        data = request.query_params
+        data = request.data
         try:
-            # category = data['userCategory']
             category = 'Agent'
-            # currency_code = data['currencyCode']
             currency_code = 'KES'
-            user_id = data['agentId']  # get current user ID
+            user_id = data['agentID']
             source = data['source']
             amount = data['amount']
-            ref_id = data['refId']
+            ref_id = data['refID']
+            print ref_id, amount, source, user_id, currency_code, category
 
             gateway = SleuthGateway()
             response_data = gateway.top_up_user(

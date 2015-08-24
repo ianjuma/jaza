@@ -1,3 +1,8 @@
+function run($http) {
+  $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+  $http.defaults.xsrfCookieName = 'csrftoken';
+}
+
 angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'highcharts-ng'])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -38,4 +43,6 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }).run(run);
+
+run.$inject = ['$http'];
