@@ -84,7 +84,7 @@ class CrunchProductStatsView(views.APIView):
 
 
 class SleuthUserTopUpView(views.APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
         data = request.query_params
