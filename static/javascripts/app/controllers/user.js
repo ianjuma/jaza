@@ -1,22 +1,22 @@
 angular.module('Jaza')
   .controller('ProfileController', function($scope, User) {
 
-    $scope.getUser = function(username) {
-      User.getUser(username)
-        .then(function(result) {
-          console.log(result);
-          $scope.User = result.data;
-        })
-        .catch(function(response) {
-          console.log(response);
-          $scope.firstName = '';
-          $scope.lastName = '';
-          $scope.email = '';
-        });
-    };
+    User.getUser('ianjuma')
+      .then(function(result) {
+        console.log(result);
+        $scope.firstName = result.data.first_name;
+        $scope.lastName = result.data.last_name;
+        $scope.email = result.data.email;
+      })
+      .catch(function(response) {
+        console.log(response);
+        $scope.firstName = '';
+        $scope.lastName = '';
+        $scope.email = '';
+      });
 
-    $scope.updateUser = function(username) {
-      User.updateUser(username)
+    $scope.updateUser = function() {
+      User.updateUser('ianjuma' ,{ firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.email })
         .then(function(result) {
           console.log(result);
         })

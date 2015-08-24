@@ -38,8 +38,8 @@ class Login(views.APIView):
                             status=status.HTTP_401_UNAUTHORIZED)
 
 
+@permission_classes((IsAuthenticated,))
 class Logout(views.APIView):
-    permission_classes = (AllowAny,)
 
     def post(self, request, format=None):
         logout(request)
