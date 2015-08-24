@@ -89,9 +89,11 @@ class SleuthUserTopUpView(views.APIView):
     def post(self, request, format=None):
         data = request.query_params
         try:
-            category = data['userCategory']
-            currency_code = data['currencyCode']
-            user_id = data['userId']
+            # category = data['userCategory']
+            category = 'Agent'
+            # currency_code = data['currencyCode']
+            currency_code = 'KES'
+            user_id = data['agentId']  # get current user ID
             source = data['source']
             amount = data['amount']
             ref_id = data['refId']

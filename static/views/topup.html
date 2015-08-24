@@ -24,10 +24,11 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="userID">User ID</label>
-                                <input ng-model="userID" type="text"
+                                <label for="agentID">Agent ID</label>
+                                <input ng-model="agentID" type="text"
                                 class="form-control" placeholder="345543">
                             </div>
+                            <!--
                             <div class="form-group">
                                 <label for="userCategory">User Category</label>
                                 <select ng-model="userCategory" class="form-control"
@@ -36,14 +37,21 @@
                                     <option>Agent</option>
                                 </select>
                             </div>
+                            -->
                             <div class="form-group">
-                                <label for="amountTopup">Amount</label>
-                                <input ng-model="amountTopup" type="number"
+                                <label for="amount">Amount</label>
+                                <input ng-model="amount" type="number"
                                 class="form-control" placeholder="1000 KES">
                             </div>
                             <div class="form-group">
-                                <label for="refId">Reference ID</label>
-                                <input ng-model="refId" type="text"
+                                <label for="source">Source</label>
+                                <input ng-model="source" type="text"
+                                       class="form-control"
+                                       placeholder="eg. MPESA, Bank">
+                            </div>
+                            <div class="form-group">
+                                <label for="refID">Reference ID</label>
+                                <input ng-model="refID" type="text"
                                 class="form-control"
                                 placeholder="ATK43542se">
                             </div>

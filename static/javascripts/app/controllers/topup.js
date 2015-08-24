@@ -4,20 +4,23 @@ angular.module('Jaza')
     $scope.topUpAgent = function() {
       TopUp.topUpAgent({
         agentID: $scope.agentID,
-        agentID: $scope.tranCode,
-        amountTopup: $scope.amountTopup
+        refID: $scope.refId,
+        amount: $scope.amount,
+        source: $scope.source
       })
         .then(function (result) {
           console.log(result);
           $scope.agentID = result.agentID;
-          $scope.tranCode = result.tranCode;
-          $scope.amountTopup = result.amountTopup;
+          $scope.refId = result.refId;
+          $scope.amount = result.amount;
+          $scope.source = result.source;
         })
         .catch(function (response) {
           console.log(response);
           $scope.agentID = '';
-          $scope.tranCode = '';
-          $scope.amountTopup = '';
+          $scope.refId = '';
+          $scope.amount = '';
+          $scope.source = '';
         });
     };
 
