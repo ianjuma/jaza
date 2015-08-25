@@ -1,7 +1,7 @@
 angular.module('Jaza')
   .controller('ProfileController', function($scope, User) {
 
-    User.getUser('ianjuma')
+    User.getUser( username )
       .then(function(result) {
         console.log(result);
         $scope.firstName = result.data.first_name;
@@ -16,7 +16,7 @@ angular.module('Jaza')
       });
 
     $scope.updateUser = function() {
-      User.updateUser('ianjuma' ,{ firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.email })
+      User.updateUser( username ,{ firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.email })
         .then(function(result) {
           console.log(result);
         })

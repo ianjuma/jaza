@@ -70,8 +70,9 @@ def distributor_agent_list(request):
         if len(__agents_ids) == 1:
             agent = Agent.objects.get(pk=__agents_ids[0])
             agent = AgentSerializer(agent)
+            prod_agents.append(agent.data)
 
-            return Response(agent.data, status=status.HTTP_200_OK)
+            return Response(prod_agents, status=status.HTTP_200_OK)
         elif isinstance(__agents_ids, types.ListType):
             for agent_id in __agents_ids:
                 agent = Agent.objects.get(pk=agent_id)
@@ -84,7 +85,7 @@ def distributor_agent_list(request):
         # get agent_id
         # agent_ids = dict_fetch_all(cursor=cursor)
         # get agents info - pagination? - get agent info -> pagination
-
+        print type(prod_agents)
         return Response(prod_agents, status=status.HTTP_200_OK)
 
 
