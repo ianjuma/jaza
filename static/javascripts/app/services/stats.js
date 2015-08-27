@@ -13,8 +13,6 @@ angular.module('Jaza')
     return {
       getAgentStats: function(agentId) {
         var url =  '/api/v1/crunch/agents/' + agentId;
-        // '/api/v1/crunch/agents/', {params: {agentId: agentId}}
-
         return $http.get( url );
       }
     }

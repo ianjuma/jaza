@@ -48,8 +48,16 @@
         -->
 
         <!-- high-charts -->
-        <highchart id="productSalesChart" config="chartConfig">
-        </highchart>
+        <div ng-if="Stats.datum == 0">
+            <div>
+                No data to Display during this period
+            </div>
+        </div>
+        <div ng-if="Stats.data">
+            <highchart id="productSalesChart" config="chartConfig">
+            </highchart>
+        </div>
+
     </div>
 </div>
 </div>

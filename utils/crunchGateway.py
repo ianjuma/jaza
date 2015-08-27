@@ -27,11 +27,11 @@ class CrunchGateway:
 
         headers = {
             'Accept': 'application/json',
-            'api-key': settings.API_KEY
+            'apikey': settings.API_KEY
         }
 
         try:
-            url = '%s/%s/%s?%s' % (self.CrunchInterface,
+            url = '%s%s/%s?%s' % (self.CrunchInterface,
                                    'pinless-airtime',
                                    category,
                                    urllib.urlencode(values))
@@ -46,14 +46,21 @@ class CrunchGateway:
 
         else:
             decoded = json.loads(the_page)
-            return decoded['responses']
+            dates = []
+            agents = []
+            for datum in decoded['responses']['agentCostStats']:
+                dates.append(datum['date'])
+                agents.append(datum['elements'])
 
-    def get_agent_stats(self, category, product_id, agent_id,
-                        start_date, end_date, granularity='day', metric='count'):
+            print agents
+            print dates
+            return decoded['responses']['agentCostStats']
+
+    def get_agent_stats(self, category, agent_id, start_date,
+                        end_date, granularity='day', metric='count'):
 
         values = {
             'agentId': agent_id,
-            'productId': product_id,
             'metric': metric,
             'granularity': granularity,
             'startDate': start_date,
@@ -62,11 +69,11 @@ class CrunchGateway:
 
         headers = {
             'Accept': 'application/json',
-            'api-key': settings.API_KEY
+            'apikey': settings.API_KEY
         }
 
         try:
-            url = '%s/%s/%s?%s' % (self.CrunchInterface,
+            url = '%s%s/%s?%s' % (self.CrunchInterface,
                                    'pinless-airtime',
                                    category,
                                    urllib.urlencode(values))
@@ -78,7 +85,10 @@ class CrunchGateway:
         except urllib2.HTTPError as e:
             the_page = e.read()
             raise CrunchGatewayException(the_page)
+        # dates = []
+        # values = []
 
         else:
             decoded = json.loads(the_page)
-            return decoded['responses']
+            # for data in decoded['responses']['productCostStats']:
+            return decoded['responses']['productCostStats']

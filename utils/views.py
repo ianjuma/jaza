@@ -3,35 +3,39 @@ from rest_framework.response import Response
 
 from utils.crunchGateway import CrunchGateway, CrunchGatewayException
 from utils.sleuthGateway import SleuthGateway, SleuthGatewayException
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class CrunchAgentStatsView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, format=None):
-        data = request.query_params
+    def get(self, request, pk, format=None):
+        # data = request.query_params
         try:
-            product_id = data['productId']
-            agent_id = data['agentId']
+            agent_id = pk
             """
+            agent_id = data['agentId']
             category = data['category']
+            product_id = data['productId']
             start_date = data['startDate']
             end_date = data['endDate']
             granularity = data['granularity']
             metric = data['metric']
             """
             now = datetime.now()
+            time_deficit = timedelta(days=1)
+            # stats for last 7 days
+            back_date = now - time_deficit
+            back_date = back_date.strftime("%Y-%m-%d")
 
             gateway = CrunchGateway()
             response_data = gateway.get_agent_stats(
                 category='sent',
                 agent_id=agent_id,
-                product_id=product_id,
-                start_date=now.strftime("%Y-%m-%d"),
+                start_date=back_date,
                 end_date=now.strftime("%Y-%m-%d"),
                 granularity='day',
-                metric='count'
+                metric='cost'
             )
 
         except CrunchGatewayException, e:
@@ -48,13 +52,16 @@ class CrunchAgentStatsView(views.APIView):
 class CrunchProductStatsView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, format=None):
-        data = request.query_params
-        print(data)
+    def get(self, request, pk, format=None):
+        # data = request.query_params
         try:
-            product_id = data['productId']
+            product_id = pk
             now = datetime.now()
+            time_deficit = timedelta(days=2)
+            # stats for last 7 days
+            back_date = now - time_deficit
             """
+            product_id = data['productId']
             category = data['category']
             start_date = data['startDate']
             end_date = data['endDate']
@@ -66,10 +73,10 @@ class CrunchProductStatsView(views.APIView):
             response_data = gateway.get_product_stats(
                 category='sent',
                 product_id=product_id,
-                start_date=now.strftime("%Y-%m-%d"),
+                start_date=back_date.strftime("%Y-%m-%d"),
                 end_date=now.strftime("%Y-%m-%d"),
                 granularity='day',
-                metric='count'
+                metric='cost'
             )
 
         except CrunchGatewayException, e:

@@ -28,7 +28,6 @@ def distributor_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def distributor_detail(request, pk):
     try:
-        # user = User.objects.get(pk=pk)
         distributor = Distributor.objects.get(pk=pk)
     except Distributor.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)

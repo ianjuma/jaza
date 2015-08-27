@@ -7,8 +7,13 @@ angular.module('Jaza')
 
       ProductService.getProductStats(productId)
         .then(function (result) {
-          console.log(result);
-          $scope.Stats = result.data;
+          console.log(result.data);
+
+          if (Object.keys(result.data).length === 0) {
+            $scope.Stats = { 'datum': 0 };
+          } else {
+            $scope.Stats = { 'data': result.data };
+          }
         })
         .catch(function (response) {
           console.log(response);
