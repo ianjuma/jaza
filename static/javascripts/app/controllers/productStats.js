@@ -1,7 +1,7 @@
 angular.module('Jaza')
   .controller('ProductStatsController', function($scope, $routeParams, ProductService) {
 
-    (function() {
+    $scope.getStats = function () {
       var productId = $routeParams.productId;
       console.log($routeParams);
 
@@ -10,9 +10,9 @@ angular.module('Jaza')
           console.log(result.data);
 
           if (Object.keys(result.data).length === 0) {
-            $scope.Stats = { 'datum': 0 };
+            $scope.Stats = {'datum': 0};
           } else {
-            $scope.Stats = { 'data': result.data };
+            $scope.Stats = {'data': result.data};
           }
         })
         .catch(function (response) {
@@ -20,7 +20,7 @@ angular.module('Jaza')
           $scope.title = '';
           $scope.data = '';
         });
-    })();
+    };
 
     $scope.addPoints = function () {
       var seriesArray = $scope.chartConfig.series;

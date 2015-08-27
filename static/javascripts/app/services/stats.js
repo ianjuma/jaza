@@ -3,6 +3,7 @@ angular.module('Jaza')
     return {
       getProductStats: function(productId) {
         var url = '/api/v1/crunch/products/' + productId;
+        // get params { param: param }
         return $http.get( url );
       }
     }
