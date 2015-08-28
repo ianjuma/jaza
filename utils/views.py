@@ -9,19 +9,15 @@ from datetime import datetime, timedelta
 class CrunchAgentStatsView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, pk, format=None):
-        # data = request.query_params
+    def get(self, request, format=None):
+        data = request.query_params
         try:
-            agent_id = pk
-            """
             agent_id = data['agentId']
             category = data['category']
-            product_id = data['productId']
             start_date = data['startDate']
             end_date = data['endDate']
-            granularity = data['granularity']
-            metric = data['metric']
-            """
+            print agent_id, category, start_date, end_date
+
             now = datetime.now()
             time_deficit = timedelta(days=1)
             # stats for last 7 days
@@ -30,7 +26,7 @@ class CrunchAgentStatsView(views.APIView):
 
             gateway = CrunchGateway()
             response_data = gateway.get_agent_stats(
-                category='sent',
+                category=category,
                 agent_id=agent_id,
                 start_date=back_date,
                 end_date=now.strftime("%Y-%m-%d"),
@@ -52,26 +48,24 @@ class CrunchAgentStatsView(views.APIView):
 class CrunchProductStatsView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, pk, format=None):
-        # data = request.query_params
+    def get(self, request, format=None):
+        data = request.query_params
+        print data
         try:
-            product_id = pk
             now = datetime.now()
             time_deficit = timedelta(days=2)
             # stats for last 7 days
             back_date = now - time_deficit
-            """
+
             product_id = data['productId']
             category = data['category']
             start_date = data['startDate']
             end_date = data['endDate']
-            granularity = data['granularity']
-            metric = data['metric']
-            """
+            print end_date, start_date, category, product_id
 
             gateway = CrunchGateway()
             response_data = gateway.get_product_stats(
-                category='sent',
+                category=category,
                 product_id=product_id,
                 start_date=back_date.strftime("%Y-%m-%d"),
                 end_date=now.strftime("%Y-%m-%d"),

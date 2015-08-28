@@ -1,21 +1,29 @@
 angular.module('Jaza')
   .controller('AgentStatsController', function($scope, $routeParams, AgentService) {
 
-    (function() {
+    $scope.getStats = function () {
       var agentId = $routeParams.agentId;
+      var startDate = $scope.startDate;
+      var endDate = $scope.endDate;
+      var category = $scope.category;
       console.log($routeParams);
 
-      AgentService.getAgentStats(agentId)
+      AgentService.getAgentStats(agentId, startDate, endDate, category)
         .then(function (result) {
-          console.log(result);
-          $scope.Stats = result.data;
+          console.log(result.data);
+
+          if (Object.keys(result.data).length === 0) {
+            $scope.Stats = {'datum': 0};
+          } else {
+            $scope.Stats = {'data': result.data};
+          }
         })
         .catch(function (response) {
           console.log(response);
           $scope.title = '';
           $scope.data = '';
         });
-    })();
+    };
 
     $scope.addPoints = function () {
       var seriesArray = $scope.chartConfig.series;

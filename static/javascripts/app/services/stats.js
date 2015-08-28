@@ -1,10 +1,11 @@
 angular.module('Jaza')
   .factory('ProductService', function($http) {
     return {
-      getProductStats: function(productId) {
-        var url = '/api/v1/crunch/products/' + productId;
-        // get params { param: param }
-        return $http.get( url );
+      getProductStats: function(productId, startDate, endDate, category) {
+        var url = '/api/v1/crunch/products/';
+        console.log(productId, startDate, endDate, category);
+        return $http.get( url, { params: { "productId": productId,
+          "startDate": startDate, "endDate": endDate, "category": category } } );
       }
     }
   });
@@ -12,9 +13,10 @@ angular.module('Jaza')
 angular.module('Jaza')
   .factory('AgentService', function($http) {
     return {
-      getAgentStats: function(agentId) {
-        var url =  '/api/v1/crunch/agents/' + agentId;
-        return $http.get( url );
+      getAgentStats: function(agentId, startDate, endDate, category) {
+        var url =  '/api/v1/crunch/agents/';
+        return $http.get( url, { params: { "agentId": agentId,
+          "startDate": startDate, "endDate": endDate, "category": category } } );
       }
     }
   });

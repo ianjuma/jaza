@@ -3,9 +3,13 @@ angular.module('Jaza')
 
     $scope.getStats = function () {
       var productId = $routeParams.productId;
-      console.log($routeParams);
+      var startDate = $scope.startDate;
+      var endDate = $scope.endDate;
+      var category = $scope.category;
 
-      ProductService.getProductStats(productId)
+      console.log(startDate, endDate, category);
+
+      ProductService.getProductStats(productId, startDate, endDate, category)
         .then(function (result) {
           console.log(result.data);
 

@@ -57,7 +57,7 @@ class CrunchGateway:
             return decoded['responses']['agentCostStats']
 
     def get_agent_stats(self, category, agent_id, start_date,
-                        end_date, granularity='day', metric='count'):
+                        end_date, granularity='day', metric='cost'):
 
         values = {
             'agentId': agent_id,
