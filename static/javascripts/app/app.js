@@ -3,7 +3,7 @@ function run($http) {
   $http.defaults.xsrfCookieName = 'csrftoken';
 }
 
-angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'highcharts-ng'])
+angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'highcharts-ng', 'angular.snackbar'])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 

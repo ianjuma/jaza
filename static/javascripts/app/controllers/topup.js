@@ -1,5 +1,5 @@
 angular.module('Jaza')
-  .controller('TopUpController', function($scope, TopUp) {
+  .controller('TopUpController', function($scope, TopUp, snackbar) {
 
     $scope.topUpAgent = function() {
       TopUp.topUpAgent({
@@ -10,6 +10,7 @@ angular.module('Jaza')
       })
         .then(function (result) {
           console.log(result);
+          snackbar.create("Agent successfully topped up");
           $scope.agentID = result.agentID;
           $scope.refId = result.refID;
           $scope.amount = result.amount;
@@ -17,6 +18,7 @@ angular.module('Jaza')
         })
         .catch(function (response) {
           console.log(response);
+          snackbar.create("Agent top up failed");
           $scope.agentID = '';
           $scope.refID = '';
           $scope.amount = '';

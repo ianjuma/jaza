@@ -1,5 +1,5 @@
 angular.module('Jaza')
-  .controller('ProductStatsController', function($scope, $routeParams, ProductService) {
+  .controller('ProductStatsController', function($scope, $routeParams, ProductService, snackbar) {
 
     $scope.getStats = function () {
       var productId = $routeParams.productId;
@@ -20,6 +20,7 @@ angular.module('Jaza')
           }
         })
         .catch(function (response) {
+          snackbar.create("Couldn't get Product Sales Metrics");
           console.log(response);
           $scope.title = '';
           $scope.data = '';

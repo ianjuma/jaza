@@ -1,5 +1,5 @@
 angular.module('Jaza')
-  .controller('AgentStatsController', function($scope, $routeParams, AgentService) {
+  .controller('AgentStatsController', function($scope, $routeParams, AgentService, snackbar) {
 
     $scope.getStats = function () {
       var agentId = $routeParams.agentId;
@@ -20,6 +20,7 @@ angular.module('Jaza')
         })
         .catch(function (response) {
           console.log(response);
+          snackbar.create("Couldn't get Agent Sales Metrics");
           $scope.title = '';
           $scope.data = '';
         });
