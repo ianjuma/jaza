@@ -28,8 +28,8 @@ class CrunchAgentStatsView(views.APIView):
             response_data = gateway.get_agent_stats(
                 category=category,
                 agent_id=agent_id,
-                start_date=back_date,
-                end_date=now.strftime("%Y-%m-%d"),
+                start_date=start_date,
+                end_date=end_date,
                 granularity='day',
                 metric='cost'
             )
@@ -67,8 +67,8 @@ class CrunchProductStatsView(views.APIView):
             response_data = gateway.get_product_stats(
                 category=category,
                 product_id=product_id,
-                start_date=back_date.strftime("%Y-%m-%d"),
-                end_date=now.strftime("%Y-%m-%d"),
+                start_date=start_date,
+                end_date=end_date,
                 granularity='day',
                 metric='cost'
             )
