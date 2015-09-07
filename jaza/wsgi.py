@@ -11,7 +11,7 @@ import os, sys
 
 sys.path.append('/opt/domains/morpheus-web')
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rest.settings")
+os.environ["DJANGO_SETTINGS_MODULE"] = "jaza.settings"
 
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling
