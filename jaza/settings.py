@@ -165,6 +165,52 @@ PWD = os.path.dirname(os.path.realpath(__file__))
 SITE_ROOT = os.path.join(PWD, "../")
 COUNTRY_INFO_FILE = SITE_ROOT + 'data/countrylist.csv'
 
+LOGGING = {
+  'version': 1,
+  'disable_existing_loggers': True,
+  'formatters': {
+    'standard': {
+      'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+      'datefmt' : "%d/%b/%Y %H:%M:%S"
+      },
+    },
+  'handlers': {
+    'null': {
+      'level':'DEBUG',
+      'class':'django.utils.log.NullHandler',
+      },
+    'logfile': {
+      'level':'DEBUG',
+      'class':'logging.handlers.RotatingFileHandler',
+      'filename': '/var/tmp/log/morpheus-web/application.log',
+      'maxBytes': 2147483648,
+      'backupCount': 10,
+      'formatter': 'standard',
+      },
+    'console':{
+      'level':'INFO',
+      'class':'logging.StreamHandler',
+      'formatter': 'standard'
+      },
+    },
+  'loggers': {
+    'django': {
+      'handlers':['console'],
+      'propagate': True,
+      'level':'WARN',
+      },
+    'django.request': {
+      'handlers': ['logfile'],
+      'level': 'DEBUG',
+      'propagate': False,
+      },
+    '': {
+      'handlers': ['console', 'logfile'],
+      'level': 'DEBUG',
+      },
+    }
+}
+
 try:
     from jaza.settings_dev import *
 except ImportError:
