@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = "$6(x*g_2g9l_*g8peb-@anl5^*8q!1w)k&e&2"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG   = os.environ.get('DEBUG', False)
 SITE_ID = 1
 
 TEMPLATE_DEBUG = True
@@ -157,7 +157,7 @@ REST_FRAMEWORK = {
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['airtime.jaza.co.ke']
 
 # AUTH_USER_MODEL = 'authentication.User'
 
