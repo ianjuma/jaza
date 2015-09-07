@@ -83,7 +83,7 @@ SLEUTH_API_KEY = 'f7f4f428-fe82-4d7e-b9e3-15dbffa073a2'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE'   : 'django.db.backends.postgresql_psycopg2',
+        'ENGINE'   : 'django.db.backends.mysql',
         'NAME'     : 'morpheus_web',
         'USER'     : 'morpheus_netuser',
         'PASSWORD' : 'KJShq2&#1_qgss12asg@42',
