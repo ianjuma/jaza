@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from products.models import Distributor
+from distributors.models import Distributor
 from distributors.serializers import DistributorSerializer
 
 
