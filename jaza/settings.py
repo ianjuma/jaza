@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = "$6(x*g_2g9l_*g8peb-@anl5^*8q!1w)k&e&2"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG   = os.environ.get('DEBUG', False)
 SITE_ID = 1
 
 TEMPLATE_DEBUG = True
@@ -83,12 +83,12 @@ SLEUTH_API_KEY = 'f7f4f428-fe82-4d7e-b9e3-15dbffa073a2'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jaza',
-        'USER': os.environ.get('USER'),
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE'   : 'django.db.backends.mysql',
+        'NAME'     : 'morpheus_web',
+        'USER'     : 'morpheus_netuser',
+        'PASSWORD' : 'KJShq2&#1_qgss12asg@42',
+        'HOST'     : '10.181.194.210',
+        'PORT'     : '3306'
     }
 }
 
@@ -157,13 +157,59 @@ REST_FRAMEWORK = {
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['airtime.jaza.co.ke']
 
 # AUTH_USER_MODEL = 'authentication.User'
 
 PWD = os.path.dirname(os.path.realpath(__file__))
 SITE_ROOT = os.path.join(PWD, "../")
 COUNTRY_INFO_FILE = SITE_ROOT + 'data/countrylist.csv'
+
+LOGGING = {
+  'version': 1,
+  'disable_existing_loggers': True,
+  'formatters': {
+    'standard': {
+      'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+      'datefmt' : "%d/%b/%Y %H:%M:%S"
+      },
+    },
+  'handlers': {
+    'null': {
+      'level':'DEBUG',
+      'class':'django.utils.log.NullHandler',
+      },
+    'logfile': {
+      'level':'DEBUG',
+      'class':'logging.handlers.RotatingFileHandler',
+      'filename': '/var/tmp/log/morpheus-web/application.log',
+      'maxBytes': 2147483648,
+      'backupCount': 10,
+      'formatter': 'standard',
+      },
+    'console':{
+      'level':'INFO',
+      'class':'logging.StreamHandler',
+      'formatter': 'standard'
+      },
+    },
+  'loggers': {
+    'django': {
+      'handlers':['console'],
+      'propagate': True,
+      'level':'WARN',
+      },
+    'django.request': {
+      'handlers': ['logfile'],
+      'level': 'DEBUG',
+      'propagate': False,
+      },
+    '': {
+      'handlers': ['console', 'logfile'],
+      'level': 'DEBUG',
+      },
+    }
+}
 
 try:
     from jaza.settings_dev import *
