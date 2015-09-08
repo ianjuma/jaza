@@ -1,5 +1,5 @@
 from django.db import models
-from distributors.models import Distributor
+from django.contrib.auth.models import User
 
 
 # distributors are users
@@ -8,7 +8,7 @@ class Product(models.Model):
         ('E', 'Airtime Voucher'),
         ('P', 'Pinless Airtime'),
     )
-    owner = models.ForeignKey(Distributor, related_name='product_owner')
+    owner = models.ForeignKey(User, related_name='product_owner')
     category = models.CharField(max_length=1, choices=CATEGORIES)
     name = models.CharField(max_length=50, blank=False)
     ussd_channel = models.CharField(max_length=10, blank=False, unique=True)

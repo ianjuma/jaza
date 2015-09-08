@@ -1,12 +1,13 @@
 from rest_framework import serializers
 
-from products.models import Product, Distributor
+from products.models import Product
+from django.contrib.auth.models import User
 # from authentication.serializers import UserSerializer
 
 
 class ProductSerializer(serializers.ModelSerializer):
     # owner = UserSerializer(read_only=True)
-    owner_queryset = Distributor.objects.all()
+    owner_queryset = User.objects.all()
 
     owner = serializers.PrimaryKeyRelatedField(queryset=owner_queryset)
 

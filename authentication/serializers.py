@@ -1,5 +1,5 @@
 from django.contrib.auth import update_session_auth_hash
-from products.models import Distributor
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 
@@ -8,10 +8,10 @@ class UserSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=False)
 
     class Meta:
-        model = Distributor
+        model = User
         fields = ('id', 'email', 'last_name', 'first_name', 'password',
-                  'confirm_password', 'email', 'username', 'created_at', 'updated_at')
-        read_only_fields = ('updated_at', 'created_at', 'id')
+                  'confirm_password', 'email', 'username')
+        read_only_fields = ('id',)
 
         def update(self, instance, validated_data):
             instance.username = validated_data.get('username', instance.username)

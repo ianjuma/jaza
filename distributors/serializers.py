@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from products.models import Distributor, Product
+from products.models import Product
+from django.contrib.auth.models import User
 from products.serializers import ProductSerializer
 
 
@@ -10,23 +11,23 @@ class DistributorSerializer(serializers.ModelSerializer):
     products = ProductSerializer(read_only=False, required=False, many=True)
 
     class Meta:
-        model = Distributor
+        model = User
 
         # 'created_at', 'updated_at'
         fields = ('id', 'email', 'products', 'username', 'last_name', 'first_name',)
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        read_only_fields = ('id',)
 
         def get_validation_exlusions(self, *args, **kwargs):
             exclusions = super(DistributorSerializer, self).get_validation_exlusions()
 
-            return exclusions + ['id', 'user']
+            return exclusions + ['id']
 
     def create(self, validated_data):
         # pop out products if exists
         # can not add products while doing a post, distributor ID unknown
         products = validated_data.pop('products', None)
 
-        distributor = Distributor.objects.create(**validated_data)
+        distributor = User.objects.create(**validated_data)
         # add products on post - since owner doesn't exist yet
         """
         owner_id = int(distributor.id)

@@ -28,7 +28,9 @@ def product_list(request):
 @api_view(['GET'])
 def distributor_products(request):
     if request.method == 'GET':
-        product = Product.objects.filter(owner=request.user.id)
+        product = Product.objects.filter(owner_id=request.user)
+        print request.user
+        print product
         serializer = ProductSerializer(product, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

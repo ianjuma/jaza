@@ -3,15 +3,15 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from distributors.models import Distributor
 from distributors.serializers import DistributorSerializer
+from django.contrib.auth.models import User
 
 
 @permission_classes((IsAuthenticated,))
 @api_view(['GET', 'POST'])
 def distributor_list(request):
     if request.method == 'GET':
-        distributors_ = Distributor.objects.all()
+        distributors_ = User.objects.all()
         serializer = DistributorSerializer(distributors_, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -28,8 +28,8 @@ def distributor_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def distributor_detail(request, pk):
     try:
-        distributor = Distributor.objects.get(pk=pk)
-    except Distributor.DoesNotExist:
+        distributor = User.objects.get(pk=pk)
+    except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
