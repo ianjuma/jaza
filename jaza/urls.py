@@ -11,7 +11,7 @@ router.register(r'accounts', UserViewSet)
 
 urlpatterns = patterns(
     '',
-    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^.*$', IndexView.as_view(), name='index'),
     url(r'^accounts/login', LoginView.as_view(), name='login'),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include('agents.urls')),
