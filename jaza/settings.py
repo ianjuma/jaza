@@ -49,7 +49,6 @@ INSTALLED_APPS = (
     'compressor',
     'authentication',
     'agents',
-    'distributors',
     'products',
     'utils',
     'jaza'
