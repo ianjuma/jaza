@@ -6,10 +6,13 @@ angular.module('Jaza')
       product: $scope.product
     })
       .then(function (result) {
+        if (Object.keys(result.data).length === 0) {
+          $scope.Agent = 0;
+        } else {
+          $scope.Agent = result.data;
+        }
+
         console.log(result);
-        // _.map(result, getAgents(result));
-        // $scope.Products = result.data.products; // comma separated list ? of products
-        $scope.Agent = result.data;
       })
       .catch(function (response) {
         console.log(response);

@@ -38,7 +38,7 @@ class Login(views.APIView):
                             status=status.HTTP_401_UNAUTHORIZED)
 
 
-@permission_classes((IsAuthenticated,))
+@permission_classes((AllowAny,))
 class Logout(views.APIView):
 
     def post(self, request, format=None):

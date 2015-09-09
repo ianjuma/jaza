@@ -28,7 +28,12 @@
                     <div class="col-lg-12 portlets">
                         <div class="panel">
 
-                            <div class="panel-content pagination2 table-responsive">
+                        <div class="panel-content pagination2 table-responsive">
+                            <div ng-switch="Product">
+                                <div ng-switch-when="0">
+                                    You have not added any Products Yet
+                                </div>
+                                <div ng-switch-default="data">
                                 <table class="table table-hover table-dynamic">
                                     <thead>
                                     <tr>

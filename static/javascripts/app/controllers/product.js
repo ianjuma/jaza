@@ -1,7 +1,6 @@
 angular.module('Jaza')
   .controller('ProductController', function($scope, Product) {
 
-    // $scope.getProducts = function() {
       Product.getProducts({
         name: $scope.name,
         category: $scope.category,
@@ -9,8 +8,13 @@ angular.module('Jaza')
         ussd_channel: $scope.ussd_channel
       })
         .then(function (result) {
-          console.log(result);
-          $scope.Product = result.data;
+          if (Object.keys(result.data).length === 0) {
+            $scope.Product = 0;
+          } else {
+            $scope.Product = result.data;
+          }
+
+          console.log(result.data);
         })
         .catch(function (response) {
           console.log(response);
@@ -19,6 +23,5 @@ angular.module('Jaza')
           $scope.created_at = '';
           $scope.ussd_channel = '';
         });
-    // };
 
   });
