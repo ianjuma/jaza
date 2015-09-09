@@ -121,16 +121,7 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-# COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
-# COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter'
-]
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
