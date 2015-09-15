@@ -11,7 +11,7 @@ from products.serializers import ProductSerializer
 @api_view(['GET', 'POST'])
 def product_list(request):
     if request.method == 'GET':
-        products_  = Product.objects.all()
+        products_ = Product.objects.all()
         serializer = ProductSerializer(products_, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

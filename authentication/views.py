@@ -2,7 +2,8 @@ import json
 from django.contrib.auth import login, logout, authenticate
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, detail_route
+
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from django.contrib.auth.models import User
@@ -60,5 +61,12 @@ class UserViewSet(viewsets.ModelViewSet):
         queryset = self.queryset.filter(pk=request.user.id)
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        queryset = self.queryset.filter(pk=request.user.id)
+        serializer = self.serializer_class(queryset, many=True)
+
+        if serializer.is_valid():
+            serializer.save()
 
 # TODO: static method

@@ -20,7 +20,7 @@
             <form class="wizard" method="POST" ng-submit="updateUser()" data-style="sea" role="form">
                 <fieldset>
                     <legend>user information</legend>
-                    <div class="row">
+                    <div class="row col-lg-12">
 
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -35,7 +35,9 @@
                                 <label for="email">Email address</label>
                                 <input ng-model="email" type="email" class="form-control" placeholder="example@domain.com" required>
                             </div>
+                        </div>
 
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="last-name">Old Password</label>
                                 <input ng-model="oldPassword" type="password" class="form-control" placeholder="Old Password" required>
@@ -51,10 +53,10 @@
                                 <input ng-model="repeatPassword" type="password" class="form-control" placeholder="Repeat Password" required>
                             </div>
 
+                            <button id="submit" type="submit" class="btn btn-primary">Update</button>
                         </div>
-
                     </div>
-                    <button id="submit" type="submit" class="btn btn-primary">Update</button>
+
                 </fieldset>
 
             </form>
