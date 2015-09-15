@@ -19,12 +19,6 @@
   <!-- get current user with API -->
   <script>
       var username = "{{ user.username }}";
-      var product_ids = [];
-
-      {% for product_id in view.product_ids %}
-          product_ids.push({{ product_id }});
-      {% endfor %}
-
   </script>
 
   <!-- app views -->
@@ -33,29 +27,6 @@
 
   {% include 'footer.html' %}
   {% include 'javascripts.html' %}
-
-  <script>
-
-      $("#logout").click(function( evnt ) {
-          evnt.preventDefault();
-
-          $.ajax({
-              type: 'POST',
-              url: '/api/v1/logout/',
-              contentType: 'application/json',
-              dataType: 'json',
-              success: function(statusCode) {
-                  console.log(statusCode);
-                  window.location.href = '/';
-              },
-              always: function(statusCode) {
-                  console.log(statusCode);
-                  window.location.href = '/';
-              }
-          });
-      });
-
-  </script>
 
 </body>
 </html>
