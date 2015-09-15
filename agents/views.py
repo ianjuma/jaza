@@ -44,19 +44,18 @@ def distributor_agent_list(request):
     """
     if request.method == 'GET':
         cursor = connection.cursor()
-        # get dist from user.id -> products -> per product
-        # my agents per product - get products by owner
-        # get agents for products
         prod_agents = []
-        pk = request.user.id  # user id - primary key
+        pk = request.user.id
 
         try:
-            cursor.execute("SELECT agent_id FROM agents_agent_products WHERE product_id = %s", [pk])
+            # cursor.execute("SELECT agent_id FROM agents_agent_products WHERE product_id = %s", [pk])
+            cursor.execute("""select a.name, a.phone_number, a.id, p.name as product_name from products_product
+                                as p join agents_agent_products as m on
+                                p.id = m.product_id join agents_agent as a on
+                                m.agent_id = a.id where p.owner_id = %s""", [pk])
+
             __agents_object = dict_fetch_all(cursor=cursor)
-            __agents_ids = []
-            for obj in __agents_object:
-                keys, values = obj.keys(), obj.values()
-                __agents_ids.append(values[0])
+            print __agents_object
 
         except Agent.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -64,28 +63,13 @@ def distributor_agent_list(request):
             cursor.close()
 
         # no agents associated with product
-        if len(__agents_ids) == 0:
+        if len(__agents_object) == 0:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        if len(__agents_ids) == 1:
-            agent = Agent.objects.get(pk=__agents_ids[0])
-            agent = AgentSerializer(agent)
-            prod_agents.append(agent.data)
+        if isinstance(__agents_object, types.ListType):
+            for agent_ in __agents_object:
+                prod_agents.append(agent_)
 
-            return Response(prod_agents, status=status.HTTP_200_OK)
-        elif isinstance(__agents_ids, types.ListType):
-            for agent_id in __agents_ids:
-                agent = Agent.objects.get(pk=agent_id)
-                agent_ = AgentSerializer(agent)
-                prod_agents.append(agent_.data)
-
-        # agents_ = dict_fetch_all(cursor=cursor)
-        # object created had - { agent info, product name, }
-        # create object with product name - constant for query X, agent info
-        # get agent_id
-        # agent_ids = dict_fetch_all(cursor=cursor)
-        # get agents info - pagination? - get agent info -> pagination
-        print type(prod_agents)
         return Response(prod_agents, status=status.HTTP_200_OK)
 
 

@@ -3,7 +3,9 @@ angular.module('Jaza')
 
     Agent.getAgents({
       name: $scope.name,
-      product: $scope.product
+      product_name: $scope.product_name,
+      phone_number: $scope.phone_number,
+      id: $scope.id
     })
       .then(function (result) {
         if (Object.keys(result.data).length === 0) {
@@ -17,7 +19,9 @@ angular.module('Jaza')
       .catch(function (response) {
         console.log(response);
         $scope.name = '';
-        $scope.product = '';
+        $scope.product_name = '';
+        $scope.phone_number = '';
+        $scope.id = '';
       });
 
   });

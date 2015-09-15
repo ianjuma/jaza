@@ -39,7 +39,8 @@
                                     <tr>
                                         <th>Agent name</th>
                                         <th>Agent ID</th>
-                                        <th>Product</th>
+                                        <th>Agent Phone No</th>
+                                        <th>Product name</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +48,8 @@
                                     <tr ng-repeat="agent in Agent">
                                         <td>{{ agent.name }}</td>
                                         <td>{{ agent.id }}</td>
-                                        <td ng-repeat="product in agent.products">{{ product.name }}</td>
+                                        <td>{{ agent.phone_number }}</td>
+                                        <td>{{ agent.product_name }}</td>
                                         <td>
                                             <a href="/#agent_stats/{{ agent.id }}"> <button class="btn btn-primary btn-xs">Sales Stats</button>
                                             </a>
