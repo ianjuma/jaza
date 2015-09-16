@@ -45,7 +45,7 @@
                                     </thead>
                                     <tbody>
 
-                                    <tr ng-repeat="agent in Agent">
+                                    <tr ng-repeat="agent in Agent track by $index">
                                         <td>{{ agent.name }}</td>
                                         <td>{{ agent.id }}</td>
                                         <td>{{ agent.phone_number }}</td>

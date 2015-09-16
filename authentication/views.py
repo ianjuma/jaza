@@ -64,9 +64,11 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         queryset = self.queryset.filter(pk=request.user.id)
-        serializer = self.serializer_class(queryset, many=True)
+        serializer = self.serializer_class(queryset, many=True, data=request.body)
 
         if serializer.is_valid():
             serializer.save()
+
+        return Response(serializer.data)
 
 # TODO: static method

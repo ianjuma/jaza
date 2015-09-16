@@ -8,10 +8,6 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
     $locationProvider.html5Mode(true);
 
     $routeProvider
-      /*.when('/logout', {
-        templateUrl: 'static/views/dashboard.html',
-        controller: 'ProductController'
-      })*/
       .when('/', {
        templateUrl: 'static/views/agent.html',
        controller: 'AgentController'

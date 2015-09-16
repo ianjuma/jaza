@@ -50,7 +50,7 @@
                                             </thead>
                                             <tbody>
 
-                                            <tr ng-repeat="product in Product">
+                                            <tr ng-repeat="product in Product track by $index">
                                                 <td>{{ product.name }}</td>
                                                 <td>{{ product.category }}</td>
                                                 <td>{{ product.created_at }}</td>
