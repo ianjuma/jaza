@@ -4,12 +4,15 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False)
+    confirm_password = serializers.CharField(write_only=True, required=False)
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'last_name', 'first_name', 'password', 'username', 'last_login', 'is_active')
+        fields = ('id', 'email', 'last_name', 'first_name', 'password', 'username', 'last_login',
+                  'is_active', 'confirm_password')
         read_only_fields = ('id', 'is_active')
-        write_only_fields = ('password', 'last_login')
+        # write_only_fields = ('password', 'last_login')
 
         def create(self, validated_data):
             password = validated_data.pop('password', None)
@@ -27,8 +30,9 @@ class UserSerializer(serializers.ModelSerializer):
 
             instance.save()
             password = validated_data.get('password', None)
+            confirm_password = validated_data.get('repeatPassword', None)
 
-            if password is not None:
+            if password and confirm_password and password == confirm_password:
                 instance.set_password(password)
 
             instance.save()

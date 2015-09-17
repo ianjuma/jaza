@@ -58,17 +58,15 @@ class UserViewSet(viewsets.ModelViewSet):
         return permissions.IsAuthenticated(), IsAccountOwner()
 
     def list(self, request, *args, **kwargs):
+        """
+        get list of all users
+        :param request:
+        :param args:
+        :param kwargs:
+        :return: list of users signed up
+        """
         queryset = self.queryset.filter(pk=request.user.id)
         serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
-
-    def update(self, request, *args, **kwargs):
-        queryset = self.queryset.filter(pk=request.user.id)
-        serializer = self.serializer_class(queryset, many=True, data=request.body)
-
-        if serializer.is_valid():
-            serializer.save()
-
         return Response(serializer.data)
 
 # TODO: static method

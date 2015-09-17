@@ -30,6 +30,11 @@ def distributor_products(request):
     if request.method == 'GET':
         product = Product.objects.filter(owner_id=request.user)
         serializer = ProductSerializer(product, many=True)
+
+        for data in serializer.data:
+            dt = data['created_at']
+            data['created_at'] = dt.split('T')[0]
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

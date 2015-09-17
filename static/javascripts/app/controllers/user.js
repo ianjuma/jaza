@@ -13,20 +13,27 @@ angular.module('Jaza')
         $scope.firstName = '';
         $scope.lastName = '';
         $scope.email = '';
+        $scope.oldPassword = '';
+        $scope.password = '';
+        $scope.repeatPassword = '';
       });
 
     $scope.updateUser = function() {
-      User.updateUser( username ,{ firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.email })
+      User.updateUser( username ,{ firstName: $scope.firstName, lastName: $scope.lastName,
+        email: $scope.email, password: $scope.password, repeatPassword: $scope.repeatPassword })
         .then(function(result) {
-          snackbar.create("User information successfully updated");
+          snackbar.create("User Information Successfully Updated");
           console.log(result);
         })
         .catch(function(response) {
           console.log(response);
-          snackbar.create("Something failed, user could not be updated");
+          snackbar.create("Something failed, User could not be Updated");
           $scope.firstName = '';
           $scope.lastName = '';
           $scope.email = '';
+          $scope.oldPassword = '';
+          $scope.password = '';
+          $scope.repeatPassword = '';
         });
     };
   });
