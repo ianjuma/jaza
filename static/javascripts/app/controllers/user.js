@@ -23,6 +23,7 @@ angular.module('Jaza')
         email: $scope.email, password: $scope.password, repeatPassword: $scope.repeatPassword })
         .then(function(result) {
           snackbar.create("User Information Successfully Updated");
+          window.location.href = '/';
           console.log(result);
         })
         .catch(function(response) {
