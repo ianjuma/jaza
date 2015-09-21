@@ -3,7 +3,6 @@ from rest_framework.response import Response
 
 from utils.crunchGateway import CrunchGateway, CrunchGatewayException
 from utils.sleuthGateway import SleuthGateway, SleuthGatewayException
-from datetime import datetime, timedelta
 
 
 class CrunchAgentStatsView(views.APIView):
@@ -16,19 +15,17 @@ class CrunchAgentStatsView(views.APIView):
             category = data['category']
             start_date = data['startDate']
             end_date = data['endDate']
-            print agent_id, category, start_date, end_date
+            start_date = start_date.split('T')[0]
+            end_date = end_date.split('T')[0]
 
-            now = datetime.now()
-            time_deficit = timedelta(days=1)
-            # stats for last 7 days
-            back_date = now - time_deficit
+            print agent_id, category, start_date, end_date
 
             gateway = CrunchGateway()
             response_data = gateway.get_agent_stats(
                 category=category,
                 agent_id=agent_id,
-                start_date=back_date.strftime("%Y-%m-%d"),
-                end_date=now.strftime("%Y-%m-%d"),
+                start_date=start_date,
+                end_date=end_date,
                 granularity='day',
                 metric='cost'
             )
@@ -51,26 +48,22 @@ class CrunchProductStatsView(views.APIView):
         data = request.query_params
         print data
         try:
-            now = datetime.now()
-            time_deficit = timedelta(days=2)
-            # stats for last 7 days
-            back_date = now - time_deficit
-
             product_id = data['productId']
             category = data['category']
             start_date = data['startDate']
             end_date = data['endDate']
 
-            # start_date = datetime.fromtimestamp(start_date / 1000)
-            # end_date = datetime.fromtimestamp(end_date / 1000)
-            print end_date, start_date, category, product_id
+            start_date = start_date.split('T')[0]
+            end_date = end_date.split('T')[0]
+
+            print start_date, end_date, category, product_id
 
             gateway = CrunchGateway()
             response_data = gateway.get_product_stats(
                 category=category,
                 product_id=product_id,
-                start_date=back_date.strftime("%Y-%m-%d"),
-                end_date=now.strftime("%Y-%m-%d"),
+                start_date=start_date,
+                end_date=end_date,
                 granularity='day',
                 metric='cost'
             )
