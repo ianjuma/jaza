@@ -1,6 +1,7 @@
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -30,9 +31,10 @@ class UserSerializer(serializers.ModelSerializer):
             instance.save()
             password = validated_data.get('password', None)
             confirm_password = validated_data.get('repeatPassword', None)
+            encrypted_password = make_password(password)
 
             if password and confirm_password and password == confirm_password:
-                instance.set_password(password)
+                instance.set_password(encrypted_password)
 
             instance.save()
 
