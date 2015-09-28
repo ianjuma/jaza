@@ -9,8 +9,8 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
 
     $routeProvider
       .when('/', {
-       templateUrl: 'static/views/agent.html',
-       controller: 'AgentController'
+       templateUrl: 'static/views/product.html',
+       controller: 'ProductController'
        })
       .when('/profile', {
         templateUrl: 'static/views/profile.html',
@@ -29,12 +29,8 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
         controller: 'AgentController'
       })
       .when('/logout', {
-        templateUrl: 'static/views/agent.html',
+        templateUrl: 'static/views/topup.html',
         controller: 'LogoutController'
-      })
-      .when('/sales', {
-        templateUrl: 'static/views/sales.html',
-        controller: 'SalesController'
       })
       .when('/prod_stats/:productId/', {
         templateUrl: 'static/views/product_stats.html',
