@@ -10,9 +10,6 @@ angular.module('Jaza')
       })
       .catch(function(response) {
         console.log(response);
-        $scope.firstName = '';
-        $scope.lastName = '';
-        $scope.email = '';
         $scope.oldPassword = '';
         $scope.password = '';
         $scope.repeatPassword = '';
@@ -29,9 +26,6 @@ angular.module('Jaza')
         .catch(function(response) {
           console.log(response);
           snackbar.create("Something failed, User could not be Updated");
-          $scope.firstName = '';
-          $scope.lastName = '';
-          $scope.email = '';
           $scope.oldPassword = '';
           $scope.password = '';
           $scope.repeatPassword = '';

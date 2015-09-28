@@ -107,5 +107,3 @@ class UserViewSet(viewsets.ModelViewSet):
             user_serializer.save()
 
         return Response(user_serializer.data)
-
-# TODO: static method

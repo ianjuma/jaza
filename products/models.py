@@ -2,8 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# distributors are users
 class Product(models.Model):
+    """
+    Distributors are users, inheriting the django auth user model
+    """
     CATEGORIES = (
         ('E', 'Airtime Voucher'),
         ('P', 'Pinless Airtime'),

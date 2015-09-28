@@ -6,7 +6,6 @@ angular.module('Jaza')
       var startDate = $scope.startDate;
       var endDate = $scope.endDate;
       var category = $scope.category;
-      console.log($routeParams);
 
       AgentService.getAgentStats(agentId, startDate, endDate, category)
         .then(function (result) {
@@ -17,10 +16,10 @@ angular.module('Jaza')
           } else {
             $scope.Stats = {'data': result.data};
           }
+          // TODO: check length on object
         })
         .catch(function (response) {
-          console.log(response);
-          snackbar.create("Couldn't get Agent Sales Metrics");
+          snackbar.create("Could not get Agent Sales Metrics");
           $scope.title = '';
           $scope.data = '';
         });
@@ -47,10 +46,10 @@ angular.module('Jaza')
         x: -20
       },
       series: [{
-        data: [10, 15, 12, 8, 7]
+        data: []
       }],
       xAxis: {
-        categories: ['Fast Airtime', 'DMG', 'Sonic Airtime', 'Mikes Fast Point', 'Jaza Airtime']
+        categories: []
       },
       yAxis: {
         title: {

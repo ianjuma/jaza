@@ -20,20 +20,12 @@ def dict_fetch_all(cursor):
 
 
 @permission_classes((IsAuthenticated,))
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def agent_list(request):
     if request.method == 'GET':
         agents_ = Agent.objects.all()
         serializer = AgentSerializer(agents_, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-    if request.method == 'POST':
-        serializer = AgentSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @permission_classes((IsAuthenticated,))
@@ -46,6 +38,8 @@ def distributor_agent_list(request):
         cursor = connection.cursor()
         prod_agents = []
         pk = request.user.id
+
+        # TODO: agents per product ID
 
         try:
             # cursor.execute("SELECT agent_id FROM agents_agent_products WHERE product_id = %s", [pk])
@@ -74,7 +68,7 @@ def distributor_agent_list(request):
 
 
 @permission_classes((IsAuthenticated,))
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET'])
 def agent_detail(request, pk):
     try:
         agent = Agent.objects.get(pk=pk)
@@ -84,17 +78,3 @@ def agent_detail(request, pk):
     if request.method == 'GET':
         serializer = AgentSerializer(agent, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-    elif request.method == 'PUT':
-        serializer = AgentSerializer(agent, data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        agent.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-# TODO: permission classes, and auth

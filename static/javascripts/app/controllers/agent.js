@@ -13,11 +13,8 @@ angular.module('Jaza')
         } else {
           $scope.Agent = result.data;
         }
-
-        console.log(result);
       })
       .catch(function (response) {
-        console.log(response);
         $scope.name = '';
         $scope.product_name = '';
         $scope.phone_number = '';
