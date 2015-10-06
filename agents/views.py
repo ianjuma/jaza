@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 from agents.models import Agent
+from products.models import Product
 from agents.serializers import AgentSerializer
 
 from django.db import connection
@@ -30,28 +31,25 @@ def agent_list(request):
 
 @permission_classes((IsAuthenticated,))
 @api_view(['GET'])
-def distributor_agent_list(request):
+def distributor_agent_list(request, pk=None):
     """ get agents per product
+        get agents from the products, agents association
         through agents, distributor association
     """
     if request.method == 'GET':
         cursor = connection.cursor()
         prod_agents = []
-        pk = request.user.id
+        pk = pk
 
         # TODO: agents per product ID
 
         try:
-            # cursor.execute("SELECT agent_id FROM agents_agent_products WHERE product_id = %s", [pk])
-            cursor.execute("""select a.name, a.phone_number, a.id, p.name as product_name from products_product
-                                as p join agents_agent_products as m on
-                                p.id = m.product_id join agents_agent as a on
-                                m.agent_id = a.id where p.owner_id = %s""", [pk])
+            cursor.execute("SELECT agent_id FROM agents_agent_products WHERE product_id = %s", [pk])
 
             __agents_object = dict_fetch_all(cursor=cursor)
             print __agents_object
 
-        except Agent.DoesNotExist:
+        except Product.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         finally:
             cursor.close()
@@ -62,7 +60,12 @@ def distributor_agent_list(request):
 
         if isinstance(__agents_object, types.ListType):
             for agent_ in __agents_object:
-                prod_agents.append(agent_)
+                try:
+                    agent_info = Agent.objects.get(pk=agent_['agent_id'])
+                    agent_detail_ = AgentSerializer(agent_info)
+                    prod_agents.append(agent_detail_.data)
+                except Product.DoesNotExist:
+                    pass
 
         return Response(prod_agents, status=status.HTTP_200_OK)
 

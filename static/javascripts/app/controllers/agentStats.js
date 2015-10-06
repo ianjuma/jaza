@@ -1,8 +1,10 @@
 angular.module('Jaza')
   .controller('AgentStatsController', function($scope, $routeParams, AgentService, snackbar) {
+    var agentId = $routeParams.agentId;
+    $scope.agentId = agentId;
 
     $scope.getStats = function () {
-      var agentId = $routeParams.agentId;
+
       var startDate = $scope.startDate;
       var endDate = $scope.endDate;
       var category = $scope.category;
@@ -16,14 +18,15 @@ angular.module('Jaza')
           } else {
             $scope.Stats = {'data': result.data};
           }
-          // TODO: check length on object
         })
         .catch(function (response) {
+          console.log(response);
           snackbar.create("Could not get Agent Sales Metrics");
           $scope.title = '';
           $scope.data = '';
         });
     };
+    $scope.getStats();
 
     $scope.addPoints = function () {
       var seriesArray = $scope.chartConfig.series;

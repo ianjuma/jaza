@@ -1,5 +1,6 @@
 angular.module('Jaza')
   .controller('ProductController', function($scope, Product) {
+    $scope.searchText   = ''; // set the default filter term
 
     Product.getProducts({
       name: $scope.name,

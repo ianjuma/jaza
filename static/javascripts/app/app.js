@@ -20,21 +20,21 @@ angular.module('Jaza', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap',
         templateUrl: 'static/views/product.html',
         controller: 'ProductController'
       })
-      .when('/topup', {
+      .when('/topup/:agentId/', {
         templateUrl: 'static/views/topup.html',
         controller: 'TopUpController'
-      })
-      .when('/agents', {
-        templateUrl: 'static/views/agent.html',
-        controller: 'AgentController'
       })
       .when('/logout', {
         templateUrl: 'static/views/topup.html',
         controller: 'LogoutController'
       })
-      .when('/prod_stats/:productId/', {
+      .when('/product_stats/:productId/', {
         templateUrl: 'static/views/product_stats.html',
         controller: 'ProductStatsController'
+      })
+      .when('/agent/:productId/', {
+        templateUrl: 'static/views/agent.html',
+        controller: 'AgentController'
       })
       .when('/agent_stats/:agentId/', {
         templateUrl: 'static/views/agent_stats.html',
