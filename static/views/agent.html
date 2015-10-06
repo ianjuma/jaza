@@ -36,24 +36,32 @@
                                 </div>
 
                                 <div ng-switch-default="data">
+
+                                <form class="wizard" data-style="sea" role="form">
+                                    <div class="form-group">
+                                        <label>Search</label>
+                                        <input ng-model="searchText" type="text" class="form-control" placeholder="Search by name" required>
+                                    </div>
+                                </form>
+
                                 <table class="table table-hover table-dynamic">
                                     <thead>
                                     <tr>
                                         <th>Agent name</th>
                                         <th>Agent ID</th>
                                         <th>Agent Phone No</th>
-                                        <th>Product name</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    <tr ng-repeat="agent in Agent track by $index">
+                                    <tr agent="agent" ng-repeat="agent in Agent | filter:searchText track by agent.id">
                                         <td>{{ agent.name }}</td>
                                         <td>{{ agent.id }}</td>
                                         <td>{{ agent.phone_number }}</td>
-                                        <td>{{ agent.product_name }}</td>
+                                        <!-- <td>{{ agent.product_name }}</td> -->
                                         <td>
-                                            <a href="/#agent_stats/{{ agent.id }}"> <button class="btn btn-primary btn-xs">Sales Stats</button>
+                                            <a href="/#agent_stats/{{ agent.id }}" class="btn btn-primary btn-xs" >
+                                                <span class="glyphicon glyphicon-search"></span> Manage Agent
                                             </a>
                                         </td>
                                     </tr>
@@ -75,4 +83,6 @@
         </div>
         </div>
   </div>
+</div>
+</div>
 </section>

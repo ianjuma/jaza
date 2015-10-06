@@ -71,6 +71,7 @@ class CrunchGateway:
             'Accept': 'application/json',
             'apikey': settings.API_KEY
         }
+        stats = []
 
         try:
             url = '%s%s/%s?%s' % (self.CrunchInterface,
@@ -85,10 +86,9 @@ class CrunchGateway:
         except urllib2.HTTPError as e:
             the_page = e.read()
             raise CrunchGatewayException(the_page)
-        # dates = []
-        # values = []
-
         else:
             decoded = json.loads(the_page)
-            # for data in decoded['responses']['productCostStats']:
-            return decoded['responses']['productCostStats']
+            for data in decoded['responses']['productStats']:
+                stats.append(data)
+
+            return stats

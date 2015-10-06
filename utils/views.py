@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from utils.crunchGateway import CrunchGateway, CrunchGatewayException
 from utils.sleuthGateway import SleuthGateway, SleuthGatewayException
 
+from datetime import datetime, timedelta
+
 
 class CrunchAgentStatsView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
@@ -11,12 +13,19 @@ class CrunchAgentStatsView(views.APIView):
     def get(self, request, format=None):
         data = request.query_params
         try:
-            agent_id = data['agentId']
-            category = data['category']
-            start_date = data['startDate']
-            end_date = data['endDate']
-            start_date = start_date.split('T')[0]
-            end_date = end_date.split('T')[0]
+            agent_id = data.get('agentId', None)
+            category = data.get('category', None)
+            start_date = data.get('startDate', None)
+            end_date = data.get('endDate', None)
+
+            if start_date is not None and end_date is not None and category is not None:
+                start_date = start_date.split('T')[0]
+                end_date = end_date.split('T')[0]
+            else:
+                end_date = datetime.now().strftime("%Y-%m-%d")
+                start_date = datetime.now() - timedelta(days=7)
+                start_date = start_date.strftime("%Y-%m-%d")
+                category = 'sent'
 
             print agent_id, category, start_date, end_date
 

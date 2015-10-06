@@ -42,11 +42,17 @@
                     </div>
 
                 </div>
-                <button id="submit" type="submit" class="btn btn-primary" ng-click="showme=false">Get Stats</button>
-                <button class="btn btn-primary" ng-click="showme=true">Hide</button>
-
             </form>
         </div>
+    </div>
+
+    <div class="col-md-6">
+        <button id="submit" type="submit" class="btn btn-primary" ng-click="showme=false">Get Stats</button>
+        <button class="btn btn-primary" ng-click="showme=true">Hide</button>
+
+        <a href="/#topup/{{ agentId }}/"> <button class="btn btn-success">Top up Agent</button>
+        </a>
+    </div>
 
         <!-- high-charts -->
         <div ng-hide="showme">

@@ -39,7 +39,15 @@
                                     </div>
 
                                     <div ng-switch-default="data">
-                                        <table class="table table-hover table-dynamic">
+
+                                        <form class="wizard" data-style="sea" role="form">
+                                            <div class="form-group">
+                                                <label>Search</label>
+                                                <input ng-model="searchText" type="text" class="form-control" placeholder="Search by name" required>
+                                            </div>
+                                        </form>
+
+                                        <table class="table table-hover table-dynamic" id="searchTextResults">
                                             <thead>
                                             <tr>
                                                 <th>Product name</th>
@@ -50,13 +58,13 @@
                                             </thead>
                                             <tbody>
 
-                                            <tr ng-repeat="product in Product track by $index">
+                                            <tr product="product" ng-repeat="product in Product | filter:searchText track by product.id">
                                                 <td>{{ product.name }}</td>
                                                 <td>{{ product.category }}</td>
                                                 <td>{{ product.created_at }}</td>
                                                 <td>{{ product.ussd_channel }}</td>
                                                 <td>
-                                                    <a href="/#prod_stats/{{ product.id }}"> <button class="btn btn-primary btn-xs">Sales Stats</button>
+                                                    <a href="/#agent/{{ product.id }}"> <button class="btn btn-primary btn-xs">View Agents</button>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -83,5 +91,6 @@
         </div>
         </div>
   </div>
+</div>
 </div>
 </section>
