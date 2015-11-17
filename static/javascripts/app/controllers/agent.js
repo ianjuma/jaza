@@ -8,6 +8,8 @@ angular.module('Jaza')
           $scope.Agent = 0;
         } else {
           $scope.Agent = result.data;
+          $scope.ProductName = result.data[0].product_name;
+          $scope.AgentsNumber = result.data.length;
         }
       })
       .catch(function (response) {
