@@ -342,8 +342,7 @@ function toggleboxedLayout() {
     /* Toggle Sidebar Collapsed */
 function collapsedSidebar() {
     if ($body.css('position') != 'relative') {
-        if (!$body.hasClass('sidebar-collapsed')) createCollapsedSidebar();
-        else removeCollapsedSidebar();
+        if (!$body.hasClass('sidebar-collapsed')) console.log('sidebar');
     } else {
         if ($body.hasClass('sidebar-show')) $body.removeClass('sidebar-show');
         else $body.addClass('sidebar-show');
@@ -351,34 +350,6 @@ function collapsedSidebar() {
     handleboxedLayout();
 }
 
-function createCollapsedSidebar() {
-    $body.addClass('sidebar-collapsed');
-    $('.sidebar').css('width', '').resizable().resizable('destroy');
-    $('.nav-sidebar ul').attr('style', '');
-    $(this).addClass('menu-collapsed');
-    destroySideScroll();
-    $('#switch-sidebar').prop('checked');
-    $.cookie('sidebar-collapsed', 1);
-    $.cookie('sidebar-collapsed', 1, {
-        path: '/'
-    });
-}
-
-function removeCollapsedSidebar() {
-    $body.removeClass('sidebar-collapsed');
-    if (!$body.hasClass('submenu-hover')) $('.nav-sidebar li.active ul').css({
-        display: 'block'
-    });
-    $(this).removeClass('menu-collapsed');
-    if ($body.hasClass('sidebar-light') && !$body.hasClass('sidebar-fixed')) {
-        $('.sidebar').height('');
-    }
-    createSideScroll();
-    $.removeCookie('sidebar-collapsed');
-    $.removeCookie('sidebar-collapsed', {
-        path: '/'
-    });
-}
 $('[data-toggle]').on('click', function(event) {
     event.preventDefault();
     var toggleLayout = $(this).data('toggle');
