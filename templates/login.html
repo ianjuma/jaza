@@ -62,7 +62,6 @@
 
     $("#submit").click(function( evnt ) {
         evnt.preventDefault();
-        console.log("event fired");
 
         var username = $("#username").val();
         var password = $("#password").val();
@@ -71,7 +70,6 @@
             "password": password
         };
         dataObject = JSON.stringify(dataObject);
-        console.log(dataObject);
 
         $.ajax({
             type: 'POST',
