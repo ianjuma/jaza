@@ -14,8 +14,6 @@ angular.module('Jaza')
         } else {
           $scope.Product = result.data;
         }
-
-        console.log(result.data);
       })
       .catch(function (response) {
         console.log(response);

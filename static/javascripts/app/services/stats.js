@@ -3,7 +3,7 @@ angular.module('Jaza')
     return {
       getProductStats: function(productId, startDate, endDate, category) {
         var url = '/api/v1/crunch/products/';
-        console.log(productId, startDate, endDate, category);
+
         return $http.get( url, { params: { "productId": productId,
           "startDate": startDate, "endDate": endDate, "category": category } } );
       }

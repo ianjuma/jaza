@@ -3,7 +3,6 @@ angular.module('Jaza')
 
     User.getUser( username )
       .then(function(result) {
-        console.log(result);
         $scope.firstName = result.data.first_name;
         $scope.lastName = result.data.last_name;
         $scope.email = result.data.email;
@@ -21,7 +20,6 @@ angular.module('Jaza')
         .then(function(result) {
           snackbar.create("User Information Successfully Updated");
           window.location.href = '/';
-          console.log(result);
         })
         .catch(function(response) {
           console.log(response);

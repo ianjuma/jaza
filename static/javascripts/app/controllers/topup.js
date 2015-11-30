@@ -9,7 +9,6 @@ angular.module('Jaza')
         source: $scope.source
       })
         .then(function (result) {
-          console.log(result);
           snackbar.create("Agent successfully topped up");
           $scope.refId = result.refID;
           $scope.amount = result.amount;

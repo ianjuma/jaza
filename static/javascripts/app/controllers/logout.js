@@ -4,7 +4,6 @@ angular.module('Jaza')
     })
       .then(function (result) {
         window.location.href = '/';
-        console.log(result);
       })
       .catch(function (response) {
         window.location.href = '/';

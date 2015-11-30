@@ -11,7 +11,6 @@ angular.module('Jaza')
 
       AgentService.getAgentStats(agentId, startDate, endDate, category)
         .then(function (result) {
-          console.log(result.data);
 
           if (Object.keys(result.data).length === 0) {
             $scope.Stats = {'datum': 0};
