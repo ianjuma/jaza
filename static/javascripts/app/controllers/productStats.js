@@ -17,7 +17,6 @@ angular.module('Jaza')
           } else {
             $scope.Stats = {'data': result.data};
           }
-          $scope.$digest();
         })
         .catch(function (response) {
           snackbar.create("Couldn't get Product Sales Metrics");
