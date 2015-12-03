@@ -80,11 +80,10 @@
 
             success: function() {
               window.location.href = '/';
-            },
-            always: function(jqXHR, textStatus) {
-                if (textStatus != 'success') {
-                    window.alert("Wrong password or username, please confirm your login details!");
-                }
+            }
+        }).always(function(jqXHR, textStatus) {
+            if (textStatus != 'success') {
+                window.alert("Wrong password or username, please confirm your login details!");
             }
         });
 
