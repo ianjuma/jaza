@@ -78,14 +78,12 @@
             dataType: 'json',
             data: dataObject,
 
-            success: function(result) {
-              window.location.href = '/';
-            },
-            always: function(result) {
+            success: function() {
               window.location.href = '/';
             },
             fail: function(result) {
               console.log(result);
+              alert("Wrong password or username, please confirm your login details!");
             }
         });
 
