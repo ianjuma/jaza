@@ -1,15 +1,16 @@
 angular.module('Jaza')
-  .controller('AgentStatsController', function($scope, $routeParams, AgentService, snackbar) {
+  .controller('AgentStatsController', function($scope, $routeParams, CrunchService, snackbar) {
     var agentId = $routeParams.agentId;
     $scope.agentId = agentId;
 
-    $scope.getStats = function () {
-
+    $scope.getAgentStats = function () {
       var startDate = $scope.startDate;
       var endDate = $scope.endDate;
       var category = $scope.category;
 
-      AgentService.getAgentStats(agentId, startDate, endDate, category)
+      console.log(startDate, endDate, category);
+
+      CrunchService.getAgentStats(agentId, startDate, endDate, category)
         .then(function (result) {
 
           if (Object.keys(result.data).length === 0) {
@@ -25,7 +26,7 @@ angular.module('Jaza')
           $scope.data = '';
         });
     };
-    $scope.getStats();
+    // $scope.getAgentStats();
 
     $scope.addPoints = function () {
       var seriesArray = $scope.chartConfig.series;

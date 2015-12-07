@@ -1,7 +1,7 @@
 angular.module('Jaza')
-  .controller('ProductStatsController', function($scope, $routeParams, ProductService, snackbar) {
+  .controller('ProductStatsController', function($scope, $routeParams, CrunchService, snackbar) {
 
-    $scope.getStats = function () {
+    $scope.getProductStats = function () {
       var productId = $routeParams.productId;
       var startDate = $scope.startDate;
       var endDate = $scope.endDate;
@@ -9,7 +9,7 @@ angular.module('Jaza')
 
       console.log(startDate, endDate, category);
 
-      ProductService.getProductStats(productId, startDate, endDate, category)
+      CrunchService.getProductStats(productId, startDate, endDate, category)
         .then(function (result) {
 
           if (Object.keys(result.data).length === 0) {

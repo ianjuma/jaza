@@ -14,20 +14,32 @@ class CrunchAgentStatsView(views.APIView):
         data = request.query_params
         try:
             agent_id = data.get('agentId', None)
-            category = data.get('category', None)
             start_date = data.get('startDate', None)
             end_date = data.get('endDate', None)
+            category = data.get('category', None)
 
-            if start_date is not None and end_date is not None and category is not None:
-                start_date = start_date.split('T')[0]
-                end_date = end_date.split('T')[0]
-            else:
+            if start_date is None and end_date is None:
                 end_date = datetime.now().strftime("%Y-%m-%d")
                 start_date = datetime.now() - timedelta(days=7)
                 start_date = start_date.strftime("%Y-%m-%d")
+
+                start_date = start_date.split('T')[0]
+                end_date = end_date.split('T')[0]
+            else:
+                first_ = end_date.split('/')[0]
+                second_ = end_date.split('/')[1]
+                third_ = end_date.split('/')[2]
+                end_date = third_ + '-' + second_ + '-' + first_
+
+                first_ = start_date.split('/')[0]
+                second_ = start_date.split('/')[1]
+                third_ = start_date.split('/')[2]
+                start_date = third_ + '-' + second_ + '-' + first_
+
+            if category is None:
                 category = 'sent'
 
-            print agent_id, category, start_date, end_date
+            print start_date, end_date, category
 
             gateway = CrunchGateway()
             response_data = gateway.get_agent_stats(
@@ -55,17 +67,33 @@ class CrunchProductStatsView(views.APIView):
 
     def get(self, request, format=None):
         data = request.query_params
-        print data
         try:
-            product_id = data['productId']
-            category = data['category']
-            start_date = data['startDate']
-            end_date = data['endDate']
+            product_id = data.get('productId', None)
+            category = data.get('category', None)
+            start_date = data.get('startDate', None)
+            end_date = data.get('endDate', None)
 
-            start_date = start_date.split('T')[0]
-            end_date = end_date.split('T')[0]
+            if end_date is not None and start_date is not None:
+                first_ = end_date.split('/')[0]
+                second_ = end_date.split('/')[1]
+                third_ = end_date.split('/')[2]
+                end_date = third_ + '-' + second_ + '-' + first_
 
-            print start_date, end_date, category, product_id
+                first_ = start_date.split('/')[0]
+                second_ = start_date.split('/')[1]
+                third_ = start_date.split('/')[2]
+                start_date = third_ + '-' + second_ + '-' + first_
+
+            if start_date is None and end_date is None:
+                end_date = datetime.now().strftime("%Y-%m-%d")
+                start_date = datetime.now() - timedelta(days=7)
+                start_date = start_date.strftime("%Y-%m-%d")
+
+                start_date = start_date.split('T')[0]
+                end_date = end_date.split('T')[0]
+
+            if category is None:
+                category = 'sent'
 
             gateway = CrunchGateway()
             response_data = gateway.get_product_stats(

@@ -34,7 +34,7 @@
     <div class="col-md-6 portlets">
 
         <div class="wizard-div current wizard-sea">
-            <form class="wizard" method="POST" ng-submit="getStats()" data-style="sea" role="form">
+            <form class="wizard" method="POST" ng-submit="getAgentStats()" data-style="sea" role="form">
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -59,16 +59,15 @@
                     </div>
 
                 </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary" ng-click="showme=false">Get Stats</button>
+                    <button class="btn btn-primary" ng-click="showme=true">Hide</button>
+
+                    <a href="/#topup/{{ agentId }}/"> <button class="btn btn-success">Top up Agent</button>
+                    </a>
+                </div>
             </form>
         </div>
-    </div>
-
-    <div class="col-md-6">
-        <button id="submit" type="submit" class="btn btn-primary" ng-click="showme=false">Get Stats</button>
-        <button class="btn btn-primary" ng-click="showme=true">Hide</button>
-
-        <a href="/#topup/{{ agentId }}/"> <button class="btn btn-success">Top up Agent</button>
-        </a>
     </div>
 
         <!-- high-charts -->
